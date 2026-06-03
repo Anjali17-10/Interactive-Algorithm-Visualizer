@@ -1,17 +1,197 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my-project</title>
-  </head>
-  <body>
-   <h1 className="text-6xl font-extrabold">
-  Interactive Algorithm Visualizer
-</h1>
-<p className="mt-4 text-lg text-gray-600">
-  Learn and explore algorithms through dynamic visualizations and animations.
-</p>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50">
+
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center px-6 py-4 bg-white shadow">
+  <h1 class="text-xl font-bold text-blue-600">DSA Visualizer</h1>
+</nav>
+
+<!-- HERO -->
+<section class="text-center py-10">
+  <h2 class="text-3xl font-bold">Master Data Structures & Algorithms</h2>
+  <p class="text-gray-600 mt-2">Click a topic to explore algorithms and problems</p>
+</section>
+
+<!-- TOPIC GRID -->
+<section class="grid grid-cols-2 md:grid-cols-3 gap-4 px-6">
+  <!-- CARD -->
+  <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl transition duration-300 cursor-pointer overflow-hidden">
+
+    <!-- icon -->
+    <div class="text-4xl">📊</div>
+
+    <!-- title -->
+    <h2 class="text-xl font-bold mt-3">Arrays</h2>
+
+    <!-- description -->
+    <p class="text-gray-600 mt-1 text-sm">
+      Fundamental data structure for storing elements in contiguous memory.
+    </p>
+
+    <!-- count -->
+    <p class="mt-2 font-semibold text-blue-600">
+      12 Algorithms
+    </p>
+
+    <!-- hover image (bottom-right) -->
+    <img 
+      src="https://cdn-icons-png.flaticon.com/512/2103/2103633.png"
+      class="absolute w-16 opacity-0 group-hover:opacity-100 transition duration-300 bottom-3 right-3"
+    />
+
+  </div>
+
+  <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl transition duration-300 cursor-pointer overflow-hidden">
+
+  <!-- icon -->
+  <div class="text-4xl">🔤</div>
+
+  <!-- title -->
+  <h2 class="text-xl font-bold mt-3">Strings</h2>
+
+  <!-- description -->
+  <p class="text-gray-600 mt-1 text-sm">
+    A sequence of characters used for text processing and pattern matching problems.
+  </p>
+
+  <!-- count -->
+  <p class="mt-2 font-semibold text-blue-600">
+    10 Algorithms
+  </p>
+
+  <!-- hover image -->
+  <img 
+    src="https://cdn.iconscout.com/icon/premium/png-256-thumb/abcd-chart-6711502-5528455.png"
+    class="absolute w-16 opacity-0 group-hover:opacity-100 transition duration-300 bottom-3 right-3"
+  />
+
+</div>
+
+  <div onclick="showTopic('Trees')" class="bg-white p-5 rounded shadow cursor-pointer hover:bg-blue-50">
+   Recursion and Backtracking
+  </div>
+
+  <div onclick="showTopic('Graph')" class="bg-white p-5 rounded shadow cursor-pointer hover:bg-blue-50">
+   Binary search
+  </div>
+    <div onclick="showTopic('Arrays')" class="bg-white p-5 rounded shadow cursor-pointer hover:bg-blue-50">
+   Linked List
+  </div>
+    <div onclick="showTopic('Arrays')" class="bg-white p-5 rounded shadow cursor-pointer hover:bg-blue-50">
+    Greedy Algorithms
+  </div>
+    <div onclick="showTopic('Arrays')" class="bg-white p-5 rounded shadow cursor-pointer hover:bg-blue-50">
+    Stack and Queue
+  </div>
+    <div onclick="showTopic('Arrays')" class="bg-white p-5 rounded shadow cursor-pointer hover:bg-blue-50">
+    Heaps
+  </div>
+  <!-- CARD 2 -->
+  <div class="relative group bg-white rounded-xl p-5 shadow-md hover:shadow-2xl transition duration-300 cursor-pointer overflow-hidden">
+
+    <div class="text-4xl">🌳</div>
+    <h2 class="text-xl font-bold mt-3">Trees</h2>
+
+    <p class="text-gray-600 mt-1 text-sm">
+      Hierarchical structure used in searching and sorting problems.
+    </p>
+
+    <p class="mt-2 font-semibold text-blue-600">
+      10 Algorithms
+    </p>
+
+    <img 
+      src="https://cdn.sstatic.net/Sites/cs/Img/apple-touch-icon@2.png?v=324a3e0c2b03"
+      class="absolute w-16 opacity-0 group-hover:opacity-100 transition duration-300 bottom-3 right-3"
+    />
+
+  </div>
+
+  <div onclick="showTopic('Graph')" class="bg-white p-5 rounded shadow cursor-pointer hover:bg-blue-50">
+     Graph
+  </div>
+    <div class="relative group bg-white rounded-xl p-5 shadow-md hover:shadow-2xl transition duration-300 cursor-pointer overflow-hidden">
+
+    <div class="text-4xl">🧠</div>
+    <h2 class="text-xl font-bold mt-3">Dynamic Programming</h2>
+
+    <p class="text-gray-600 mt-1 text-sm">
+      Optimization technique using overlapping subproblems.
+    </p>
+
+    <p class="mt-2 font-semibold text-blue-600">
+      15 Algorithms
+    </p>
+
+    <img 
+      src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png"
+      class="absolute w-16 opacity-0 group-hover:opacity-100 transition duration-300 bottom-3 right-3"
+    />
+
+  </div>
+
+</section>
+
+<!-- DYNAMIC CONTENT -->
+<section id="output" class="mt-10 px-6"></section>
+
+<script>
+function showTopic(topic) {
+
+  let data = {
+    Arrays: {
+      algo: ["Two Pointer", "Sliding Window", "Kadane’s Algorithm"],
+      questions: ["Subarray Sum", "Maximum Subarray", "Best Time to Buy Sell"]
+    },
+    Strings: {
+      algo: ["KMP", "Two Pointer", "Hashing"],
+      questions: ["Anagram", "Longest Palindrome", "Pattern Matching"]
+    },
+    Trees: {
+      algo: ["DFS", "BFS", "LCA"],
+      questions: ["Tree Traversal", "Height of Tree", "Diameter of Tree"]
+    },
+    Graph: {
+      algo: ["BFS", "DFS", "Dijkstra"],
+      questions: ["Shortest Path", "Cycle Detection", "Connected Components"]
+    }
+  };
+
+  let selected = data[topic];
+
+  let html = `
+    <h2 class="text-2xl font-bold mb-4">${topic}</h2>
+
+    <div class="grid md:grid-cols-2 gap-4">
+
+      <div class="bg-white p-4 shadow rounded">
+        <h3 class="font-bold mb-2">Algorithms</h3>
+        <ul class="list-disc ml-5">
+          ${selected.algo.map(a => `<li>${a}</li>`).join('')}
+        </ul>
+      </div>
+
+      <div class="bg-white p-4 shadow rounded">
+        <h3 class="font-bold mb-2">Related Questions</h3>
+        <ul class="list-disc ml-5">
+          ${selected.questions.map(q => `<li>${q}</li>`).join('')}
+        </ul>
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById("output").innerHTML = html;
+}
+</script>
+
+</body>
 </html>
