@@ -43,7 +43,7 @@
 <!-- TOPIC GRID -->
 <section class="grid grid-cols-2 md:grid-cols-3 gap-4 px-6">
   <!-- CARD1 -->
-  <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+  <div id="arraysCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
     <!-- icon -->
     <div class="text-4xl">📊</div>
@@ -359,58 +359,105 @@
     </div>
 
 </section>
-<!-- DYNAMIC CONTENT -->
-<section id="output" class="mt-10 px-6"></section>
+<section id="topicDetails" class="py-16 px-6 hidden">
 
-<script>
-function showTopic(topic) {
+    <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
 
-  let data = {
-    Arrays: {
-      algo: ["Two Pointer", "Sliding Window", "Kadane’s Algorithm"],
-      questions: ["Subarray Sum", "Maximum Subarray", "Best Time to Buy Sell"]
-    },
-    Strings: {
-      algo: ["KMP", "Two Pointer", "Hashing"],
-      questions: ["Anagram", "Longest Palindrome", "Pattern Matching"]
-    },
-    Trees: {
-      algo: ["DFS", "BFS", "LCA"],
-      questions: ["Tree Traversal", "Height of Tree", "Diameter of Tree"]
-    },
-    Graph: {
-      algo: ["BFS", "DFS", "Dijkstra"],
-      questions: ["Shortest Path", "Cycle Detection", "Connected Components"]
-    }
-  };
+        <h2 id="topicTitle" class="text-3xl font-bold mb-6">
+            Topic Name
+        </h2>
 
-  let selected = data[topic];
+        <div class="grid md:grid-cols-2 gap-8">
 
-  let html = `
-    <h2 class="text-2xl font-bold mb-4">${topic}</h2>
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-blue-600">
+                    Algorithms
+                </h3>
 
-    <div class="grid md:grid-cols-2 gap-4">
+                <ul id="algorithmList" class="space-y-2">
+                </ul>
+            </div>
 
-      <div class="bg-white p-4 shadow rounded">
-        <h3 class="font-bold mb-2">Algorithms</h3>
-        <ul class="list-disc ml-5">
-          ${selected.algo.map(a => `<li>${a}</li>`).join('')}
-        </ul>
-      </div>
+            <div>
+                <h3 class="text-xl font-semibold mb-4 text-blue-600">
+                    Related Questions
+                </h3>
 
-      <div class="bg-white p-4 shadow rounded">
-        <h3 class="font-bold mb-2">Related Questions</h3>
-        <ul class="list-disc ml-5">
-          ${selected.questions.map(q => `<li>${q}</li>`).join('')}
-        </ul>
-      </div>
+                <ul id="questionList" class="space-y-2">
+                </ul>
+            </div>
+
+        </div>
 
     </div>
-  `;
 
-  document.getElementById("output").innerHTML = html;
-}
+</section>
+<!-- DYNAMIC CONTENT -->
+<section id="output" class="mt-10 px-6"></section>
+<script>
+const arraysData = {
+    algorithms: [
+        "Two Pointers",
+        "Sliding Window",
+        "Kadane's Algorithm",
+        "Prefix Sum",
+        "Binary Search on Answer"
+    ],
+
+    questions: [
+        "Maximum Subarray",
+        "Subarray Sum Equals K",
+        "Best Time to Buy and Sell Stock",
+        "Product of Array Except Self"
+    ]
+};
+
+document
+.getElementById("arraysCard")
+.addEventListener("click", () => {
+
+    document
+    .getElementById("topicDetails")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("topicTitle")
+    .textContent = "Arrays";
+
+    const algoList =
+    document.getElementById("algorithmList");
+
+    const questionList =
+    document.getElementById("questionList");
+
+    algoList.innerHTML = "";
+    questionList.innerHTML = "";
+
+    arraysData.algorithms.forEach(algo => {
+
+        algoList.innerHTML +=
+        `<li class="bg-blue-50 p-3 rounded">
+            ${algo}
+        </li>`;
+
+    });
+
+    arraysData.questions.forEach(question => {
+
+        questionList.innerHTML +=
+        `<li class="bg-blue-50 p-3 rounded">
+            ${question}
+        </li>`;
+
+    });
+
+    document
+    .getElementById("topicDetails")
+    .scrollIntoView({
+        behavior: "smooth"
+    });
+
+});
 </script>
-
 </body>
 </html>
