@@ -69,7 +69,7 @@
 
   </div>
 <!--card 2-->
-  <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+  <div id="stringsCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
   <!-- icon -->
   <div class="text-4xl">🔤</div>
@@ -95,7 +95,7 @@
 
 </div>
 <!--card 3-->
-  <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+  <div id="recursionCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
   <!-- icon -->
   <div class="text-4xl">🔄</div>
@@ -412,9 +412,42 @@ const arraysData = {
     ]
 };
 
-document
-.getElementById("arraysCard")
-.addEventListener("click", () => {
+const stringsData = {
+    algorithms: [
+        "Pattern Matching",
+        "KMP Algorithm",
+        "Rabin-Karp",
+        "Z Algorithm",
+        "Manacher's Algorithm"
+    ],
+
+    questions: [
+        "Longest Palindromic Substring",
+        "Valid Anagram",
+        "Longest Common Prefix",
+        "Group Anagrams"
+    ]
+};
+
+const recursionData = {
+    algorithms: [
+        "Recursion Basics",
+        "Backtracking",
+        "N Queens",
+        "Sudoku Solver",
+        "Generate Parentheses"
+    ],
+
+    questions: [
+        "Subsets",
+        "Permutations",
+        "Combination Sum",
+        "Rat in a Maze"
+    ]
+};
+
+
+function showTopic(title, data) {
 
     document
     .getElementById("topicDetails")
@@ -422,7 +455,7 @@ document
 
     document
     .getElementById("topicTitle")
-    .textContent = "Arrays";
+    .textContent = title;
 
     const algoList =
     document.getElementById("algorithmList");
@@ -433,7 +466,7 @@ document
     algoList.innerHTML = "";
     questionList.innerHTML = "";
 
-    arraysData.algorithms.forEach(algo => {
+    data.algorithms.forEach(algo => {
 
         algoList.innerHTML +=
         `<li class="bg-blue-50 p-3 rounded">
@@ -442,7 +475,7 @@ document
 
     });
 
-    arraysData.questions.forEach(question => {
+    data.questions.forEach(question => {
 
         questionList.innerHTML +=
         `<li class="bg-blue-50 p-3 rounded">
@@ -456,6 +489,33 @@ document
     .scrollIntoView({
         behavior: "smooth"
     });
+}
+
+
+document
+.getElementById("arraysCard")
+.addEventListener("click", () => {
+
+    showTopic("Arrays", arraysData);
+
+});
+
+document
+.getElementById("stringsCard")
+.addEventListener("click", () => {
+
+    showTopic("Strings", stringsData);
+
+});
+
+document
+.getElementById("recursionCard")
+.addEventListener("click", () => {
+
+    showTopic(
+        "Recursion & Backtracking",
+        recursionData
+    );
 
 });
 </script>
