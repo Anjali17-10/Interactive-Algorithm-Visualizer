@@ -121,7 +121,7 @@
 
 </div>
 <!--card 4-->
- <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+ <div id="searchingCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
   <!-- icon -->
   <div class="text-4xl">🔍</div>
@@ -147,7 +147,7 @@
 
 </div>
 <!--card 5-->
-    <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+    <div id="linkedListCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
   <!-- icon -->
   <div class="text-4xl">🔗</div>
@@ -172,7 +172,7 @@
   />
 </div>
 <!--card 6-->
-   <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+   <div id="greedyCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
   <!-- icon -->
   <div class="text-4xl">💰</div>
@@ -197,7 +197,7 @@
   />
 
 </div>
-   <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+   <div id="stackQueueCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
   <!-- icon -->
   <div class="text-4xl">📚</div>
@@ -222,7 +222,7 @@
   />
 
 </div>
-   <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+   <div id="heapsCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
   <!-- icon -->
   <div class="text-4xl">⛰️</div>
@@ -248,7 +248,7 @@
 
 </div>
   <!-- CARD 9 -->
- <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+ <div id="treesCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
   <!-- icon -->
   <div class="text-4xl">🌳</div>
@@ -273,7 +273,7 @@
   />
 
 </div>
-<div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
+<div id="graphsCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 transition duration-300 cursor-pointer overflow-hidden min-h-[260px]">
 
   <!-- icon -->
   <div class="text-4xl">🕸️</div>
@@ -298,7 +298,7 @@
   />
 
 </div>
-   <div class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 min-h-[260px] transition duration-300 cursor-pointer overflow-hidden">
+   <div id="dpCard" class="relative group bg-blue-50 rounded-xl p-5 shadow-md hover:shadow-2xl hover:-translate-y-2 min-h-[260px] transition duration-300 cursor-pointer overflow-hidden">
 
   <!-- icon -->
   <div class="text-4xl">🧩</div>
@@ -445,7 +445,133 @@ const recursionData = {
         "Rat in a Maze"
     ]
 };
+const searchingData = {
+    algorithms: [
+        "Linear Search",
+        "Binary Search",
+        "Lower Bound",
+        "Upper Bound",
+        "Binary Search on Answer"
+    ],
+    questions: [
+        "Search Insert Position",
+        "First and Last Position",
+        "Peak Element",
+        "Search in Rotated Array"
+    ]
+};
 
+const linkedListData = {
+    algorithms: [
+        "Traversal",
+        "Insertion",
+        "Deletion",
+        "Reverse Linked List",
+        "Cycle Detection"
+    ],
+    questions: [
+        "Middle of Linked List",
+        "Linked List Cycle",
+        "Merge Two Lists",
+        "Remove Nth Node"
+    ]
+};
+
+const stackQueueData = {
+    algorithms: [
+        "Stack",
+        "Queue",
+        "Next Greater Element",
+        "Monotonic Stack",
+        "Sliding Window Maximum"
+    ],
+    questions: [
+        "Valid Parentheses",
+        "Min Stack",
+        "Daily Temperatures",
+        "Implement Queue"
+    ]
+};
+
+const heapsData = {
+    algorithms: [
+        "Min Heap",
+        "Max Heap",
+        "Heapify",
+        "Heap Sort",
+        "Priority Queue"
+    ],
+    questions: [
+        "K Largest Elements",
+        "Kth Largest Element",
+        "Top K Frequent",
+        "Merge K Lists"
+    ]
+};
+
+const treesData = {
+    algorithms: [
+        "Preorder",
+        "Inorder",
+        "Postorder",
+        "Level Order",
+        "LCA"
+    ],
+    questions: [
+        "Maximum Depth",
+        "Diameter of Tree",
+        "Validate BST",
+        "Balanced Tree"
+    ]
+};
+
+const graphsData = {
+    algorithms: [
+        "BFS",
+        "DFS",
+        "Topological Sort",
+        "Dijkstra",
+        "DSU"
+    ],
+    questions: [
+        "Number of Islands",
+        "Course Schedule",
+        "Network Delay Time",
+        "Shortest Path"
+    ]
+};
+
+const greedyData = {
+    algorithms: [
+        "Activity Selection",
+        "Fractional Knapsack",
+        "Huffman Coding",
+        "Job Sequencing",
+        "Minimum Platforms"
+    ],
+    questions: [
+        "Jump Game",
+        "Gas Station",
+        "Assign Cookies",
+        "Lemonade Change"
+    ]
+};
+
+const dpData = {
+    algorithms: [
+        "Memoization",
+        "Tabulation",
+        "0/1 Knapsack",
+        "LCS",
+        "LIS"
+    ],
+    questions: [
+        "Climbing Stairs",
+        "House Robber",
+        "Coin Change",
+        "Edit Distance"
+    ]
+};
 
 function showTopic(title, data) {
 
@@ -517,6 +643,45 @@ document
         recursionData
     );
 
+});
+document.getElementById("searchingCard")
+.addEventListener("click", () => {
+    showTopic("Searching", searchingData);
+});
+
+document.getElementById("linkedListCard")
+.addEventListener("click", () => {
+    showTopic("Linked List", linkedListData);
+});
+
+document.getElementById("stackQueueCard")
+.addEventListener("click", () => {
+    showTopic("Stack & Queue", stackQueueData);
+});
+
+document.getElementById("heapsCard")
+.addEventListener("click", () => {
+    showTopic("Heaps", heapsData);
+});
+
+document.getElementById("treesCard")
+.addEventListener("click", () => {
+    showTopic("Trees", treesData);
+});
+
+document.getElementById("graphsCard")
+.addEventListener("click", () => {
+    showTopic("Graphs", graphsData);
+});
+
+document.getElementById("greedyCard")
+.addEventListener("click", () => {
+    showTopic("Greedy Algorithms", greedyData);
+});
+
+document.getElementById("dpCard")
+.addEventListener("click", () => {
+    showTopic("Dynamic Programming", dpData);
 });
 </script>
 </body>
