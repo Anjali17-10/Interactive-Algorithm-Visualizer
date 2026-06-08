@@ -39,6 +39,7 @@
     <h2 class="text-3xl font-bold">
         Explore DSA Topics
     </h2>
+  
 </section>
 <!-- TOPIC GRID -->
 <section class="grid grid-cols-2 md:grid-cols-3 gap-4 px-6">
@@ -363,9 +364,14 @@
 
     <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
 
-        <h2 id="topicTitle" class="text-3xl font-bold mb-6">
-            Topic Name
-        </h2>
+<div class="text-center mb-8">
+    <h2 id="topicTitle" class="text-4xl font-bold text-gray-900">
+        Topic Name
+    </h2>
+
+    <p id="topicInfo" class="text-gray-500 mt-3 text-lg">
+    </p>
+</div>
 
         <div class="grid md:grid-cols-2 gap-8">
 
@@ -374,8 +380,8 @@
                     Algorithms
                 </h3>
 
-                <ul id="algorithmList" class="space-y-2">
-                </ul>
+           <div id="algorithmList" class="grid md:grid-cols-2 gap-4">
+          </div>
             </div>
 
             <div>
@@ -383,8 +389,8 @@
                     Related Questions
                 </h3>
 
-                <ul id="questionList" class="space-y-2">
-                </ul>
+               <div id="questionList" class="grid md:grid-cols-2 gap-4">
+               </div>
             </div>
 
         </div>
@@ -579,9 +585,13 @@ function showTopic(title, data) {
     .getElementById("topicDetails")
     .classList.remove("hidden");
 
-    document
-    .getElementById("topicTitle")
-    .textContent = title;
+  document
+.getElementById("topicTitle")
+.textContent = `${title} Roadmap`;
+document
+.getElementById("topicInfo")
+.textContent =
+`${data.algorithms.length} Algorithms • ${data.questions.length} Practice Questions`;
 
     const algoList =
     document.getElementById("algorithmList");
@@ -592,23 +602,31 @@ function showTopic(title, data) {
     algoList.innerHTML = "";
     questionList.innerHTML = "";
 
-    data.algorithms.forEach(algo => {
+data.algorithms.forEach(algo => {
 
-        algoList.innerHTML +=
-        `<li class="bg-blue-50 p-3 rounded">
-            ${algo}
-        </li>`;
+    algoList.innerHTML += `
+    <div class="bg-blue-50 p-4 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl">⚡</span>
+            <h4 class="font-semibold text-gray-800">
+                ${algo}
+            </h4>
+        </div>
+    </div>`;
+});
 
-    });
+ data.questions.forEach(question => {
 
-    data.questions.forEach(question => {
-
-        questionList.innerHTML +=
-        `<li class="bg-blue-50 p-3 rounded">
-            ${question}
-        </li>`;
-
-    });
+    questionList.innerHTML += `
+    <div class="bg-white border p-4 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl">❓</span>
+            <h4 class="font-semibold text-gray-800">
+                ${question}
+            </h4>
+        </div>
+    </div>`;
+});
 
     document
     .getElementById("topicDetails")
