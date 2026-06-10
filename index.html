@@ -396,6 +396,42 @@
         </div>
 
     </div>
+</section>
+<section id="algorithmDetails" class="hidden py-12 px-6">
+
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+        <h2 id="algorithmName"
+            class="text-3xl font-bold mb-4">
+        </h2>
+
+        <p id="algorithmDescription"
+           class="text-gray-600 mb-6">
+        </p>
+
+        <div class="grid md:grid-cols-2 gap-4 mb-6">
+
+            <div class="bg-blue-50 p-4 rounded">
+                <h3 class="font-bold">Time Complexity</h3>
+                <p id="timeComplexity"></p>
+            </div>
+
+            <div class="bg-blue-50 p-4 rounded">
+                <h3 class="font-bold">Space Complexity</h3>
+                <p id="spaceComplexity"></p>
+            </div>
+
+        </div>
+
+        <h3 class="text-xl font-bold mb-4">
+            Practice Problems
+        </h3>
+
+        <ul id="problemsList"
+            class="grid md:grid-cols-2 gap-4">
+        </ul>
+
+    </div>
 
 </section>
 <!-- DYNAMIC CONTENT -->
@@ -405,7 +441,7 @@ const arraysData = {
     algorithms: [
         "Two Pointers",
         "Sliding Window",
-        "Kadane's Algorithm",
+        "Kadane Algorithm",
         "Prefix Sum",
         "Binary Search on Answer"
     ],
@@ -578,7 +614,82 @@ const dpData = {
         "Edit Distance"
     ]
 };
+const algorithmData = {
 
+    "Two Pointers": {
+        description:
+        "Uses two indices to efficiently process arrays and strings.",
+
+        time: "O(n)",
+
+        space: "O(1)",
+
+        problems: [
+            "Two Sum II",
+            "3Sum",
+            "Container With Most Water"
+        ]
+    },
+
+    "Sliding Window": {
+        description:
+        "Maintains a window over a sequence to optimize subarray problems.",
+
+        time: "O(n)",
+
+        space: "O(1)",
+
+        problems: [
+            "Maximum Sum Subarray",
+            "Longest Substring Without Repeating Characters",
+            "Minimum Window Substring"
+        ]
+    },
+
+   "Kadane Algorithm": {
+        description:
+        "Finds maximum subarray sum efficiently.",
+
+        time: "O(n)",
+
+        space: "O(1)",
+
+        problems: [
+            "Maximum Subarray",
+            "Circular Subarray Sum",
+            "Maximum Product Subarray"
+        ]
+    },
+  "Prefix Sum": {
+    description:
+    "Precomputes cumulative sums to answer range sum queries efficiently.",
+
+    time: "O(n)",
+
+    space: "O(n)",
+
+    problems: [
+        "Subarray Sum Equals K",
+        "Range Sum Query",
+        "Count Nice Subarrays"
+    ]
+},
+
+"Binary Search on Answer": {
+    description:
+    "Applies binary search on the answer space instead of array indices.",
+
+    time: "O(log n × check)",
+
+    space: "O(1)",
+
+    problems: [
+        "Koko Eating Bananas",
+        "Aggressive Cows",
+        "Capacity To Ship Packages"
+    ]
+}
+};
 function showTopic(title, data) {
 
     document
@@ -605,13 +716,19 @@ document
 data.algorithms.forEach(algo => {
 
     algoList.innerHTML += `
-    <div class="bg-blue-50 p-4 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1">
+    <div
+     onclick='showAlgorithm("${algo}")'
+        class="bg-blue-50 p-4 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1 cursor-pointer">
+
         <div class="flex items-center gap-3">
             <span class="text-2xl">⚡</span>
+
             <h4 class="font-semibold text-gray-800">
                 ${algo}
             </h4>
+
         </div>
+
     </div>`;
 });
 
@@ -634,7 +751,54 @@ data.algorithms.forEach(algo => {
         behavior: "smooth"
     });
 }
+function showAlgorithm(name) {
 
+    const data = algorithmData[name];
+
+    if (!data) {
+        alert("Algorithm data not added yet");
+        return;
+    }
+
+    document
+    .getElementById("algorithmDetails")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("algorithmName")
+    .textContent = name;
+
+    document
+    .getElementById("algorithmDescription")
+    .textContent = data.description;
+
+    document
+    .getElementById("timeComplexity")
+    .textContent = data.time;
+
+    document
+    .getElementById("spaceComplexity")
+    .textContent = data.space;
+
+    const problemsList =
+    document.getElementById("problemsList");
+
+    problemsList.innerHTML = "";
+
+    data.problems.forEach(problem => {
+
+        problemsList.innerHTML += `
+        <li class="bg-blue-50 p-3 rounded">
+            ${problem}
+        </li>`;
+    });
+
+    document
+    .getElementById("algorithmDetails")
+    .scrollIntoView({
+        behavior: "smooth"
+    });
+}
 
 document
 .getElementById("arraysCard")
