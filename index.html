@@ -451,12 +451,24 @@ const arraysData = {
         "Binary Search on Answer"
     ],
 
-    questions: [
-        "Maximum Subarray",
-        "Subarray Sum Equals K",
-        "Best Time to Buy and Sell Stock",
-        "Product of Array Except Self"
-    ]
+  questions: [
+{
+    name: "Maximum Subarray",
+    link: "https://leetcode.com/problems/maximum-subarray/"
+},
+{
+    name: "Subarray Sum Equals K",
+    link: "https://leetcode.com/problems/subarray-sum-equals-k/"
+},
+{
+    name: "Best Time to Buy and Sell Stock",
+    link: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+},
+{
+    name: "Product of Array Except Self",
+    link: "https://leetcode.com/problems/product-of-array-except-self/"
+}
+]
 };
 
 const stringsData = {
@@ -465,15 +477,27 @@ const stringsData = {
         "KMP Algorithm",
         "Rabin-Karp",
         "Z Algorithm",
-        "Manacher's Algorithm"
+        "Manacher Algorithm"
     ],
 
-    questions: [
-        "Longest Palindromic Substring",
-        "Valid Anagram",
-        "Longest Common Prefix",
-        "Group Anagrams"
-    ]
+ questions: [
+{
+    name: "Longest Palindromic Substring",
+    link: "https://leetcode.com/problems/longest-palindromic-substring/"
+},
+{
+    name: "Valid Anagram",
+    link: "https://leetcode.com/problems/valid-anagram/"
+},
+{
+    name: "Longest Common Prefix",
+    link: "https://leetcode.com/problems/longest-common-prefix/"
+},
+{
+    name: "Group Anagrams",
+    link: "https://leetcode.com/problems/group-anagrams/"
+}
+]
 };
 
 const recursionData = {
@@ -738,7 +762,86 @@ const algorithmData = {
     link: "https://www.spoj.com/problems/AGGRCOW/"
 }
 ]
-}
+},
+"Pattern Matching": {
+    description:
+    "Basic technique to find a pattern inside a text string.",
+
+    time: "O(n × m)",
+
+    space: "O(1)",
+
+    problems: [
+        {
+            name: "Find the Index of the First Occurrence",
+            link: "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        }
+    ]
+},
+
+"KMP Algorithm": {
+    description:
+    "Efficient pattern matching algorithm using LPS array.",
+
+    time: "O(n + m)",
+
+    space: "O(m)",
+
+    problems: [
+        {
+            name: "Find the Index of the First Occurrence",
+            link: "https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+        }
+    ]
+},
+
+"Rabin-Karp": {
+    description:
+    "Uses hashing to search patterns in strings efficiently.",
+
+    time: "O(n + m)",
+
+    space: "O(1)",
+
+    problems: [
+        {
+            name: "Repeated DNA Sequences",
+            link: "https://leetcode.com/problems/repeated-dna-sequences/"
+        }
+    ]
+},
+
+"Z Algorithm": {
+    description:
+    "Computes Z-array for efficient pattern matching.",
+
+    time: "O(n)",
+
+    space: "O(n)",
+
+    problems: [
+        {
+            name: "String Matching in an Array",
+            link: "https://leetcode.com/problems/string-matching-in-an-array/"
+        }
+    ]
+},
+
+"Manacher Algorithm": {
+    description:
+    "Finds the longest palindromic substring in linear time.",
+
+    time: "O(n)",
+
+    space: "O(n)",
+
+    problems: [
+        {
+            name: "Longest Palindromic Substring",
+            link: "https://leetcode.com/problems/longest-palindromic-substring/"
+        }
+    ]
+},
 };
 function showTopic(title, data) {
 
@@ -782,17 +885,23 @@ data.algorithms.forEach(algo => {
     </div>`;
 });
 
- data.questions.forEach(question => {
+data.questions.forEach(question => {
 
     questionList.innerHTML += `
-    <div class="bg-white border p-4 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1">
-        <div class="flex items-center gap-3">
-            <span class="text-2xl">❓</span>
-            <h4 class="font-semibold text-gray-800">
-                ${question}
-            </h4>
+    <a
+        href="${question.link}"
+        target="_blank"
+        class="bg-white border p-4 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1 block">
+
+        <div class="flex justify-between items-center">
+
+            <span>${question.name}</span>
+
+            <span>🔗</span>
+
         </div>
-    </div>`;
+
+    </a>`;
 });
 
     document
