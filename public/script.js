@@ -98,6 +98,10 @@ document
 .classList.add("hidden");
 
 document
+.getElementById("queueVisualizer")
+.classList.add("hidden");
+
+document
 .getElementById("binaryVisualizer")
 .classList.add("hidden");
 document
@@ -106,7 +110,9 @@ document
 document
 .getElementById("upperVisualizer")
 .classList.add("hidden");
-
+document
+.getElementById("stackVisualizer")
+.classList.add("hidden");
 
     const data = algorithmData[name];
 document.getElementById("linearVisualizer").classList.add("hidden");
@@ -240,6 +246,23 @@ if(name === "Upper Bound")
     .classList.remove("hidden");
 
     renderUpper();
+}
+
+if(name === "Stack Operations")
+{
+    document
+    .getElementById("stackVisualizer")
+    .classList.remove("hidden");
+
+    renderStack();
+}
+if(name === "Queue Operations")
+{
+    document
+    .getElementById("queueVisualizer")
+    .classList.remove("hidden");
+
+    renderQueue();
 }
 
 }

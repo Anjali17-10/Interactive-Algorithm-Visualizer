@@ -99,18 +99,22 @@ const searchingData = {
 questions: [
 {
     name: "Search Insert Position",
+     difficulty: "Easy",
     link: "https://leetcode.com/problems/search-insert-position/"
 },
 {
     name: "First and Last Position",
+     difficulty: "Medium",
     link: "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/"
 },
 {
     name: "Peak Element",
+     difficulty: "Medium",
     link: "https://leetcode.com/problems/find-peak-element/"
 },
 {
     name: "Search in Rotated Array",
+    difficulty: "Medium",
     link: "https://leetcode.com/problems/search-in-rotated-sorted-array/"
 }
 ]
@@ -134,30 +138,54 @@ const linkedListData = {
 
 const stackQueueData = {
     algorithms: [
-        "Stack",
-        "Queue",
+        "Stack Operations",
+        "Queue Operations",
+        "Valid Parentheses",
         "Next Greater Element",
-        "Monotonic Stack",
-        "Sliding Window Maximum"
+        "Stock Span Problem",
+        "Largest Rectangle Histogram",
+        "Circular Queue",
+        "Sliding Window Maximum",
+        "Min Stack"
     ],
-questions: [
-{
-    name: "Valid Parentheses",
-    link: "https://leetcode.com/problems/valid-parentheses/"
-},
-{
-    name: "Min Stack",
-    link: "https://leetcode.com/problems/min-stack/"
-},
-{
-    name: "Daily Temperatures",
-    link: "https://leetcode.com/problems/daily-temperatures/"
-},
-{
-    name: "Implement Queue using Stacks",
-    link: "https://leetcode.com/problems/implement-queue-using-stacks/"
-}
-]
+
+    questions: [
+        {
+            name: "Valid Parentheses",
+            difficulty: "Easy",
+            link: "https://leetcode.com/problems/valid-parentheses/"
+        },
+
+        {
+            name: "Next Greater Element I",
+            difficulty: "Easy",
+            link: "https://leetcode.com/problems/next-greater-element-i/"
+        },
+
+        {
+            name: "Online Stock Span",
+            difficulty: "Medium",
+            link: "https://leetcode.com/problems/online-stock-span/"
+        },
+
+        {
+            name: "Largest Rectangle in Histogram",
+            difficulty: "Hard",
+            link: "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+        },
+
+        {
+            name: "Sliding Window Maximum",
+            difficulty: "Hard",
+            link: "https://leetcode.com/problems/sliding-window-maximum/"
+        },
+
+        {
+            name: "Min Stack",
+            difficulty: "Medium",
+            link: "https://leetcode.com/problems/min-stack/"
+        }
+    ]
 };
 
 const heapsData = {
@@ -1184,4 +1212,37 @@ const algorithmData = {
         }
     ]
 },
+"Stack Operations": {
+    description:
+    "A stack follows the Last In First Out (LIFO) principle. Elements are inserted and removed from the top.",
+
+    time: "O(1)",
+
+    space: "O(n)",
+
+    problems: [
+        {
+            name: "Implement Stack using Queues",
+            link:
+            "https://leetcode.com/problems/implement-stack-using-queues/"
+        }
+    ]
+},
+"Queue Operations": {
+    description:
+    "A queue follows the First In First Out (FIFO) principle. Elements are inserted from the rear and removed from the front.",
+
+    time: "O(1)",
+
+    space: "O(n)",
+
+    problems: [
+        {
+            name: "Implement Queue using Stacks",
+            link:
+            "https://leetcode.com/problems/implement-queue-using-stacks/"
+        }
+    ]
+},
+
 };

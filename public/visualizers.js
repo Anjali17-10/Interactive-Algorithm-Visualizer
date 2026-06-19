@@ -1220,3 +1220,277 @@ document
     renderUpper();
 
 });
+
+// ================= Stack Operations =================
+
+const stackSteps = [
+
+{
+    stack:[10],
+    explanation:"Push 10 into the stack."
+},
+
+{
+    stack:[10,20],
+    explanation:"Push 20 into the stack."
+},
+
+{
+    stack:[10,20,30],
+    explanation:"Push 30 into the stack."
+},
+
+{
+    stack:[10,20],
+    explanation:"Pop the top element 30."
+},
+
+{
+    stack:[10,20,40],
+    explanation:"Push 40 into the stack."
+}
+
+];
+
+let currentStackStep = 0;
+
+function renderStack()
+{
+    const container =
+    document.getElementById(
+        "stackContainer"
+    );
+
+    container.innerHTML = "";
+
+    const step =
+    stackSteps[currentStackStep];
+
+    document
+    .getElementById(
+        "stackStepCounter"
+    )
+    .textContent =
+    `Step ${currentStackStep+1}/${stackSteps.length}`;
+
+    document
+    .getElementById(
+        "stackExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    step.stack.forEach((value,index)=>{
+
+        container.innerHTML += `
+
+        <div
+        class="
+        w-24 h-16
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-2xl
+        font-bold
+
+        ${
+            index === step.stack.length-1
+            ?
+            "bg-blue-600 text-white"
+            :
+            "bg-blue-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+
+        `;
+
+    });
+
+}
+document
+.getElementById("stackPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentStackStep > 0)
+    {
+        currentStackStep--;
+
+        renderStack();
+    }
+
+});
+
+document
+.getElementById("stackNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentStackStep < stackSteps.length-1)
+    {
+        currentStackStep++;
+
+        renderStack();
+    }
+
+});
+
+document
+.getElementById("stackResetBtn")
+.addEventListener("click",()=>{
+
+    currentStackStep = 0;
+
+    renderStack();
+
+});
+// ================= Queue Operations =================
+
+const queueSteps = [
+
+{
+    queue:[10],
+    explanation:"Enqueue 10."
+},
+
+{
+    queue:[10,20],
+    explanation:"Enqueue 20."
+},
+
+{
+    queue:[10,20,30],
+    explanation:"Enqueue 30."
+},
+
+{
+    queue:[20,30],
+    explanation:"Dequeue 10 from the front."
+},
+
+{
+    queue:[20,30,40],
+    explanation:"Enqueue 40."
+}
+
+];
+
+let currentQueueStep = 0;
+
+function renderQueue()
+{
+    const container =
+    document.getElementById(
+        "queueContainer"
+    );
+
+    container.innerHTML = "";
+
+    const step =
+    queueSteps[currentQueueStep];
+
+    document
+    .getElementById(
+        "queueStepCounter"
+    )
+    .textContent =
+    `Step ${currentQueueStep+1}/${queueSteps.length}`;
+
+    document
+    .getElementById(
+        "queueExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    step.queue.forEach((value,index)=>{
+
+        let label = "";
+
+        if(index===0)
+            label += "F";
+
+        if(index===step.queue.length-1)
+            label += "R";
+
+        container.innerHTML += `
+
+        <div class="flex flex-col items-center">
+
+            <div class="font-bold mb-2 text-green-700">
+                ${label}
+            </div>
+
+            <div
+            class="
+            w-16 h-16
+            rounded-xl
+            shadow-lg
+            flex
+            items-center
+            justify-center
+            text-2xl
+            font-bold
+
+            ${
+                index===0
+                ?
+                "bg-green-500 text-white"
+                :
+                index===step.queue.length-1
+                ?
+                "bg-red-500 text-white"
+                :
+                "bg-blue-100"
+            }
+            ">
+
+            ${value}
+
+            </div>
+
+        </div>
+
+        `;
+    });
+
+}
+document
+.getElementById("queuePrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentQueueStep > 0)
+    {
+        currentQueueStep--;
+
+        renderQueue();
+    }
+
+});
+
+document
+.getElementById("queueNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentQueueStep < queueSteps.length-1)
+    {
+        currentQueueStep++;
+
+        renderQueue();
+    }
+
+});
+
+document
+.getElementById("queueResetBtn")
+.addEventListener("click",()=>{
+
+    currentQueueStep = 0;
+
+    renderQueue();
+
+});
