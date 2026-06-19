@@ -505,36 +505,316 @@ document
 });
 // ================= Binary Search on Answer =================
 
-const binaryArr = [1,2,3,4,5,6,7,8,9,10,11];
+const binaryAnswerArr = [1,2,3,4,5,6,7,8,9,10,11];
 
-const binarySteps = [
+const binaryAnswerSteps = [
 
 {
     low:1,
     mid:6,
     high:11,
-    explanation:"Start with the entire search space."
+    explanation:"Check answer = 6."
 },
 
 {
     low:1,
     mid:3,
     high:5,
-    explanation:"Target lies in the left half."
+    explanation:"Answer may be smaller."
 },
 
 {
     low:4,
     mid:4,
     high:5,
-    explanation:"Narrow the search space further."
+    explanation:"Answer found."
+}
+
+];
+
+let currentBinaryAnswerStep = 0;
+
+function renderBinaryAnswer()
+{
+    const container =
+    document.getElementById(
+        "binaryAnswerArrayContainer"
+    );
+
+    container.innerHTML = "";
+
+    const step =
+    binaryAnswerSteps[
+        currentBinaryAnswerStep
+    ];
+
+    document
+    .getElementById(
+        "binaryAnswerStepCounter"
+    )
+    .textContent =
+    `Step ${currentBinaryAnswerStep+1}/${binaryAnswerSteps.length}`;
+
+    document
+    .getElementById(
+        "binaryAnswerExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    binaryAnswerArr.forEach((value)=>{
+
+        let label = "";
+
+        if(value===step.low)
+            label += "L";
+
+        if(value===step.mid)
+            label += "M";
+
+        if(value===step.high)
+            label += "H";
+
+        container.innerHTML += `
+
+        <div class="flex flex-col items-center">
+
+            <div class="text-orange-600 font-bold mb-2">
+                ${label}
+            </div>
+
+            <div
+            class="
+            w-16 h-16
+            rounded-xl
+            shadow-lg
+            flex
+            items-center
+            justify-center
+            text-2xl
+            font-bold
+
+            ${
+                value===step.mid
+                ?
+                "bg-orange-500 text-white"
+                :
+                value===step.low
+                ?
+                "bg-green-500 text-white"
+                :
+                value===step.high
+                ?
+                "bg-red-500 text-white"
+                :
+                "bg-orange-100"
+            }
+            ">
+
+                ${value}
+
+            </div>
+
+        </div>
+        `;
+    });
+
+}
+document
+.getElementById("binaryAnswerPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentBinaryAnswerStep > 0)
+    {
+        currentBinaryAnswerStep--;
+
+        renderBinaryAnswer();
+    }
+
+});
+
+document
+.getElementById("binaryAnswerNextBtn")
+.addEventListener("click",()=>{
+
+    if(
+        currentBinaryAnswerStep
+        <
+        binaryAnswerSteps.length-1
+    )
+    {
+        currentBinaryAnswerStep++;
+
+        renderBinaryAnswer();
+    }
+
+});
+
+document
+.getElementById("binaryAnswerResetBtn")
+.addEventListener("click",()=>{
+
+    currentBinaryAnswerStep = 0;
+
+    renderBinaryAnswer();
+
+});
+// ================= Linear Search =================
+
+const linearArr = [3,8,2,7,5,1];
+
+const linearSteps = [
+
+{
+    current:0,
+    found:false,
+    explanation:"Check element 3."
 },
 
 {
-    low:5,
-    mid:5,
-    high:5,
-    explanation:"Answer found."
+    current:1,
+    found:false,
+    explanation:"Check element 8."
+},
+
+{
+    current:2,
+    found:false,
+    explanation:"Check element 2."
+},
+
+{
+    current:3,
+    found:true,
+    explanation:"Target 7 found."
+}
+
+];
+
+let currentLinearStep = 0;
+function renderLinear()
+{
+    const container =
+    document.getElementById(
+        "linearArrayContainer"
+    );
+
+    container.innerHTML = "";
+
+    const step =
+    linearSteps[currentLinearStep];
+
+    document
+    .getElementById(
+        "linearStepCounter"
+    )
+    .textContent =
+    `Step ${currentLinearStep+1}/${linearSteps.length}`;
+
+    document
+    .getElementById(
+        "linearExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    linearArr.forEach((value,index)=>{
+
+        container.innerHTML += `
+        <div
+        class="
+        w-16 h-16
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-2xl
+        font-bold
+
+        ${
+            index===step.current
+            ?
+            (
+                step.found
+                ?
+                "bg-green-500 text-white"
+                :
+                "bg-blue-500 text-white"
+            )
+            :
+            "bg-blue-100"
+        }
+        ">
+
+            ${value}
+
+        </div>
+        `;
+    });
+
+}
+document
+.getElementById("linearPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentLinearStep > 0)
+    {
+        currentLinearStep--;
+
+        renderLinear();
+    }
+
+});
+
+document
+.getElementById("linearNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentLinearStep < linearSteps.length-1)
+    {
+        currentLinearStep++;
+
+        renderLinear();
+    }
+
+});
+
+document
+.getElementById("linearResetBtn")
+.addEventListener("click",()=>{
+
+    currentLinearStep = 0;
+
+    renderLinear();
+
+});
+
+
+//=====binary search======
+const binaryArr = [1,3,5,7,9,11,13];
+
+const binarySteps = [
+
+{
+    low:1,
+    mid:7,
+    high:13,
+    explanation:"Mid = 7. Target 9 is greater, move low right."
+},
+
+{
+    low:9,
+    mid:11,
+    high:13,
+    explanation:"Mid = 11. Target 9 is smaller, move high left."
+},
+
+{
+    low:9,
+    mid:9,
+    high:9,
+    explanation:"Target found."
 }
 
 ];
@@ -571,13 +851,13 @@ function renderBinary()
 
         let label = "";
 
-        if(value === step.low)
+        if(value===step.low)
             label += "L";
 
-        if(value === step.mid)
+        if(value===step.mid)
             label += "M";
 
-        if(value === step.high)
+        if(value===step.high)
             label += "H";
 
         container.innerHTML += `
@@ -600,15 +880,15 @@ function renderBinary()
             font-bold
 
             ${
-                value === step.mid
+                value===step.mid
                 ?
                 "bg-orange-500 text-white"
                 :
-                value === step.low
+                value===step.low
                 ?
                 "bg-green-500 text-white"
                 :
-                value === step.high
+                value===step.high
                 ?
                 "bg-red-500 text-white"
                 :
@@ -616,12 +896,11 @@ function renderBinary()
             }
             ">
 
-            ${value}
+                ${value}
 
             </div>
 
         </div>
-
         `;
     });
 
@@ -660,5 +939,284 @@ document
     currentBinaryStep = 0;
 
     renderBinary();
+
+});
+
+// ================= Lower Bound =================
+
+const lowerArr = [1,2,4,4,4,6,8];
+
+const lowerSteps = [
+
+{
+    low:1,
+    mid:4,
+    high:8,
+    answer:4,
+    explanation:"4 ≥ target, save answer and move left."
+},
+
+{
+    low:1,
+    mid:2,
+    high:4,
+    answer:4,
+    explanation:"2 < target, move right."
+},
+
+{
+    low:4,
+    mid:4,
+    high:4,
+    answer:4,
+    explanation:"First occurrence found."
+}
+
+];
+
+let currentLowerStep = 0;
+
+function renderLower()
+{
+    const container =
+    document.getElementById(
+        "lowerArrayContainer"
+    );
+
+    container.innerHTML = "";
+
+    const step =
+    lowerSteps[currentLowerStep];
+
+    document
+    .getElementById("lowerStepCounter")
+    .textContent =
+    `Step ${currentLowerStep+1}/${lowerSteps.length}`;
+
+    document
+    .getElementById("lowerExplanation")
+    .textContent =
+    step.explanation;
+
+    lowerArr.forEach((value)=>{
+
+        let label = "";
+
+        if(value===step.low)
+            label += "L";
+
+        if(value===step.mid)
+            label += "M";
+
+        if(value===step.high)
+            label += "H";
+
+        if(value===step.answer)
+            label += " A";
+
+        container.innerHTML += `
+
+        <div class="flex flex-col items-center">
+
+            <div class="text-green-600 font-bold mb-2">
+                ${label}
+            </div>
+
+            <div class="
+            w-16 h-16 rounded-xl shadow-lg
+            flex items-center justify-center
+            text-2xl font-bold
+
+            ${
+                value===step.answer
+                ?
+                "bg-green-600 text-white"
+                :
+                "bg-green-100"
+            }
+            ">
+
+            ${value}
+
+            </div>
+
+        </div>
+
+        `;
+    });
+
+}
+document
+.getElementById("lowerPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentLowerStep > 0)
+    {
+        currentLowerStep--;
+
+        renderLower();
+    }
+
+});
+
+document
+.getElementById("lowerNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentLowerStep < lowerSteps.length-1)
+    {
+        currentLowerStep++;
+
+        renderLower();
+    }
+
+});
+
+document
+.getElementById("lowerResetBtn")
+.addEventListener("click",()=>{
+
+    currentLowerStep = 0;
+
+    renderLower();
+
+});
+// ================= Upper Bound =================
+
+const upperArr = [1,2,4,4,4,6,8];
+
+const upperSteps = [
+
+{
+    low:1,
+    mid:4,
+    high:8,
+    answer:6,
+    explanation:"4 ≤ target, move right."
+},
+
+{
+    low:6,
+    mid:6,
+    high:8,
+    answer:6,
+    explanation:"6 > target, save answer."
+},
+
+{
+    low:6,
+    mid:6,
+    high:6,
+    answer:6,
+    explanation:"Upper bound found."
+}
+
+];
+
+let currentUpperStep = 0;
+
+function renderUpper()
+{
+    const container =
+    document.getElementById(
+        "upperArrayContainer"
+    );
+
+    container.innerHTML = "";
+
+    const step =
+    upperSteps[currentUpperStep];
+
+    document
+    .getElementById("upperStepCounter")
+    .textContent =
+    `Step ${currentUpperStep+1}/${upperSteps.length}`;
+
+    document
+    .getElementById("upperExplanation")
+    .textContent =
+    step.explanation;
+
+    upperArr.forEach((value)=>{
+
+        let label = "";
+
+        if(value===step.low)
+            label += "L";
+
+        if(value===step.mid)
+            label += "M";
+
+        if(value===step.high)
+            label += "H";
+
+        if(value===step.answer)
+            label += " A";
+
+        container.innerHTML += `
+
+        <div class="flex flex-col items-center">
+
+            <div class="text-pink-600 font-bold mb-2">
+                ${label}
+            </div>
+
+            <div class="
+            w-16 h-16 rounded-xl shadow-lg
+            flex items-center justify-center
+            text-2xl font-bold
+
+            ${
+                value===step.answer
+                ?
+                "bg-pink-500 text-white"
+                :
+                "bg-pink-100"
+            }
+            ">
+
+            ${value}
+
+            </div>
+
+        </div>
+
+        `;
+    });
+
+}
+document
+.getElementById("upperPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentUpperStep > 0)
+    {
+        currentUpperStep--;
+
+        renderUpper();
+    }
+
+});
+
+document
+.getElementById("upperNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentUpperStep < upperSteps.length-1)
+    {
+        currentUpperStep++;
+
+        renderUpper();
+    }
+
+});
+
+document
+.getElementById("upperResetBtn")
+.addEventListener("click",()=>{
+
+    currentUpperStep = 0;
+
+    renderUpper();
 
 });

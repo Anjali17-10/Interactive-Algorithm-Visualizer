@@ -75,6 +75,11 @@ data.questions.forEach(question => {
 
     </a>`;
 });
+document
+.getElementById("topicDetails")
+.scrollIntoView({
+    behavior: "smooth"
+});
 }
 function showAlgorithm(name) {
 document.getElementById("visualizer")
@@ -91,8 +96,20 @@ document
  document
 .getElementById("binaryAnswerVisualizer")
 .classList.add("hidden");
-    const data = algorithmData[name];
 
+document
+.getElementById("binaryVisualizer")
+.classList.add("hidden");
+document
+.getElementById("lowerVisualizer")
+.classList.add("hidden");
+document
+.getElementById("upperVisualizer")
+.classList.add("hidden");
+
+
+    const data = algorithmData[name];
+document.getElementById("linearVisualizer").classList.add("hidden");
     if (!data) {
         alert("Algorithm data not added yet");
         return;
@@ -174,14 +191,6 @@ if(name === "Kadane Algorithm")
 
     renderKadane();
 }
-if(name === "Binary Search on Answer")
-{
-    document
-    .getElementById("binaryAnswerVisualizer")
-    .classList.remove("hidden");
-
-    renderBinary();
-}
 if(name === "Prefix Sum")
 {
     document
@@ -190,7 +199,55 @@ if(name === "Prefix Sum")
 
     renderPrefix();
 }
+if(name === "Linear Search")
+{
+    document
+    .getElementById("linearVisualizer")
+    .classList.remove("hidden");
+
+    renderLinear();
 }
+if(name === "Binary Search")
+{
+    document
+    .getElementById("binaryVisualizer")
+    .classList.remove("hidden");
+
+    renderBinary();
+}
+
+if(name === "Binary Search on Answer")
+{
+    document
+    .getElementById("binaryAnswerVisualizer")
+    .classList.remove("hidden");
+
+    renderBinaryAnswer();
+}
+if(name === "Lower Bound")
+{
+    document
+    .getElementById("lowerVisualizer")
+    .classList.remove("hidden");
+
+    renderLower();
+}
+
+if(name === "Upper Bound")
+{
+    document
+    .getElementById("upperVisualizer")
+    .classList.remove("hidden");
+
+    renderUpper();
+}
+
+}
+document
+.getElementById("algorithmDetails")
+.scrollIntoView({
+    behavior: "smooth"
+});
 document
 .getElementById("arraysCard")
 .addEventListener("click", () => {
