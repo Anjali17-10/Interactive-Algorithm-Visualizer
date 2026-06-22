@@ -761,6 +761,38 @@ const algorithmData = {
         }
     ]
 },
+"Valid Parentheses": {
+    description:
+    "Use a stack to check whether opening brackets are properly matched with closing brackets.",
+
+    time: "O(n)",
+
+    space: "O(n)",
+
+    problems: [
+        {
+            name: "Valid Parentheses",
+            link:
+            "https://leetcode.com/problems/valid-parentheses/"
+        }
+    ]
+},
+"Next Greater Element": {
+    description:
+    "Uses a monotonic stack to find the next greater element for every array element.",
+
+    time: "O(n)",
+
+    space: "O(n)",
+
+    problems: [
+        {
+            name: "Next Greater Element I",
+            link:
+            "https://leetcode.com/problems/next-greater-element-i/"
+        }
+    ]
+},
 "Stack": {
     description:
     "Follows Last In First Out (LIFO) principle.",
@@ -793,7 +825,7 @@ const algorithmData = {
 },
 "Next Greater Element": {
     description:
-    "Uses a monotonic stack to find the next greater element efficiently.",
+    "Uses a monotonic stack to find the next greater element for every array element.",
 
     time: "O(n)",
 
@@ -802,10 +834,28 @@ const algorithmData = {
     problems: [
         {
             name: "Next Greater Element I",
-            link: "https://leetcode.com/problems/next-greater-element-i/"
+            link:
+            "https://leetcode.com/problems/next-greater-element-i/"
         }
     ]
 },
+"Stock Span Problem": {
+    description:
+    "Uses a monotonic stack to calculate the number of consecutive days with prices less than or equal to the current day's price.",
+
+    time: "O(n)",
+
+    space: "O(n)",
+
+    problems: [
+        {
+            name: "Online Stock Span",
+            link:
+            "https://leetcode.com/problems/online-stock-span/"
+        }
+    ]
+},
+
 "Monotonic Stack": {
     description:
     "Maintains increasing or decreasing order to solve range problems.",

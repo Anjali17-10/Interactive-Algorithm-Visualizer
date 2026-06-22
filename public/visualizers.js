@@ -1494,3 +1494,503 @@ document
     renderQueue();
 
 });
+// ================= Valid Parentheses =================
+
+const parenthesesSteps = [
+
+{
+    current:"(",
+    stack:["("],
+    explanation:"Push ( onto stack."
+},
+
+{
+    current:"{",
+    stack:["(","{"],
+    explanation:"Push { onto stack."
+},
+
+{
+    current:"}",
+    stack:["("],
+    explanation:"} matches {, so pop."
+},
+
+{
+    current:")",
+    stack:[],
+    explanation:") matches (, so pop."
+}
+
+];
+
+let currentParenthesesStep = 0;
+
+function renderParentheses()
+{
+    const container =
+    document.getElementById(
+        "parenthesesStack"
+    );
+
+    container.innerHTML = "";
+
+    const step =
+    parenthesesSteps[currentParenthesesStep];
+
+    document
+    .getElementById(
+        "parenthesesStepCounter"
+    )
+    .textContent =
+    `Step ${currentParenthesesStep+1}/${parenthesesSteps.length}`;
+
+    document
+    .getElementById(
+        "currentChar"
+    )
+    .textContent =
+    `Current Character : ${step.current}`;
+
+    document
+    .getElementById(
+        "parenthesesExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    step.stack.forEach((value,index)=>{
+
+        container.innerHTML += `
+
+        <div
+        class="
+        w-24 h-16
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-3xl
+        font-bold
+
+        ${
+            index===step.stack.length-1
+            ?
+            "bg-purple-600 text-white"
+            :
+            "bg-purple-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+
+        `;
+    });
+
+}
+
+document
+.getElementById("parenthesesPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentParenthesesStep > 0)
+    {
+        currentParenthesesStep--;
+
+        renderParentheses();
+    }
+
+});
+
+document
+.getElementById("parenthesesNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentParenthesesStep < parenthesesSteps.length-1)
+    {
+        currentParenthesesStep++;
+
+        renderParentheses();
+    }
+
+});
+
+document
+.getElementById("parenthesesResetBtn")
+.addEventListener("click",()=>{
+
+    currentParenthesesStep = 0;
+
+    renderParentheses();
+
+});
+// ================= Next Greater Element =================
+
+const ngeArr = [2,1,3,4];
+
+const ngeSteps = [
+
+{
+    current:3,
+    stack:[4],
+    explanation:"Start from right. Push 4."
+},
+
+{
+    current:2,
+    stack:[4,3],
+    explanation:"Next greater of 3 is 4. Push 3."
+},
+
+{
+    current:1,
+    stack:[4,3,1],
+    explanation:"Next greater of 1 is 3. Push 1."
+},
+
+{
+    current:0,
+    stack:[4,3,2],
+    explanation:"Pop 1. Next greater of 2 is 3."
+}
+
+];
+
+let currentNgeStep = 0;
+
+function renderNge()
+{
+    const arrayContainer =
+    document.getElementById(
+        "ngeArrayContainer"
+    );
+
+    const stackContainer =
+    document.getElementById(
+        "ngeStackContainer"
+    );
+
+    arrayContainer.innerHTML = "";
+    stackContainer.innerHTML = "";
+
+    const step =
+    ngeSteps[currentNgeStep];
+
+    document
+    .getElementById(
+        "ngeStepCounter"
+    )
+    .textContent =
+    `Step ${currentNgeStep+1}/${ngeSteps.length}`;
+
+    document
+    .getElementById(
+        "ngeExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    ngeArr.forEach((value,index)=>{
+
+        arrayContainer.innerHTML += `
+
+        <div
+        class="
+        w-16 h-16
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-2xl
+        font-bold
+
+        ${
+            index===step.current
+            ?
+            "bg-orange-500 text-white"
+            :
+            "bg-orange-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+
+        `;
+    });
+
+    step.stack.forEach((value,index)=>{
+
+        stackContainer.innerHTML += `
+
+        <div
+        class="
+        w-20 h-14
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-xl
+        font-bold
+
+        ${
+            index===step.stack.length-1
+            ?
+            "bg-orange-500 text-white"
+            :
+            "bg-orange-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+
+        `;
+    });
+
+}
+document
+.getElementById("ngePrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentNgeStep > 0)
+    {
+        currentNgeStep--;
+
+        renderNge();
+    }
+
+});
+
+document
+.getElementById("ngeNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentNgeStep < ngeSteps.length-1)
+    {
+        currentNgeStep++;
+
+        renderNge();
+    }
+
+});
+
+document
+.getElementById("ngeResetBtn")
+.addEventListener("click",()=>{
+
+    currentNgeStep = 0;
+
+    renderNge();
+
+});
+
+// ================= Stock Span Problem =================
+
+const stockArr = [100,80,60,70,60,75,85];
+
+const stockSteps = [
+
+{
+    current:0,
+    stack:[100],
+    span:[1],
+    explanation:"Push 100. Span = 1."
+},
+
+{
+    current:1,
+    stack:[100,80],
+    span:[1,1],
+    explanation:"Previous greater element is 100. Span = 1."
+},
+
+{
+    current:2,
+    stack:[100,80,60],
+    span:[1,1,1],
+    explanation:"Previous greater element is 80. Span = 1."
+},
+
+{
+    current:3,
+    stack:[100,80,70],
+    span:[1,1,1,2],
+    explanation:"Pop 60. Previous greater element is 80. Span = 2."
+},
+
+{
+    current:4,
+    stack:[100,80,70,60],
+    span:[1,1,1,2,1],
+    explanation:"Previous greater element is 70. Span = 1."
+},
+
+{
+    current:5,
+    stack:[100,80,75],
+    span:[1,1,1,2,1,4],
+    explanation:"Pop 60 and 70. Previous greater element is 80. Span = 4."
+},
+
+{
+    current:6,
+    stack:[100,85],
+    span:[1,1,1,2,1,4,6],
+    explanation:"Pop 75 and 80. Previous greater element is 100. Span = 6."
+}
+
+];
+
+let currentStockStep = 0;
+
+function renderStock()
+{
+    const arrayContainer =
+    document.getElementById("stockArrayContainer");
+
+    const stackContainer =
+    document.getElementById("stockStackContainer");
+
+    const spanContainer =
+    document.getElementById("spanContainer");
+
+    arrayContainer.innerHTML = "";
+    stackContainer.innerHTML = "";
+    spanContainer.innerHTML = "";
+
+    const step = stockSteps[currentStockStep];
+
+    document
+    .getElementById("stockStepCounter")
+    .textContent =
+    `Step ${currentStockStep+1}/${stockSteps.length}`;
+
+    document
+    .getElementById("stockExplanation")
+    .textContent =
+    step.explanation;
+
+    stockArr.forEach((value,index)=>{
+
+        arrayContainer.innerHTML += `
+        <div
+        class="
+        w-16 h-16
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-xl
+        font-bold
+
+        ${
+            index===step.current
+            ?
+            "bg-green-500 text-white"
+            :
+            "bg-green-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+        `;
+    });
+
+    step.stack.forEach((value,index)=>{
+
+        stackContainer.innerHTML += `
+        <div
+        class="
+        w-20 h-14
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-xl
+        font-bold
+
+        ${
+            index===step.stack.length-1
+            ?
+            "bg-green-500 text-white"
+            :
+            "bg-green-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+        `;
+    });
+
+    step.span.forEach((value)=>{
+
+        spanContainer.innerHTML += `
+        <div
+        class="
+        w-14 h-14
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-lg
+        font-bold
+        bg-blue-100">
+
+        ${value}
+
+        </div>
+        `;
+    });
+
+}
+document
+.getElementById("stockPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentStockStep > 0)
+    {
+        currentStockStep--;
+
+        renderStock();
+    }
+
+});
+
+document
+.getElementById("stockNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentStockStep < stockSteps.length-1)
+    {
+        currentStockStep++;
+
+        renderStock();
+    }
+
+});
+
+document
+.getElementById("stockResetBtn")
+.addEventListener("click",()=>{
+
+    currentStockStep = 0;
+
+    renderStock();
+
+});
+

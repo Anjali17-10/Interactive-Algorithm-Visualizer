@@ -114,6 +114,15 @@ document
 .getElementById("stackVisualizer")
 .classList.add("hidden");
 
+document
+.getElementById("parenthesesVisualizer")
+.classList.add("hidden");
+document
+.getElementById("ngeVisualizer")
+.classList.add("hidden");
+document
+.getElementById("stockVisualizer")
+.classList.add("hidden");
     const data = algorithmData[name];
 document.getElementById("linearVisualizer").classList.add("hidden");
     if (!data) {
@@ -264,7 +273,38 @@ if(name === "Queue Operations")
 
     renderQueue();
 }
+if(name === "Valid Parentheses")
+{
+    document
+    .getElementById("parenthesesVisualizer")
+    .classList.remove("hidden");
 
+    renderParentheses();
+}
+if(name === "Next Greater Element")
+{
+    document
+    .getElementById("ngeVisualizer")
+    .classList.remove("hidden");
+
+    renderNge();
+}
+if(name === "Next Greater Element")
+{
+    document
+    .getElementById("ngeVisualizer")
+    .classList.remove("hidden");
+
+    renderNge();
+}
+if(name === "Stock Span Problem")
+{
+    document
+    .getElementById("stockVisualizer")
+    .classList.remove("hidden");
+
+    renderStock();
+}
 }
 document
 .getElementById("algorithmDetails")
