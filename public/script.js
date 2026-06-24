@@ -98,6 +98,10 @@ document
 .classList.add("hidden");
 
 document
+.getElementById("minStackVisualizer")
+.classList.add("hidden");
+
+document
 .getElementById("queueVisualizer")
 .classList.add("hidden");
 
@@ -123,8 +127,19 @@ document
 document
 .getElementById("stockVisualizer")
 .classList.add("hidden");
+
+document
+.getElementById("lrhVisualizer")
+.classList.add("hidden");
+
+document .getElementById("cqVisualizer") 
+.classList.add("hidden");
+
+document .getElementById("swmVisualizer")
+.classList.add("hidden");
     const data = algorithmData[name];
 document.getElementById("linearVisualizer").classList.add("hidden");
+
     if (!data) {
         alert("Algorithm data not added yet");
         return;
@@ -305,6 +320,31 @@ if(name === "Stock Span Problem")
 
     renderStock();
 }
+
+if(name === "Largest Rectangle Histogram")
+{
+    document
+    .getElementById("lrhVisualizer")
+    .classList.remove("hidden");
+
+    renderLrh();
+}
+if(name === "Circular Queue") 
+    { 
+        document .getElementById("cqVisualizer") 
+        .classList.remove("hidden");
+         renderCq(); 
+ }
+if(name === "Sliding Window Maximum") { document .getElementById("swmVisualizer") .classList.remove("hidden"); renderSwm(); }
+if(name === "Min Stack")
+{
+    document
+    .getElementById("minStackVisualizer")
+    .classList.remove("hidden");
+
+    renderMinStack();
+}
+
 }
 document
 .getElementById("algorithmDetails")

@@ -1994,3 +1994,754 @@ document
 
 });
 
+
+//======histogram====
+const lrhArr = [2,1,5,6,2,3];
+
+const lrhSteps = [
+
+{
+    current:0,
+    stack:[0],
+    explanation:
+    "Push index 0 (height 2) into stack."
+},
+
+{
+    current:1,
+    stack:[1],
+    explanation:
+    "Height 1 is smaller than 2, pop index 0 and compute area 2×1 = 2."
+},
+
+{
+    current:2,
+    stack:[1,2],
+    explanation:
+    "Height 5 is greater than 1, push index 2."
+},
+
+{
+    current:3,
+    stack:[1,2,3],
+    explanation:
+    "Height 6 is greater than 5, push index 3."
+},
+
+{
+    current:4,
+    stack:[1,4],
+    explanation:
+    "Height 2 causes popping 6 and 5. Areas are computed and max becomes 10."
+},
+
+{
+    current:5,
+    stack:[1,4,5],
+    explanation:
+    "Height 3 is greater than 2, push index 5."
+}
+
+];
+
+let currentLrhStep = 0;
+
+function renderLrh()
+{
+    const arrayContainer =
+    document.getElementById(
+        "lrhArrayContainer"
+    );
+
+    const stackContainer =
+    document.getElementById(
+        "lrhStackContainer"
+    );
+
+    arrayContainer.innerHTML = "";
+    stackContainer.innerHTML = "";
+
+    const step =
+    lrhSteps[currentLrhStep];
+
+    document
+    .getElementById(
+        "lrhStepCounter"
+    )
+    .textContent =
+    `Step ${currentLrhStep+1}/${lrhSteps.length}`;
+
+    document
+    .getElementById(
+        "lrhExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    lrhArr.forEach((value,index)=>{
+
+        arrayContainer.innerHTML += `
+
+        <div class="flex flex-col items-center">
+
+            <div
+            style="height:${value*25}px"
+            class="
+            w-16
+            rounded-t-xl
+            shadow-lg
+            flex
+            items-end
+            justify-center
+            text-lg
+            font-bold
+
+            ${
+                index===step.current
+                ?
+                "bg-orange-500 text-white"
+                :
+                "bg-orange-100"
+            }
+            ">
+
+            ${value}
+
+            </div>
+
+        </div>
+
+        `;
+    });
+
+    step.stack.forEach((value,index)=>{
+
+        stackContainer.innerHTML += `
+
+        <div
+        class="
+        w-20 h-14
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-xl
+        font-bold
+
+        ${
+            index===step.stack.length-1
+            ?
+            "bg-orange-500 text-white"
+            :
+            "bg-orange-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+
+        `;
+
+    });
+
+}
+document
+.getElementById("lrhPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentLrhStep > 0)
+    {
+        currentLrhStep--;
+
+        renderLrh();
+    }
+
+});
+
+document
+.getElementById("lrhNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentLrhStep < lrhSteps.length-1)
+    {
+        currentLrhStep++;
+
+        renderLrh();
+    }
+
+});
+
+document
+.getElementById("lrhResetBtn")
+.addEventListener("click",()=>{
+
+    currentLrhStep = 0;
+
+    renderLrh();
+
+});
+
+//=======circular queue ========
+const cqArr = [10,20,30,40,50];
+
+const cqSteps = [
+
+{
+    front:0,
+    rear:0,
+    active:0,
+    explanation:
+    "Insert 10 at position 0."
+},
+
+{
+    front:0,
+    rear:1,
+    active:1,
+    explanation:
+    "Insert 20 at position 1."
+},
+
+{
+    front:0,
+    rear:2,
+    active:2,
+    explanation:
+    "Insert 30 at position 2."
+},
+
+{
+    front:1,
+    rear:2,
+    active:0,
+    explanation:
+    "Delete 10. Front moves to index 1."
+},
+
+{
+    front:1,
+    rear:3,
+    active:3,
+    explanation:
+    "Insert 40 at position 3."
+},
+
+{
+    front:1,
+    rear:4,
+    active:4,
+    explanation:
+    "Insert 50 at position 4."
+},
+
+{
+    front:1,
+    rear:0,
+    active:0,
+    explanation:
+    "Rear wraps around to index 0 due to circular nature."
+}
+
+];
+
+let currentCqStep = 0;
+
+function renderCq()
+{
+    const arrayContainer =
+    document.getElementById(
+        "cqArrayContainer"
+    );
+
+    arrayContainer.innerHTML = "";
+
+    const step =
+    cqSteps[currentCqStep];
+
+    document
+    .getElementById(
+        "cqStepCounter"
+    )
+    .textContent =
+    `Step ${currentCqStep+1}/${cqSteps.length}`;
+
+    document
+    .getElementById(
+        "cqExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    document
+    .getElementById(
+        "cqPointers"
+    )
+    .textContent =
+    `Front = ${step.front} | Rear = ${step.rear}`;
+
+    cqArr.forEach((value,index)=>{
+
+        arrayContainer.innerHTML += `
+
+        <div class="
+        w-16 h-16
+        rounded-xl
+        shadow-lg
+        flex
+        flex-col
+        items-center
+        justify-center
+        text-lg
+        font-bold
+
+        ${
+            index===step.active
+            ?
+            "bg-orange-500 text-white"
+            :
+            "bg-orange-100"
+        }
+        ">
+
+        ${value}
+
+        <span class="text-xs">
+
+        ${index}
+
+        </span>
+
+        </div>
+
+        `;
+
+    });
+
+}
+document
+.getElementById("cqPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentCqStep > 0)
+    {
+        currentCqStep--;
+
+        renderCq();
+    }
+
+});
+
+document
+.getElementById("cqNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentCqStep < cqSteps.length-1)
+    {
+        currentCqStep++;
+
+        renderCq();
+    }
+
+});
+
+document
+.getElementById("cqResetBtn")
+.addEventListener("click",()=>{
+
+    currentCqStep = 0;
+
+    renderCq();
+
+});
+
+//======sliding window maximum====
+const swmArr = [1,3,-1,-3,5,3,6,7];
+
+const swmSteps = [
+
+{
+    current:0,
+    deque:[0],
+    explanation:
+    "Insert index 0 into deque."
+},
+
+{
+    current:1,
+    deque:[1],
+    explanation:
+    "Remove index 0 because 3 is greater than 1. Push index 1."
+},
+
+{
+    current:2,
+    deque:[1,2],
+    explanation:
+    "Push index 2. First window is complete and maximum is 3."
+},
+
+{
+    current:3,
+    deque:[1,2,3],
+    explanation:
+    "Push index 3. Deque keeps indices in decreasing order."
+},
+
+{
+    current:4,
+    deque:[4],
+    explanation:
+    "Remove expired index 1 and smaller values. Push index 4. Maximum becomes 5."
+},
+
+{
+    current:5,
+    deque:[4,5],
+    explanation:
+    "Push index 5 because 3 is smaller than current maximum 5."
+},
+
+{
+    current:6,
+    deque:[6],
+    explanation:
+    "Remove smaller values 3 and 5. Push index 6. Maximum becomes 6."
+},
+
+{
+    current:7,
+    deque:[7],
+    explanation:
+    "Remove 6 because 7 is larger. Push index 7. Maximum becomes 7."
+}
+
+];
+
+let currentSwmStep = 0;
+
+function renderSwm()
+{
+    const arrayContainer =
+    document.getElementById(
+        "swmArrayContainer"
+    );
+
+    const dequeContainer =
+    document.getElementById(
+        "swmDequeContainer"
+    );
+
+    arrayContainer.innerHTML = "";
+    dequeContainer.innerHTML = "";
+
+    const step =
+    swmSteps[currentSwmStep];
+
+    document
+    .getElementById(
+        "swmStepCounter"
+    )
+    .textContent =
+    `Step ${currentSwmStep+1}/${swmSteps.length}`;
+
+    document
+    .getElementById(
+        "swmExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    swmArr.forEach((value,index)=>{
+
+        arrayContainer.innerHTML += `
+
+        <div
+        class="
+        w-16 h-16
+        rounded-xl
+        shadow-lg
+        flex
+        flex-col
+        items-center
+        justify-center
+        text-xl
+        font-bold
+
+        ${
+            index===step.current
+            ?
+            "bg-orange-500 text-white"
+            :
+            step.deque.includes(index)
+            ?
+            "bg-yellow-300"
+            :
+            "bg-orange-100"
+        }
+        ">
+
+        ${value}
+
+        <span class="text-xs">
+            ${index}
+        </span>
+
+        </div>
+
+        `;
+
+    });
+
+    step.deque.forEach((value,index)=>{
+
+        dequeContainer.innerHTML += `
+
+        <div
+        class="
+        w-20 h-14
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-xl
+        font-bold
+
+        ${
+            index===0
+            ?
+            "bg-orange-500 text-white"
+            :
+            "bg-orange-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+
+        `;
+
+    });
+
+}
+document
+.getElementById("swmPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentSwmStep > 0)
+    {
+        currentSwmStep--;
+
+        renderSwm();
+    }
+
+});
+
+document
+.getElementById("swmNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentSwmStep < swmSteps.length-1)
+    {
+        currentSwmStep++;
+
+        renderSwm();
+    }
+
+});
+
+document
+.getElementById("swmResetBtn")
+.addEventListener("click",()=>{
+
+    currentSwmStep = 0;
+
+    renderSwm();
+
+});
+//=====Min Stack=====
+const minStackSteps = [
+
+{
+    stack:[5],
+    minStack:[5],
+    explanation:
+    "Push 5. Minimum element becomes 5."
+},
+
+{
+    stack:[5,3],
+    minStack:[5,3],
+    explanation:
+    "Push 3. Since 3 is smaller than 5, push it into min stack."
+},
+
+{
+    stack:[5,3,7],
+    minStack:[5,3],
+    explanation:
+    "Push 7. Minimum remains 3."
+},
+
+{
+    stack:[5,3,7,2],
+    minStack:[5,3,2],
+    explanation:
+    "Push 2. Since 2 is the new minimum, push it into min stack."
+},
+
+{
+    stack:[5,3,7],
+    minStack:[5,3],
+    explanation:
+    "Pop 2. Remove it from both stacks."
+},
+
+{
+    stack:[5,3],
+    minStack:[5,3],
+    explanation:
+    "Pop 7. Minimum remains 3."
+}
+
+];
+
+let currentMinStackStep = 0;
+
+function renderMinStack()
+{
+    const stackContainer =
+    document.getElementById(
+        "minStackContainer"
+    );
+
+    const minimumContainer =
+    document.getElementById(
+        "minimumStackContainer"
+    );
+
+    stackContainer.innerHTML = "";
+    minimumContainer.innerHTML = "";
+
+    const step =
+    minStackSteps[currentMinStackStep];
+
+    document
+    .getElementById(
+        "minStackStepCounter"
+    )
+    .textContent =
+    `Step ${currentMinStackStep+1}/${minStackSteps.length}`;
+
+    document
+    .getElementById(
+        "minStackExplanation"
+    )
+    .textContent =
+    step.explanation;
+
+    step.stack.forEach((value,index)=>{
+
+        stackContainer.innerHTML += `
+
+        <div
+        class="
+        w-20 h-14
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-xl
+        font-bold
+
+        ${
+            index===step.stack.length-1
+            ?
+            "bg-orange-500 text-white"
+            :
+            "bg-orange-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+
+        `;
+
+    });
+
+    step.minStack.forEach((value,index)=>{
+
+        minimumContainer.innerHTML += `
+
+        <div
+        class="
+        w-20 h-14
+        rounded-xl
+        shadow-lg
+        flex
+        items-center
+        justify-center
+        text-xl
+        font-bold
+
+        ${
+            index===step.minStack.length-1
+            ?
+            "bg-green-500 text-white"
+            :
+            "bg-green-100"
+        }
+        ">
+
+        ${value}
+
+        </div>
+
+        `;
+
+    });
+
+}
+document
+.getElementById("minStackPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentMinStackStep > 0)
+    {
+        currentMinStackStep--;
+
+        renderMinStack();
+    }
+
+});
+
+document
+.getElementById("minStackNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentMinStackStep < minStackSteps.length-1)
+    {
+        currentMinStackStep++;
+
+        renderMinStack();
+    }
+
+});
+
+document
+.getElementById("minStackResetBtn")
+.addEventListener("click",()=>{
+
+    currentMinStackStep = 0;
+
+    renderMinStack();
+
+});
+
+//=====graphs algorithm=====//

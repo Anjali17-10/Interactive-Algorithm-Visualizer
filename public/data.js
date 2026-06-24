@@ -856,6 +856,24 @@ const algorithmData = {
     ]
 },
 
+"Largest Rectangle Histogram": {
+
+    description:
+    "Uses a monotonic increasing stack to find the largest rectangle area in a histogram.",
+
+    time: "O(n)",
+
+    space: "O(n)",
+
+    problems: [
+        {
+            name: "Largest Rectangle in Histogram",
+            link:
+            "https://leetcode.com/problems/largest-rectangle-in-histogram/"
+        }
+    ]
+},
+
 "Monotonic Stack": {
     description:
     "Maintains increasing or decreasing order to solve range problems.",
@@ -871,18 +889,46 @@ const algorithmData = {
         }
     ]
 },
-"Sliding Window Maximum": {
+"Sliding Window Maximum": 
+{ description: "Uses a monotonic deque to efficiently maintain the maximum element of every window.", 
+    time: "O(n)", space: "O(k)", problems: [ 
+        { name: "Sliding Window Maximum", 
+        link: "https://leetcode.com/problems/sliding-window-maximum/" 
+    } 
+]
+ },
+"Circular Queue": {
+
     description:
-    "Uses deque or monotonic queue to find maximum values in a moving window.",
+    "Uses modulo arithmetic to efficiently reuse empty spaces in the queue.",
 
-    time: "O(n)",
+    time: "O(1)",
 
-    space: "O(k)",
+    space: "O(n)",
 
     problems: [
         {
-            name: "Sliding Window Maximum",
-            link: "https://leetcode.com/problems/sliding-window-maximum/"
+            name: "Design Circular Queue",
+            link:
+            "https://leetcode.com/problems/design-circular-queue/"
+        }
+    ]
+},
+
+"Min Stack": {
+
+    description:
+    "Uses an additional stack to keep track of the minimum element in constant time.",
+
+    time: "O(1)",
+
+    space: "O(n)",
+
+    problems: [
+        {
+            name: "Min Stack",
+            link:
+            "https://leetcode.com/problems/min-stack/"
         }
     ]
 },
