@@ -2745,3 +2745,1237 @@ document
 });
 
 //=====graphs algorithm=====//
+// ================= Graph Representation =================
+
+const graphNodes = [
+    { id: 0, x: 250, y: 50 },
+    { id: 1, x: 150, y: 140 },
+    { id: 2, x: 350, y: 140 },
+    { id: 3, x: 150, y: 260 },
+    { id: 4, x: 350, y: 260 }
+];
+
+const graphEdges = [
+    [0,1],
+    [0,2],
+    [1,2],
+    [1,3],
+    [2,4],
+    [3,4]
+];
+
+const adjacency = {
+    0:[1,2],
+    1:[0,2,3],
+    2:[0,1,4],
+    3:[1,4],
+    4:[2,3]
+};
+
+const graphSteps = [
+
+{
+    node:0,
+    explanation:"Node 0 is connected to nodes 1 and 2."
+},
+
+{
+    node:1,
+    explanation:"Node 1 is connected to nodes 0, 2 and 3."
+},
+
+{
+    node:2,
+    explanation:"Node 2 is connected to nodes 0, 1 and 4."
+},
+
+{
+    node:3,
+    explanation:"Node 3 is connected to nodes 1 and 4."
+},
+
+{
+    node:4,
+    explanation:"Node 4 is connected to nodes 2 and 3."
+}
+
+];
+
+let currentGraphStep = 0;
+
+function renderGraph()
+{
+    const svg =
+    document.getElementById("graphSVG");
+
+    svg.innerHTML = "";
+
+    const step =
+    graphSteps[currentGraphStep];
+
+    // Draw Edges
+    graphEdges.forEach(edge=>{
+
+        const u =
+        graphNodes.find(node=>node.id===edge[0]);
+
+        const v =
+        graphNodes.find(node=>node.id===edge[1]);
+
+        svg.innerHTML += `
+        <line
+            x1="${u.x}"
+            y1="${u.y}"
+            x2="${v.x}"
+            y2="${v.y}"
+            stroke="#94A3B8"
+            stroke-width="4"/>
+        `;
+
+    });
+
+    // Draw Nodes
+    graphNodes.forEach(node=>{
+
+        let color =
+        "#DBEAFE";
+
+        if(node.id===step.node)
+            color="#2563EB";
+
+        else if(adjacency[step.node].includes(node.id))
+            color="#93C5FD";
+
+        svg.innerHTML += `
+
+        <circle
+            cx="${node.x}"
+            cy="${node.y}"
+            r="28"
+            fill="${color}"
+            stroke="#1E3A8A"
+            stroke-width="3"/>
+
+        <text
+            x="${node.x}"
+            y="${node.y+7}"
+            text-anchor="middle"
+            font-size="20"
+            fill="white"
+            font-weight="bold">
+
+            ${node.id}
+
+        </text>
+
+        `;
+
+    });
+
+    document
+    .getElementById("graphStepCounter")
+    .textContent =
+    `Step ${currentGraphStep+1}/${graphSteps.length}`;
+
+    document
+    .getElementById("graphExplanation")
+    .textContent =
+    step.explanation;
+
+    const list =
+    document.getElementById("adjacencyList");
+
+    list.innerHTML = "";
+
+    Object.keys(adjacency).forEach(key=>{
+
+        list.innerHTML += `
+        <div class="${
+            Number(key)===step.node
+            ?
+            "text-blue-700 font-bold"
+            :
+            ""
+        }">
+
+        ${key} → ${adjacency[key].join(", ")}
+
+        </div>
+        `;
+
+    });
+
+}
+
+// Previous
+document
+.getElementById("graphPrevBtn")
+.addEventListener("click",()=>{
+
+    if(currentGraphStep>0)
+    {
+        currentGraphStep--;
+
+        renderGraph();
+    }
+
+});
+
+// Next
+document
+.getElementById("graphNextBtn")
+.addEventListener("click",()=>{
+
+    if(currentGraphStep<graphSteps.length-1)
+    {
+        currentGraphStep++;
+
+        renderGraph();
+    }
+
+});
+
+// Reset
+document
+.getElementById("graphResetBtn")
+.addEventListener("click",()=>{
+
+    currentGraphStep=0;
+
+    renderGraph();
+
+});
+
+// ================= BFS =================
+
+const bfsSteps = [
+
+{
+current:0,
+visited:[0],
+queue:[1,2],
+explanation:"Start BFS from node 0."
+},
+
+{
+current:1,
+visited:[0,1],
+queue:[2,3],
+explanation:"Visit node 1."
+},
+
+{
+current:2,
+visited:[0,1,2],
+queue:[3,4],
+explanation:"Visit node 2."
+},
+
+{
+current:3,
+visited:[0,1,2,3],
+queue:[4],
+explanation:"Visit node 3."
+},
+
+{
+current:4,
+visited:[0,1,2,3,4],
+queue:[],
+explanation:"Visit node 4. BFS Complete."
+}
+
+];
+
+let currentBFSStep=0;
+
+function renderBFS()
+{
+
+const svg=document.getElementById("bfsSVG");
+
+svg.innerHTML="";
+
+const step=bfsSteps[currentBFSStep];
+
+graphEdges.forEach(edge=>{
+
+const u=graphNodes.find(node=>node.id===edge[0]);
+
+const v=graphNodes.find(node=>node.id===edge[1]);
+
+svg.innerHTML+=`
+
+<line
+x1="${u.x}"
+y1="${u.y}"
+x2="${v.x}"
+y2="${v.y}"
+stroke="#94A3B8"
+stroke-width="4"/>
+
+`;
+
+});
+
+graphNodes.forEach(node=>{
+
+let color="#DBEAFE";
+
+if(step.visited.includes(node.id))
+color="#60A5FA";
+
+if(node.id===step.current)
+color="#2563EB";
+
+svg.innerHTML+=`
+
+<circle
+cx="${node.x}"
+cy="${node.y}"
+r="28"
+fill="${color}"
+stroke="#1E3A8A"
+stroke-width="3"/>
+
+<text
+x="${node.x}"
+y="${node.y+7}"
+text-anchor="middle"
+font-size="20"
+fill="white"
+font-weight="bold">
+
+${node.id}
+
+</text>
+
+`;
+
+});
+
+document.getElementById("bfsStepCounter").textContent=
+`Step ${currentBFSStep+1}/${bfsSteps.length}`;
+
+document.getElementById("bfsExplanation").textContent=
+step.explanation;
+console.log(step.queue);
+
+const queue = document.getElementById("bfsQueueContainer");
+
+queue.innerHTML = "";
+
+step.queue.forEach(node=>{
+queue.innerHTML += `
+<div class="w-12 h-12 rounded-lg bg-yellow-300 flex items-center justify-center font-bold">
+${node}
+</div>`;
+console.log(queue.innerHTML);
+});
+
+const visited=document.getElementById("visitedContainer");
+
+visited.innerHTML="";
+
+step.visited.forEach(node=>{
+
+visited.innerHTML+=`
+
+<div class="
+w-12
+h-12
+rounded-lg
+bg-green-400
+text-white
+flex
+items-center
+justify-center
+font-bold">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("bfsPrevBtn").addEventListener("click",()=>{
+
+if(currentBFSStep>0)
+{
+currentBFSStep--;
+
+renderBFS();
+}
+
+});
+
+document.getElementById("bfsNextBtn").addEventListener("click",()=>{
+
+if(currentBFSStep<bfsSteps.length-1)
+{
+currentBFSStep++;
+
+renderBFS();
+}
+
+});
+
+document.getElementById("bfsResetBtn").addEventListener("click",()=>{
+
+currentBFSStep=0;
+
+renderBFS();
+
+});
+
+// ================= DFS =================
+
+const dfsSteps=[
+
+{
+current:0,
+visited:[0],
+stack:[2,1],
+explanation:"Start DFS from node 0."
+},
+
+{
+current:1,
+visited:[0,1],
+stack:[2,3],
+explanation:"Visit node 1."
+},
+
+{
+current:3,
+visited:[0,1,3],
+stack:[2,4],
+explanation:"Visit node 3."
+},
+
+{
+current:4,
+visited:[0,1,3,4],
+stack:[2],
+explanation:"Visit node 4."
+},
+
+{
+current:2,
+visited:[0,1,3,4,2],
+stack:[],
+explanation:"Visit node 2. DFS Complete."
+}
+
+];
+
+let currentDFSStep=0;
+
+function renderDFS()
+{
+
+const svg=document.getElementById("dfsSVG");
+
+svg.innerHTML="";
+
+const step=dfsSteps[currentDFSStep];
+
+graphEdges.forEach(edge=>{
+
+const u=graphNodes.find(node=>node.id===edge[0]);
+
+const v=graphNodes.find(node=>node.id===edge[1]);
+
+svg.innerHTML+=`
+
+<line
+x1="${u.x}"
+y1="${u.y}"
+x2="${v.x}"
+y2="${v.y}"
+stroke="#94A3B8"
+stroke-width="4"/>
+
+`;
+
+});
+
+graphNodes.forEach(node=>{
+
+let color="#E9D5FF";
+
+if(step.visited.includes(node.id))
+color="#A855F7";
+
+if(node.id===step.current)
+color="#6D28D9";
+
+svg.innerHTML+=`
+
+<circle
+cx="${node.x}"
+cy="${node.y}"
+r="28"
+fill="${color}"
+stroke="#4C1D95"
+stroke-width="3"/>
+
+<text
+x="${node.x}"
+y="${node.y+7}"
+text-anchor="middle"
+font-size="20"
+fill="white"
+font-weight="bold">
+
+${node.id}
+
+</text>
+
+`;
+
+});
+
+document.getElementById("dfsStepCounter").textContent=
+`Step ${currentDFSStep+1}/${dfsSteps.length}`;
+
+document.getElementById("dfsExplanation").textContent=
+step.explanation;
+
+const stack=document.getElementById("dfsstackContainer");
+
+stack.innerHTML="";
+
+step.stack.forEach(node=>{
+
+stack.innerHTML+=`
+
+<div class="
+w-12
+h-12
+rounded-lg
+bg-yellow-300
+flex
+items-center
+justify-center
+font-bold">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+const visited=document.getElementById("dfsVisitedContainer");
+
+visited.innerHTML="";
+
+step.visited.forEach(node=>{
+
+visited.innerHTML+=`
+
+<div class="
+w-12
+h-12
+rounded-lg
+bg-green-500
+text-white
+flex
+items-center
+justify-center
+font-bold">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("dfsPrevBtn").addEventListener("click",()=>{
+
+if(currentDFSStep>0)
+{
+currentDFSStep--;
+renderDFS();
+}
+
+});
+
+document.getElementById("dfsNextBtn").addEventListener("click",()=>{
+
+if(currentDFSStep<dfsSteps.length-1)
+{
+currentDFSStep++;
+renderDFS();
+}
+
+});
+
+document.getElementById("dfsResetBtn").addEventListener("click",()=>{
+
+currentDFSStep=0;
+renderDFS();
+
+});
+
+//================ TOPOLOGICAL SORT ================
+
+const topoSteps=[
+
+{
+current:0,
+queue:[1,2],
+order:[0],
+explanation:"Start with node 0 having indegree 0."
+},
+
+{
+current:1,
+queue:[2],
+order:[0,1],
+explanation:"Remove node 1."
+},
+
+{
+current:2,
+queue:[3],
+order:[0,1,2],
+explanation:"Remove node 2."
+},
+
+{
+current:3,
+queue:[4],
+order:[0,1,2,3],
+explanation:"Remove node 3."
+},
+
+{
+current:4,
+queue:[],
+order:[0,1,2,3,4],
+explanation:"Topological Sort Completed."
+}
+
+];
+
+let currentTopoStep=0;
+
+function renderTopo(){
+
+const svg=document.getElementById("topoSVG");
+
+svg.innerHTML="";
+
+const step=topoSteps[currentTopoStep];
+
+graphEdges.forEach(edge=>{
+
+const u=graphNodes.find(n=>n.id===edge[0]);
+
+const v=graphNodes.find(n=>n.id===edge[1]);
+
+svg.innerHTML+=`
+
+<line
+x1="${u.x}"
+y1="${u.y}"
+x2="${v.x}"
+y2="${v.y}"
+stroke="#94A3B8"
+stroke-width="4"/>
+
+`;
+
+});
+
+graphNodes.forEach(node=>{
+
+let color="#DBEAFE";
+
+if(step.order.includes(node.id))
+color="#818CF8";
+
+if(node.id===step.current)
+color="#4338CA";
+
+svg.innerHTML+=`
+
+<circle
+cx="${node.x}"
+cy="${node.y}"
+r="28"
+fill="${color}"
+stroke="#1E3A8A"
+stroke-width="3"/>
+
+<text
+x="${node.x}"
+y="${node.y+7}"
+text-anchor="middle"
+font-size="20"
+fill="white"
+font-weight="bold">
+
+${node.id}
+
+</text>
+
+`;
+
+});
+
+document.getElementById("topoStepCounter").textContent=
+`Step ${currentTopoStep+1}/${topoSteps.length}`;
+
+document.getElementById("topoExplanation").textContent=
+step.explanation;
+
+const queue=document.getElementById("topoQueueContainer");
+
+queue.innerHTML="";
+
+step.queue.forEach(node=>{
+
+queue.innerHTML+=`
+
+<div class="w-12 h-12 rounded-lg bg-yellow-300 flex items-center justify-center font-bold">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+const order=document.getElementById("topoOrderContainer");
+
+order.innerHTML="";
+
+step.order.forEach(node=>{
+
+order.innerHTML+=`
+
+<div class="w-12 h-12 rounded-lg bg-green-500 text-white flex items-center justify-center font-bold">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("topoPrevBtn").addEventListener("click",()=>{
+
+if(currentTopoStep>0){
+
+currentTopoStep--;
+
+renderTopo();
+
+}
+
+});
+
+document.getElementById("topoNextBtn").addEventListener("click",()=>{
+
+if(currentTopoStep<topoSteps.length-1){
+
+currentTopoStep++;
+
+renderTopo();
+
+}
+
+});
+
+document.getElementById("topoResetBtn").addEventListener("click",()=>{
+
+currentTopoStep=0;
+
+renderTopo();
+
+});
+
+//================ DIJKSTRA =================
+
+const dijkstraSteps=[
+
+{
+current:0,
+pq:["(0,0)"],
+dist:[0,"∞","∞","∞","∞"],
+explanation:"Start from source node 0."
+},
+
+{
+current:1,
+pq:["(2,2)","(4,1)"],
+dist:[0,4,2,"∞","∞"],
+explanation:"Relax neighbors of node 0."
+},
+
+{
+current:2,
+pq:["(3,4)","(4,1)"],
+dist:[0,4,2,"∞",3],
+explanation:"Visit node 2."
+},
+
+{
+current:4,
+pq:["(4,1)","(6,3)"],
+dist:[0,4,2,6,3],
+explanation:"Visit node 4."
+},
+
+{
+current:1,
+pq:["(5,3)"],
+dist:[0,4,2,5,3],
+explanation:"Shorter path found."
+},
+
+{
+current:3,
+pq:[],
+dist:[0,4,2,5,3],
+explanation:"Shortest paths finalized."
+}
+
+];
+
+let currentDijkstraStep=0;
+
+function renderDijkstra(){
+
+const svg=document.getElementById("dijkstraSVG");
+
+svg.innerHTML="";
+
+const step=dijkstraSteps[currentDijkstraStep];
+
+graphEdges.forEach(edge=>{
+
+const u=graphNodes.find(n=>n.id===edge[0]);
+
+const v=graphNodes.find(n=>n.id===edge[1]);
+
+svg.innerHTML+=`
+<line
+x1="${u.x}"
+y1="${u.y}"
+x2="${v.x}"
+y2="${v.y}"
+stroke="#94A3B8"
+stroke-width="4"/>
+`;
+
+});
+
+graphNodes.forEach(node=>{
+
+let color="#DBEAFE";
+
+if(node.id===step.current)
+color="#2563EB";
+
+svg.innerHTML+=`
+<circle
+cx="${node.x}"
+cy="${node.y}"
+r="28"
+fill="${color}"
+stroke="#1E3A8A"
+stroke-width="3"/>
+
+<text
+x="${node.x}"
+y="${node.y+7}"
+text-anchor="middle"
+font-size="20"
+fill="white"
+font-weight="bold">
+
+${node.id}
+
+</text>
+`;
+
+});
+
+document.getElementById("dijkstraStepCounter").textContent=
+`Step ${currentDijkstraStep+1}/${dijkstraSteps.length}`;
+
+document.getElementById("dijkstraExplanation").textContent=
+step.explanation;
+
+const pq=document.getElementById("pqContainer");
+
+pq.innerHTML="";
+
+step.pq.forEach(x=>{
+
+pq.innerHTML+=`
+<div class="w-16 h-12 rounded bg-yellow-300 flex justify-center items-center font-bold">
+${x}
+</div>
+`;
+
+});
+
+const dist=document.getElementById("distanceContainer");
+
+dist.innerHTML="";
+
+step.dist.forEach((d,i)=>{
+
+dist.innerHTML+=`
+<div class="bg-green-500 text-white rounded p-3 font-bold">
+${i}:${d}
+</div>
+`;
+
+});
+
+}
+
+document.getElementById("dijkstraPrevBtn").onclick=()=>{
+
+if(currentDijkstraStep>0){
+
+currentDijkstraStep--;
+
+renderDijkstra();
+
+}
+
+};
+
+document.getElementById("dijkstraNextBtn").onclick=()=>{
+
+if(currentDijkstraStep<dijkstraSteps.length-1){
+
+currentDijkstraStep++;
+
+renderDijkstra();
+
+}
+
+};
+
+document.getElementById("dijkstraResetBtn").onclick=()=>{
+
+currentDijkstraStep=0;
+
+renderDijkstra();
+
+};
+//==================== DSU ====================
+
+const dsuSteps=[
+
+{
+parent:[0,1,2,3,4],
+explanation:"Initially every node is its own parent."
+},
+
+{
+parent:[0,0,2,3,4],
+explanation:"Union(0,1)"
+},
+
+{
+parent:[0,0,2,2,4],
+explanation:"Union(2,3)"
+},
+
+{
+parent:[0,0,0,2,4],
+explanation:"Union(0,2)"
+},
+
+{
+parent:[0,0,0,0,4],
+explanation:"Path Compression after Find(3)"
+}
+
+];
+
+let currentDSUStep=0;
+
+function renderDSU(){
+
+const step=dsuSteps[currentDSUStep];
+
+document.getElementById("dsuStepCounter").textContent=
+`Step ${currentDSUStep+1}/${dsuSteps.length}`;
+
+document.getElementById("dsuExplanation").textContent=
+step.explanation;
+
+const parent=document.getElementById("parentContainer");
+
+parent.innerHTML="";
+
+step.parent.forEach((p,i)=>{
+
+parent.innerHTML+=`
+
+<div class="bg-blue-600 text-white rounded-lg p-4 text-center">
+
+<div class="font-bold">
+Node ${i}
+</div>
+
+<div class="mt-2">
+Parent : ${p}
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+document.getElementById("dsuPrevBtn").onclick=()=>{
+
+if(currentDSUStep>0){
+
+currentDSUStep--;
+
+renderDSU();
+
+}
+
+};
+
+document.getElementById("dsuNextBtn").onclick=()=>{
+
+if(currentDSUStep<dsuSteps.length-1){
+
+currentDSUStep++;
+
+renderDSU();
+
+}
+
+};
+
+document.getElementById("dsuResetBtn").onclick=()=>{
+
+currentDSUStep=0;
+
+renderDSU();
+
+};
+
+//===================== CYCLE DETECTION =====================
+
+const cycleSteps=[
+
+{
+current:0,
+visited:[0],
+parent:"-",
+cycle:false,
+edge:null,
+explanation:"Start DFS from node 0."
+},
+
+{
+current:1,
+visited:[0,1],
+parent:0,
+cycle:false,
+edge:null,
+explanation:"Visit node 1."
+},
+
+{
+current:3,
+visited:[0,1,3],
+parent:1,
+cycle:false,
+edge:null,
+explanation:"Visit node 3."
+},
+
+{
+current:2,
+visited:[0,1,3,2],
+parent:3,
+cycle:false,
+edge:null,
+explanation:"Visit node 2."
+},
+
+{
+current:0,
+visited:[0,1,3,2],
+parent:2,
+cycle:true,
+edge:[2,0],
+explanation:"Visited node 0 again (not parent). Cycle Found!"
+}
+
+];
+
+let currentCycleStep=0;
+
+function renderCycle(){
+
+const svg=document.getElementById("cycleSVG");
+
+svg.innerHTML="";
+
+const step=cycleSteps[currentCycleStep];
+
+graphEdges.forEach(edge=>{
+
+const u=graphNodes.find(n=>n.id===edge[0]);
+
+const v=graphNodes.find(n=>n.id===edge[1]);
+
+let color="#94A3B8";
+
+if(step.edge &&
+((edge[0]===step.edge[0]&&edge[1]===step.edge[1])||
+(edge[0]===step.edge[1]&&edge[1]===step.edge[0])))
+{
+color="red";
+}
+
+svg.innerHTML+=`
+
+<line
+x1="${u.x}"
+y1="${u.y}"
+x2="${v.x}"
+y2="${v.y}"
+stroke="${color}"
+stroke-width="5"/>
+
+`;
+
+});
+
+graphNodes.forEach(node=>{
+
+let color="#DBEAFE";
+
+if(step.visited.includes(node.id))
+color="#60A5FA";
+
+if(node.id===step.current)
+color="#2563EB";
+
+svg.innerHTML+=`
+
+<circle
+cx="${node.x}"
+cy="${node.y}"
+r="28"
+fill="${color}"
+stroke="#1E3A8A"
+stroke-width="3"/>
+
+<text
+x="${node.x}"
+y="${node.y+7}"
+text-anchor="middle"
+font-size="20"
+fill="white"
+font-weight="bold">
+
+${node.id}
+
+</text>
+
+`;
+
+});
+
+document.getElementById("cycleStepCounter").textContent=
+`Step ${currentCycleStep+1}/${cycleSteps.length}`;
+
+document.getElementById("cycleExplanation").textContent=
+step.explanation;
+
+const visited=document.getElementById("cycleVisitedContainer");
+
+visited.innerHTML="";
+
+step.visited.forEach(node=>{
+
+visited.innerHTML+=`
+<div class="w-12 h-12 rounded bg-green-500 text-white flex justify-center items-center font-bold">
+${node}
+</div>
+`;
+
+});
+
+const parent=document.getElementById("cycleParentContainer");
+
+parent.innerHTML=`
+<div class="w-16 h-12 rounded bg-yellow-300 flex justify-center items-center font-bold">
+${step.parent}
+</div>
+`;
+
+const status=document.getElementById("cycleStatus");
+
+status.innerHTML=step.cycle ?
+"<span class='text-red-600'>❌ Cycle Found</span>" :
+"<span class='text-green-600'>✅ No Cycle Yet</span>";
+
+}
+
+document.getElementById("cyclePrevBtn").onclick=()=>{
+
+if(currentCycleStep>0){
+
+currentCycleStep--;
+
+renderCycle();
+
+}
+
+};
+
+document.getElementById("cycleNextBtn").onclick=()=>{
+
+if(currentCycleStep<cycleSteps.length-1){
+
+currentCycleStep++;
+
+renderCycle();
+
+}
+
+};
+
+document.getElementById("cycleResetBtn").onclick=()=>{
+
+currentCycleStep=0;
+
+renderCycle();
+
+};

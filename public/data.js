@@ -245,31 +245,79 @@ questions: [
 };
 
 const graphsData = {
-    algorithms: [
-        "BFS",
-        "DFS",
-        "Topological Sort",
-        "Dijkstra",
-        "DSU"
-    ],
-questions: [
-{
-    name: "Number of Islands",
-    link: "https://leetcode.com/problems/number-of-islands/"
-},
-{
-    name: "Course Schedule",
-    link: "https://leetcode.com/problems/course-schedule/"
-},
-{
-    name: "Network Delay Time",
-    link: "https://leetcode.com/problems/network-delay-time/"
-},
-{
-    name: "Shortest Path in Binary Matrix",
-    link: "https://leetcode.com/problems/shortest-path-in-binary-matrix/"
-}
-]
+
+   algorithms: [
+
+    "Graph Representation",
+
+    "BFS",
+
+    "DFS",
+
+    "Cycle Detection (Undirected)",
+
+    "Cycle Detection (Directed)",
+
+    "Topological Sort",
+
+    "Dijkstra",
+
+    "DSU"
+
+],
+
+    questions: [
+
+        {
+            name:"Number of Provinces",
+            difficulty:"Medium",
+            link:"https://leetcode.com/problems/number-of-provinces/"
+        },
+
+        {
+            name:"Clone Graph",
+            difficulty:"Medium",
+            link:"https://leetcode.com/problems/clone-graph/"
+        },
+
+        {
+            name:"Course Schedule",
+            difficulty:"Medium",
+            link:"https://leetcode.com/problems/course-schedule/"
+        },
+
+        {
+            name:"Course Schedule II",
+            difficulty:"Medium",
+            link:"https://leetcode.com/problems/course-schedule-ii/"
+        },
+
+        {
+            name:"Number of Islands",
+            difficulty:"Medium",
+            link:"https://leetcode.com/problems/number-of-islands/"
+        },
+
+        {
+            name:"Rotting Oranges",
+            difficulty:"Medium",
+            link:"https://leetcode.com/problems/rotting-oranges/"
+        },
+
+        {
+            name:"Network Delay Time",
+            difficulty:"Medium",
+            link:"https://leetcode.com/problems/network-delay-time/"
+        },
+
+        {
+            name:"Path With Minimum Effort",
+            difficulty:"Medium",
+            link:"https://leetcode.com/problems/path-with-minimum-effort/"
+        }
+
+    ]
+
 };
 
 const greedyData = {
@@ -1339,6 +1387,58 @@ const algorithmData = {
             "https://leetcode.com/problems/implement-queue-using-stacks/"
         }
     ]
+},
+"Graph Representation": {
+
+    description:
+    "A graph can be represented using an adjacency list or adjacency matrix. Adjacency lists are preferred for sparse graphs.",
+
+    time:"O(V+E)",
+
+    space:"O(V+E)",
+
+    problems:[
+        {
+            name:"Find if Path Exists in Graph",
+            link:"https://leetcode.com/problems/find-if-path-exists-in-graph/"
+        }
+    ]
+
+},
+
+"Cycle Detection (Undirected)":{
+
+description:
+"Detects a cycle in an undirected graph using DFS while keeping track of parent nodes.",
+
+time:"O(V + E)",
+
+space:"O(V)",
+
+problems:[
+{
+name:"Detect cycle in an undirected graph",
+link:"https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph/1"
+}
+]
+
+},
+"Cycle Detection (Directed)": {
+
+description:
+"Detects cycles in a directed graph using DFS and a recursion stack.",
+
+time:"O(V + E)",
+
+space:"O(V)",
+
+problems:[
+{
+name:"Course Schedule",
+link:"https://leetcode.com/problems/course-schedule/"
+}
+]
+
 },
 
 };

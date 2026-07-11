@@ -1382,6 +1382,554 @@ class="py-16 px-6 hidden">
     </div>
 
 </section>
+
+<section id="graphVisualizer" class="py-16 px-6 hidden">
+
+    <div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+        <h2 class="text-3xl font-bold text-center mb-8">
+            Graph Representation Visualizer
+        </h2>
+
+        <p
+        id="graphStepCounter"
+        class="text-center text-blue-600 font-bold mb-6">
+        </p>
+
+        <div class="flex justify-center">
+
+            <svg
+            id="graphSVG"
+            width="500"
+            height="350">
+
+            </svg>
+
+        </div>
+
+        <div
+        id="adjacencyList"
+        class="mt-8 bg-gray-100 rounded-xl p-6 font-mono text-lg">
+        </div>
+
+        <p
+        id="graphExplanation"
+        class="text-center mt-8 text-gray-700">
+        </p>
+
+        <div class="flex justify-center gap-4 mt-8">
+
+            <button
+            id="graphPrevBtn"
+            class="bg-gray-500 text-white px-5 py-2 rounded">
+
+                Previous
+
+            </button>
+
+            <button
+            id="graphNextBtn"
+            class="bg-blue-600 text-white px-5 py-2 rounded">
+
+                Next
+
+            </button>
+
+            <button
+            id="graphResetBtn"
+            class="bg-red-600 text-white px-5 py-2 rounded">
+
+                Reset
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="bfsVisualizer" class="py-16 px-6 hidden">
+
+    <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+        <h2 class="text-3xl font-bold text-center mb-6">
+            BFS Visualizer
+        </h2>
+
+        <p id="bfsStepCounter"
+        class="text-center text-blue-600 font-bold mb-6">
+        </p>
+
+        <div class="flex justify-center">
+
+            <svg
+            id="bfsSVG"
+            width="500"
+            height="350">
+            </svg>
+
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 mt-8">
+
+            <div>
+
+                <h3 class="font-bold text-xl mb-3">
+                    Queue
+                </h3>
+<div
+id="bfsQueueContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+            </div>
+
+            <div>
+
+                <h3 class="font-bold text-xl mb-3">
+                    Visited Order
+                </h3>
+
+                <div
+                id="visitedContainer"
+                class="flex gap-3 flex-wrap">
+                </div>
+
+            </div>
+
+        </div>
+
+        <p
+        id="bfsExplanation"
+        class="text-center mt-8 text-gray-700">
+        </p>
+
+        <div class="flex justify-center gap-4 mt-8">
+
+            <button
+            id="bfsPrevBtn"
+            class="bg-gray-500 text-white px-5 py-2 rounded">
+                Previous
+            </button>
+
+            <button
+            id="bfsNextBtn"
+            class="bg-blue-600 text-white px-5 py-2 rounded">
+                Next
+            </button>
+
+            <button
+            id="bfsResetBtn"
+            class="bg-red-600 text-white px-5 py-2 rounded">
+                Reset
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section id="dfsVisualizer" class="py-16 px-6 hidden">
+
+    <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+        <h2 class="text-3xl font-bold text-center mb-6">
+            DFS Visualizer
+        </h2>
+
+        <p id="dfsStepCounter"
+        class="text-center text-purple-600 font-bold mb-6">
+        </p>
+
+        <div class="flex justify-center">
+
+            <svg
+            id="dfsSVG"
+            width="500"
+            height="350">
+            </svg>
+
+        </div>
+
+        <div class="grid grid-cols-2 gap-6 mt-8">
+
+            <div>
+
+                <h3 class="font-bold text-xl mb-3">
+                    Stack
+                </h3>
+
+                <div
+                id="dfsstackContainer"
+                class="flex gap-3 flex-wrap">
+                </div>
+
+            </div>
+
+            <div>
+
+                <h3 class="font-bold text-xl mb-3">
+                    Visited Order
+                </h3>
+
+                <div
+                id="dfsVisitedContainer"
+                class="flex gap-3 flex-wrap">
+                </div>
+
+            </div>
+
+        </div>
+
+        <p
+        id="dfsExplanation"
+        class="text-center mt-8 text-gray-700">
+        </p>
+
+        <div class="flex justify-center gap-4 mt-8">
+
+            <button
+            id="dfsPrevBtn"
+            class="bg-gray-500 text-white px-5 py-2 rounded">
+                Previous
+            </button>
+
+            <button
+            id="dfsNextBtn"
+            class="bg-purple-600 text-white px-5 py-2 rounded">
+                Next
+            </button>
+
+            <button
+            id="dfsResetBtn"
+            class="bg-red-600 text-white px-5 py-2 rounded">
+                Reset
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+<section id="topoVisualizer" class="py-16 px-6 hidden">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-3xl font-bold text-center mb-6">
+Topological Sort Visualizer
+</h2>
+
+<p id="topoStepCounter"
+class="text-center text-indigo-600 font-bold mb-6">
+</p>
+
+<div class="flex justify-center">
+
+<svg
+id="topoSVG"
+width="500"
+height="350">
+</svg>
+
+</div>
+
+<div class="grid grid-cols-2 gap-6 mt-8">
+
+<div>
+
+<h3 class="font-bold text-xl mb-3">
+Queue
+</h3>
+
+<div
+id="topoQueueContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+<div>
+
+<h3 class="font-bold text-xl mb-3">
+Topological Order
+</h3>
+
+<div
+id="topoOrderContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+</div>
+
+<p
+id="topoExplanation"
+class="text-center mt-8 text-gray-700">
+</p>
+
+<div class="flex justify-center gap-4 mt-8">
+
+<button id="topoPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="topoNextBtn"
+class="bg-indigo-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="topoResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="dijkstraVisualizer" class="py-16 px-6 hidden">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-3xl font-bold text-center mb-6">
+Dijkstra Visualizer
+</h2>
+
+<p id="dijkstraStepCounter"
+class="text-center text-blue-700 font-bold mb-6">
+</p>
+
+<div class="flex justify-center">
+
+<svg
+id="dijkstraSVG"
+width="500"
+height="350">
+</svg>
+
+</div>
+
+<div class="grid grid-cols-2 gap-6 mt-8">
+
+<div>
+
+<h3 class="font-bold text-xl mb-3">
+Priority Queue
+</h3>
+
+<div
+id="pqContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+<div>
+
+<h3 class="font-bold text-xl mb-3">
+Distances
+</h3>
+
+<div
+id="distanceContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+</div>
+
+<p
+id="dijkstraExplanation"
+class="text-center mt-8 text-gray-700">
+</p>
+
+<div class="flex justify-center gap-4 mt-8">
+
+<button
+id="dijkstraPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button
+id="dijkstraNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button
+id="dijkstraResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="dsuVisualizer" class="py-16 px-6 hidden">
+
+<div class="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-3xl font-bold text-center mb-6">
+DSU (Union Find) Visualizer
+</h2>
+
+<p id="dsuStepCounter"
+class="text-center text-purple-600 font-bold mb-6">
+</p>
+
+<div class="grid grid-cols-2 gap-10">
+
+<div>
+
+<h3 class="font-bold text-xl mb-4">
+Parent Array
+</h3>
+
+<div
+id="parentContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+<div>
+
+<h3 class="font-bold text-xl mb-4">
+Current Operation
+</h3>
+
+<p
+id="dsuExplanation"
+class="text-lg text-gray-700">
+</p>
+
+</div>
+
+</div>
+
+<div class="flex justify-center gap-4 mt-8">
+
+<button
+id="dsuPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button
+id="dsuNextBtn"
+class="bg-purple-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button
+id="dsuResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="cycleVisualizer" class="py-16 px-6 hidden">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-3xl font-bold text-center mb-6">
+Cycle Detection (Undirected)
+</h2>
+
+<p id="cycleStepCounter"
+class="text-center text-red-600 font-bold mb-6">
+</p>
+
+<div class="flex justify-center">
+
+<svg
+id="cycleSVG"
+width="500"
+height="350">
+</svg>
+
+</div>
+
+<div class="grid grid-cols-2 gap-6 mt-8">
+
+<div>
+
+<h3 class="font-bold text-xl mb-3">
+Visited
+</h3>
+
+<div
+id="cycleVisitedContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+<div>
+
+<h3 class="font-bold text-xl mb-3">
+Parent
+</h3>
+
+<div
+id="cycleParentContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+</div>
+
+<p
+id="cycleExplanation"
+class="text-center mt-8 text-gray-700 text-lg">
+</p>
+
+<div
+id="cycleStatus"
+class="text-center font-bold text-2xl mt-4">
+</div>
+
+<div class="flex justify-center gap-4 mt-8">
+
+<button
+id="cyclePrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button
+id="cycleNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button
+id="cycleResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+
 <!-- DYNAMIC CONTENT -->
 <section id="output" class="mt-10 px-6"></section>
 <script src="/data.js"></script>

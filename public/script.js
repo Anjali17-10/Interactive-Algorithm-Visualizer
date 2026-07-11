@@ -81,7 +81,9 @@ document
     behavior: "smooth"
 });
 }
-function showAlgorithm(name) {
+function showAlgorithm(name) 
+{
+     console.log(name);
 document.getElementById("visualizer")
 .classList.add("hidden");
 
@@ -97,10 +99,21 @@ document
 .getElementById("binaryAnswerVisualizer")
 .classList.add("hidden");
 
+document.getElementById("dsuVisualizer")
+.classList.add("hidden");
+
 document
 .getElementById("minStackVisualizer")
 .classList.add("hidden");
+    document.getElementById("bfsVisualizer").classList.add("hidden");
+    document.getElementById("dfsVisualizer").classList.add("hidden");
+    document.getElementById("topoVisualizer")
+.classList.add("hidden");
 
+document.getElementById("dijkstraVisualizer")
+.classList.add("hidden");
+document.getElementById("cycleVisualizer")
+.classList.add("hidden");
 document
 .getElementById("queueVisualizer")
 .classList.add("hidden");
@@ -137,6 +150,11 @@ document .getElementById("cqVisualizer")
 
 document .getElementById("swmVisualizer")
 .classList.add("hidden");
+
+document
+.getElementById("graphVisualizer")
+.classList.add("hidden");
+
     const data = algorithmData[name];
 document.getElementById("linearVisualizer").classList.add("hidden");
 
@@ -149,6 +167,7 @@ document.getElementById("linearVisualizer").classList.add("hidden");
     .getElementById("algorithmDetails")
     .classList.remove("hidden");
 
+   
     document
     .getElementById("algorithmName")
     .textContent = name;
@@ -343,6 +362,56 @@ if(name === "Min Stack")
     .classList.remove("hidden");
 
     renderMinStack();
+}
+if(name === "Graph Representation")
+{
+    document
+    .getElementById("graphVisualizer")
+    .classList.remove("hidden");
+
+    renderGraph();
+}
+if(name==="BFS")
+{
+document.getElementById("bfsVisualizer")
+.classList.remove("hidden");
+
+renderBFS();
+}
+if(name==="DFS")
+{
+document.getElementById("dfsVisualizer")
+.classList.remove("hidden");
+
+renderDFS();
+}
+if(name==="Topological Sort")
+{
+document.getElementById("topoVisualizer")
+.classList.remove("hidden");
+
+renderTopo();
+}
+if(name==="Dijkstra")
+{
+document.getElementById("dijkstraVisualizer")
+.classList.remove("hidden");
+
+renderDijkstra();
+}
+if(name==="DSU")
+{
+document.getElementById("dsuVisualizer")
+.classList.remove("hidden");
+
+renderDSU();
+}
+if(name==="Cycle Detection (Undirected)")
+{
+document.getElementById("cycleVisualizer")
+.classList.remove("hidden");
+
+renderCycle();
 }
 
 }
