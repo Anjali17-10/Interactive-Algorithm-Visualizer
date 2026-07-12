@@ -3979,3 +3979,193 @@ currentCycleStep=0;
 renderCycle();
 
 };
+//================ DIRECTED CYCLE DETECTION =================
+
+const directedSteps=[
+
+{
+current:0,
+visited:[0],
+recStack:[0],
+cycle:false,
+explanation:"Start DFS from node 0."
+},
+
+{
+current:1,
+visited:[0,1],
+recStack:[0,1],
+cycle:false,
+explanation:"Visit node 1."
+},
+
+{
+current:2,
+visited:[0,1,2],
+recStack:[0,1,2],
+cycle:false,
+explanation:"Visit node 2."
+},
+
+{
+current:3,
+visited:[0,1,2,3],
+recStack:[0,1,2,3],
+cycle:false,
+explanation:"Visit node 3."
+},
+
+{
+current:1,
+visited:[0,1,2,3],
+recStack:[0,1,2,3],
+cycle:true,
+explanation:"Node 1 is already in recursion stack. Directed Cycle Found!"
+}
+
+];
+
+let currentDirectedStep=0;
+
+function renderDirectedCycle(){
+
+const svg=document.getElementById("directedSVG");
+
+svg.innerHTML="";
+
+const step=directedSteps[currentDirectedStep];
+
+graphEdges.forEach(edge=>{
+
+const u=graphNodes.find(n=>n.id===edge[0]);
+const v=graphNodes.find(n=>n.id===edge[1]);
+
+svg.innerHTML+=`
+
+<line
+x1="${u.x}"
+y1="${u.y}"
+x2="${v.x}"
+y2="${v.y}"
+stroke="#94A3B8"
+stroke-width="4"/>
+
+`;
+
+});
+
+graphNodes.forEach(node=>{
+
+let color="#DBEAFE";
+
+if(step.visited.includes(node.id))
+color="#60A5FA";
+
+if(step.recStack.includes(node.id))
+color="#F59E0B";
+
+if(node.id===step.current)
+color="#2563EB";
+
+svg.innerHTML+=`
+
+<circle
+cx="${node.x}"
+cy="${node.y}"
+r="28"
+fill="${color}"
+stroke="#1E3A8A"
+stroke-width="3"/>
+
+<text
+x="${node.x}"
+y="${node.y+7}"
+text-anchor="middle"
+font-size="20"
+fill="white"
+font-weight="bold">
+
+${node.id}
+
+</text>
+
+`;
+
+});
+
+document.getElementById("directedStepCounter").textContent=
+`Step ${currentDirectedStep+1}/${directedSteps.length}`;
+
+document.getElementById("directedExplanation").textContent=
+step.explanation;
+
+const visited=document.getElementById("directedVisitedContainer");
+visited.innerHTML="";
+
+step.visited.forEach(node=>{
+
+visited.innerHTML+=`
+<div class="w-12 h-12 rounded-lg bg-green-500 text-white flex items-center justify-center font-bold">
+${node}
+</div>
+`;
+
+});
+
+const rec=document.getElementById("recStackContainer");
+rec.innerHTML="";
+
+step.recStack.forEach(node=>{
+
+rec.innerHTML+=`
+<div class="w-12 h-12 rounded-lg bg-yellow-400 flex items-center justify-center font-bold">
+${node}
+</div>
+`;
+
+});
+
+document.getElementById("currentNodeContainer").innerHTML=`
+<div class="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold">
+${step.current}
+</div>
+`;
+
+document.getElementById("directedStatus").innerHTML=
+step.cycle
+? "<span class='text-red-600'>❌ Cycle Found</span>"
+: "<span class='text-green-600'>✅ No Cycle Yet</span>";
+
+}
+
+document.getElementById("directedPrevBtn").onclick=()=>{
+
+if(currentDirectedStep>0){
+
+currentDirectedStep--;
+
+renderDirectedCycle();
+
+}
+
+};
+
+document.getElementById("directedNextBtn").onclick=()=>{
+
+if(currentDirectedStep<directedSteps.length-1){
+
+currentDirectedStep++;
+
+renderDirectedCycle();
+
+}
+
+};
+
+document.getElementById("directedResetBtn").onclick=()=>{
+
+currentDirectedStep=0;
+
+renderDirectedCycle();
+
+};

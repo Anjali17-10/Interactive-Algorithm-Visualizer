@@ -1426,7 +1426,7 @@ link:"https://www.geeksforgeeks.org/problems/detect-cycle-in-an-undirected-graph
 "Cycle Detection (Directed)": {
 
 description:
-"Detects cycles in a directed graph using DFS and a recursion stack.",
+"Detects a cycle in a directed graph using DFS and a recursion stack.",
 
 time:"O(V + E)",
 

@@ -92,6 +92,9 @@ document.getElementById("slidingWindowVisualizer")
 document
 .getElementById("kadaneVisualizer")
 .classList.add("hidden");
+document.getElementById("directedCycleVisualizer")
+.classList.add("hidden");
+
 document
 .getElementById("prefixVisualizer")
 .classList.add("hidden");
@@ -412,6 +415,14 @@ document.getElementById("cycleVisualizer")
 .classList.remove("hidden");
 
 renderCycle();
+}
+if(name==="Cycle Detection (Directed)")
+{
+document
+.getElementById("directedCycleVisualizer")
+.classList.remove("hidden");
+
+renderDirectedCycle();
 }
 
 }

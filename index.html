@@ -1929,7 +1929,106 @@ Reset
 </div>
 
 </section>
+<section id="directedCycleVisualizer" class="py-16 px-6 hidden">
 
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-3xl font-bold text-center mb-6">
+Cycle Detection (Directed)
+</h2>
+
+<p id="directedStepCounter"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div class="flex justify-center">
+
+<svg
+id="directedSVG"
+width="500"
+height="350">
+</svg>
+
+</div>
+
+<div class="grid grid-cols-3 gap-6 mt-8">
+
+<div>
+
+<h3 class="font-bold text-xl mb-3">
+Visited
+</h3>
+
+<div
+id="directedVisitedContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+<div>
+
+<h3 class="font-bold text-xl mb-3">
+Recursion Stack
+</h3>
+
+<div
+id="recStackContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+<div>
+
+<h3 class="font-bold text-xl mb-3">
+Current Node
+</h3>
+
+<div
+id="currentNodeContainer"
+class="flex gap-3 flex-wrap">
+</div>
+
+</div>
+
+</div>
+
+<p
+id="directedExplanation"
+class="text-center mt-8">
+</p>
+
+<p
+id="directedStatus"
+class="text-center mt-3 text-2xl font-bold">
+</p>
+
+<div class="flex justify-center gap-4 mt-8">
+
+<button
+id="directedPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button
+id="directedNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button
+id="directedResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
 <!-- DYNAMIC CONTENT -->
 <section id="output" class="mt-10 px-6"></section>
 <script src="/data.js"></script>
