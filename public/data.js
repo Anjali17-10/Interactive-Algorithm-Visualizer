@@ -40,23 +40,32 @@ const stringsData = {
         "Manacher Algorithm"
     ],
 
- questions: [
+questions: [
+
 {
-    name: "Longest Palindromic Substring",
-    link: "https://leetcode.com/problems/longest-palindromic-substring/"
+name:"Longest Palindromic Substring",
+difficulty:"Medium",
+link:"https://leetcode.com/problems/longest-palindromic-substring/"
 },
+
 {
-    name: "Valid Anagram",
-    link: "https://leetcode.com/problems/valid-anagram/"
+name:"Valid Anagram",
+difficulty:"Easy",
+link:"https://leetcode.com/problems/valid-anagram/"
 },
+
 {
-    name: "Longest Common Prefix",
-    link: "https://leetcode.com/problems/longest-common-prefix/"
+name:"Longest Common Prefix",
+difficulty:"Easy",
+link:"https://leetcode.com/problems/longest-common-prefix/"
 },
+
 {
-    name: "Group Anagrams",
-    link: "https://leetcode.com/problems/group-anagrams/"
+name:"Group Anagrams",
+difficulty:"Medium",
+link:"https://leetcode.com/problems/group-anagrams/"
 }
+
 ]
 };
 
@@ -66,26 +75,35 @@ const recursionData = {
         "Backtracking",
         "N Queens",
         "Sudoku Solver",
-        "Generate Parentheses"
+        "Subset Generation"
     ],
 
-questions: [
+questions:[
+
 {
-    name: "Subsets",
-    link: "https://leetcode.com/problems/subsets/"
+name:"Subsets",
+difficulty:"Medium",
+link:"https://leetcode.com/problems/subsets/"
 },
+
 {
-    name: "Permutations",
-    link: "https://leetcode.com/problems/permutations/"
+name:"Permutations",
+difficulty:"Medium",
+link:"https://leetcode.com/problems/permutations/"
 },
+
 {
-    name: "Combination Sum",
-    link: "https://leetcode.com/problems/combination-sum/"
+name:"Combination Sum",
+difficulty:"Medium",
+link:"https://leetcode.com/problems/combination-sum/"
 },
+
 {
-    name: "Rat in a Maze",
-    link: "https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1"
+name:"Rat in a Maze",
+difficulty:"Medium",
+link:"https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1"
 }
+
 ]
 };
 const searchingData = {
@@ -128,12 +146,33 @@ const linkedListData = {
         "Reverse Linked List",
         "Cycle Detection"
     ],
-    questions: [
-        "Middle of Linked List",
-        "Linked List Cycle",
-        "Merge Two Lists",
-        "Remove Nth Node"
-    ]
+   questions: [
+
+{
+    name:"Reverse Linked List",
+    difficulty:"Easy",
+    link:"https://leetcode.com/problems/reverse-linked-list/"
+},
+
+{
+    name:"Linked List Cycle",
+    difficulty:"Easy",
+    link:"https://leetcode.com/problems/linked-list-cycle/"
+},
+
+{
+    name:"Remove Nth Node From End of List",
+    difficulty:"Medium",
+    link:"https://leetcode.com/problems/remove-nth-node-from-end-of-list/"
+},
+
+{
+    name:"Merge Two Sorted Lists",
+    difficulty:"Easy",
+    link:"https://leetcode.com/problems/merge-two-sorted-lists/"
+}
+
+]
 };
 
 const stackQueueData = {
@@ -673,141 +712,185 @@ const algorithmData = {
     ]
 },
 
-"Traversal": {
-    description:
-    "Visits every node of the linked list sequentially.",
+"Insertion":{
 
-    time: "O(n)",
+description:
+"Inserts a new node into the linked list by updating pointers.",
 
-    space: "O(1)",
+time:"O(n)",
 
-    problems: [
-        {
-            name: "Middle of Linked List",
-            link: "https://leetcode.com/problems/middle-of-the-linked-list/"
-        }
-    ]
+space:"O(1)",
+
+problems:[
+{
+name:"Insert Greatest Common Divisors in Linked List",
+link:"https://leetcode.com/problems/insert-greatest-common-divisors-in-linked-list/"
+},
+{
+name:"Design Linked List",
+link:"https://leetcode.com/problems/design-linked-list/"
+}
+]
+
+},
+"Deletion":{
+
+description:
+"Deletes a node from a linked list by updating the previous node's next pointer.",
+
+time:"O(n)",
+
+space:"O(1)",
+
+problems:[
+{
+name:"Delete Node in a Linked List",
+link:"https://leetcode.com/problems/delete-node-in-a-linked-list/"
+},
+{
+name:"Remove Linked List Elements",
+link:"https://leetcode.com/problems/remove-linked-list-elements/"
+}
+]
+
+},
+"Reverse Linked List":{
+
+description:
+"Reverses a linked list by changing the direction of each node's next pointer.",
+
+time:"O(n)",
+
+space:"O(1)",
+
+problems:[
+{
+name:"Reverse Linked List",
+link:"https://leetcode.com/problems/reverse-linked-list/"
+},
+{
+name:"Reverse Linked List II",
+link:"https://leetcode.com/problems/reverse-linked-list-ii/"
+}
+]
+
 },
 
-"Deletion": {
-    description:
-    "Removes nodes from a linked list efficiently.",
+"Cycle Detection":{
 
-    time: "O(1)",
+description:
+"Detects whether a linked list contains a cycle using slow and fast pointers.",
 
-    space: "O(1)",
+time:"O(n)",
 
-    problems: [
-        {
-            name: "Delete Node in a Linked List",
-            link: "https://leetcode.com/problems/delete-node-in-a-linked-list/"
-        }
-    ]
+space:"O(1)",
+
+problems:[
+{
+name:"Linked List Cycle",
+link:"https://leetcode.com/problems/linked-list-cycle/"
 },
-"Reverse Linked List": {
-    description:
-    "Reverses the links between nodes.",
+{
+name:"Linked List Cycle II",
+link:"https://leetcode.com/problems/linked-list-cycle-ii/"
+}
+]
 
-    time: "O(n)",
-
-    space: "O(1)",
-
-    problems: [
-        {
-            name: "Reverse Linked List",
-            link: "https://leetcode.com/problems/reverse-linked-list/"
-        }
-    ]
 },
-"Cycle Detection": {
-    description:
-    "Detects whether a linked list contains a cycle using Floyd's algorithm.",
 
-    time: "O(n)",
+"Recursion Basics":{
 
-    space: "O(1)",
+description:
+"Recursion is a technique where a function calls itself until a base condition is reached.",
 
-    problems: [
-        {
-            name: "Linked List Cycle",
-            link: "https://leetcode.com/problems/linked-list-cycle/"
-        }
-    ]
+time:"O(n)",
+
+space:"O(n)",
+
+problems:[
+{
+name:"Fibonacci Number",
+link:"https://leetcode.com/problems/fibonacci-number/"
+}
+]
+
 },
-"Recursion Basics": {
-    description:
-    "Solves problems by calling the same function on smaller subproblems.",
+"Backtracking":{
 
-    time: "Depends on the problem",
+description:
+"Backtracking explores all possible choices recursively and undoes decisions whenever a path cannot lead to a valid solution.",
 
-    space: "O(depth)",
+time:"O(2ⁿ) to O(n!) depending on the problem",
 
-    problems: [
-        {
-            name: "Fibonacci Number",
-            link: "https://leetcode.com/problems/fibonacci-number/"
-        }
-    ]
+space:"O(n)",
+
+problems:[
+{
+name:"Combination Sum",
+link:"https://leetcode.com/problems/combination-sum/"
+}
+]
+
 },
-"Backtracking": {
-    description:
-    "Explores all possible solutions and backtracks when a choice is invalid.",
+"N Queens":{
 
-    time: "Exponential",
+description:
+"Places N queens on a chessboard so that no two queens attack each other using backtracking.",
 
-    space: "O(depth)",
+time:"O(N!)",
 
-    problems: [
-        {
-            name: "Subsets",
-            link: "https://leetcode.com/problems/subsets/"
-        }
-    ]
+space:"O(N)",
+
+problems:[
+{
+name:"N-Queens",
+link:"https://leetcode.com/problems/n-queens/"
 },
-"N Queens": {
-    description:
-    "Places queens on a chessboard so that no two queens attack each other.",
+{
+name:"N-Queens II",
+link:"https://leetcode.com/problems/n-queens-ii/"
+}
+]
 
-    time: "O(N!)",
-
-    space: "O(N)",
-
-    problems: [
-        {
-            name: "N-Queens",
-            link: "https://leetcode.com/problems/n-queens/"
-        }
-    ]
 },
-"Sudoku Solver": {
-    description:
-    "Uses backtracking to fill a Sudoku board while satisfying constraints.",
+"Sudoku Solver":{
 
-    time: "Exponential",
+description:
+"Uses backtracking to fill empty cells while satisfying all Sudoku constraints.",
 
-    space: "O(1)",
+time:"O(9^(n²))",
 
-    problems: [
-        {
-            name: "Sudoku Solver",
-            link: "https://leetcode.com/problems/sudoku-solver/"
-        }
-    ]
+space:"O(n²)",
+
+problems:[
+{
+name:"Sudoku Solver",
+link:"https://leetcode.com/problems/sudoku-solver/"
+}
+]
+
 },
-"Generate Parentheses": {
-    description:
-    "Generates all valid combinations of parentheses using recursion.",
 
-    time: "O(2^n)",
+"Subset Generation":{
 
-    space: "O(n)",
+description:
+"Generates all possible subsets of a given array using recursion and backtracking.",
 
-    problems: [
-        {
-            name: "Generate Parentheses",
-            link: "https://leetcode.com/problems/generate-parentheses/"
-        }
-    ]
+time:"O(2ⁿ)",
+
+space:"O(n)",
+
+problems:[
+{
+name:"Subsets",
+link:"https://leetcode.com/problems/subsets/"
+},
+{
+name:"Subsets II",
+link:"https://leetcode.com/problems/subsets-ii/"
+}
+]
+
 },
 "Valid Parentheses": {
     description:
@@ -1440,5 +1523,108 @@ link:"https://leetcode.com/problems/course-schedule/"
 ]
 
 },
+"Pattern Matching":{
+
+description:
+"Finds all occurrences of a pattern inside a text by comparing characters one by one.",
+
+time:"O((n-m+1)×m)",
+
+space:"O(1)",
+
+problems:[
+{
+name:"Find the Index of the First Occurrence in a String",
+link:"https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+}
+]
+
+},
+
+"KMP Algorithm":{
+
+description:
+"Uses the LPS (Longest Prefix Suffix) array to efficiently search a pattern in a text.",
+
+time:"O(n+m)",
+
+space:"O(m)",
+
+problems:[
+{
+name:"Shortest Palindrome",
+link:"https://leetcode.com/problems/shortest-palindrome/"
+}
+]
+
+},
+
+"Rabin-Karp":{
+
+description:
+"Uses a rolling hash to efficiently search for a pattern inside a text. Character comparison is performed only when hash values match.",
+
+time:"Average: O(n + m), Worst: O(n × m)",
+
+space:"O(1)",
+
+problems:[
+{
+name:"Find the Index of the First Occurrence in a String",
+link:"https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/"
+},
+{
+name:"Repeated String Match",
+link:"https://leetcode.com/problems/repeated-string-match/"
+}
+]
+
+},
+
+"Z Algorithm":{
+
+description:
+"Computes the Z-array where each Z[i] represents the length of the longest substring starting at i that matches the prefix of the string.",
+
+time:"O(n)",
+
+space:"O(n)",
+
+problems:[
+{
+name:"Repeated Substring Pattern",
+link:"https://leetcode.com/problems/repeated-substring-pattern/"
+},
+{
+name:"Find Beautiful Indices in the Given Array",
+link:"https://leetcode.com/problems/find-beautiful-indices-in-the-given-array-ii/"
+}
+]
+
+},
+
+"Manacher Algorithm":{
+
+description:
+"Manacher's Algorithm finds the longest palindromic substring in linear time by expanding around centers while reusing previous palindrome information.",
+
+time:"O(n)",
+
+space:"O(n)",
+
+problems:[
+{
+name:"Longest Palindromic Substring",
+link:"https://leetcode.com/problems/longest-palindromic-substring/"
+},
+{
+name:"Palindromic Substrings",
+link:"https://leetcode.com/problems/palindromic-substrings/"
+}
+]
+
+},
+
+
 
 };

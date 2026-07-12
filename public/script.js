@@ -83,11 +83,38 @@ document
 }
 function showAlgorithm(name) 
 {
-     console.log(name);
 document.getElementById("visualizer")
 .classList.add("hidden");
+document.getElementById("insertionVisualizer")
+.classList.add("hidden");
+document.getElementById("subsetVisualizer")
+.classList.add("hidden");
+document.getElementById("traversalVisualizer")
+.classList.add("hidden");
+document.getElementById("deletionVisualizer")
+.classList.add("hidden");
+document.getElementById("reverseVisualizer")
+.classList.add("hidden");
+document.getElementById("nQueensVisualizer")
+.classList.add("hidden");
+document.getElementById("sudokuVisualizer")
+.classList.add("hidden");
+document.getElementById("recursionVisualizer")
+.classList.add("hidden");
+document.getElementById("kmpVisualizer")
+.classList.add("hidden");
+document.getElementById("zVisualizer")
+.classList.add("hidden");
+document.getElementById("cycleVisualizer")
+.classList.add("hidden");
 
+document.getElementById("backtrackingVisualizer")
+.classList.add("hidden");
 document.getElementById("slidingWindowVisualizer")
+.classList.add("hidden");
+document.getElementById("patternVisualizer")
+.classList.add("hidden");
+document.getElementById("manacherVisualizer")
 .classList.add("hidden");
 document
 .getElementById("kadaneVisualizer")
@@ -101,10 +128,11 @@ document
  document
 .getElementById("binaryAnswerVisualizer")
 .classList.add("hidden");
-
+document.getElementById("rabinVisualizer")
+.classList.add("hidden");
 document.getElementById("dsuVisualizer")
 .classList.add("hidden");
-
+document.getElementById("preorderVisualizer").classList.add("hidden");
 document
 .getElementById("minStackVisualizer")
 .classList.add("hidden");
@@ -227,7 +255,62 @@ if(name === "Two Pointers")
 
     renderArray();
 }
+if(name==="Reverse Linked List")
+{
+document.getElementById("reverseVisualizer")
+.classList.remove("hidden");
 
+renderReverse();
+}
+if(name==="Cycle Detection")
+{
+    document.getElementById("cycleVisualizer")
+    .classList.remove("hidden");
+
+    renderCycle();
+}
+if(name==="Insertion")
+{
+document.getElementById("insertionVisualizer")
+.classList.remove("hidden");
+
+renderInsertion();
+}
+if(name==="Subset Generation")
+{
+document.getElementById("subsetVisualizer")
+.classList.remove("hidden");
+
+renderSubset();
+}
+if(name==="N Queens")
+{
+document.getElementById("nQueensVisualizer")
+.classList.remove("hidden");
+
+renderNQueens();
+}
+if(name==="Sudoku Solver")
+{
+document.getElementById("sudokuVisualizer")
+.classList.remove("hidden");
+
+renderSudoku();
+}
+if(name==="Traversal")
+{
+document.getElementById("traversalVisualizer")
+.classList.remove("hidden");
+
+renderTraversal();
+}
+if(name==="Deletion")
+{
+document.getElementById("deletionVisualizer")
+.classList.remove("hidden");
+
+renderDeletion();
+}
 if(name === "Sliding Window")
 {
     document.getElementById("slidingWindowVisualizer")
@@ -251,6 +334,20 @@ if(name === "Prefix Sum")
 
     renderPrefix();
 }
+if(name==="Z Algorithm")
+{
+document.getElementById("zVisualizer")
+.classList.remove("hidden");
+
+renderZ();
+}
+if(name==="Manacher Algorithm")
+{
+document.getElementById("manacherVisualizer")
+.classList.remove("hidden");
+
+renderManacher();
+}
 if(name === "Linear Search")
 {
     document
@@ -267,7 +364,20 @@ if(name === "Binary Search")
 
     renderBinary();
 }
+if(name==="Rabin-Karp")
+{
+document.getElementById("rabinVisualizer")
+.classList.remove("hidden");
 
+renderRabin();
+}
+if(name==="Rabin-Karp")
+{
+document.getElementById("rabinVisualizer")
+.classList.remove("hidden");
+
+renderRabin();
+}
 if(name === "Binary Search on Answer")
 {
     document
@@ -284,7 +394,13 @@ if(name === "Lower Bound")
 
     renderLower();
 }
+if(name==="Recursion Basics")
+{
+document.getElementById("recursionVisualizer")
+.classList.remove("hidden");
 
+renderRecursion();
+}
 if(name === "Upper Bound")
 {
     document
@@ -292,6 +408,13 @@ if(name === "Upper Bound")
     .classList.remove("hidden");
 
     renderUpper();
+}
+if(name==="Backtracking")
+{
+document.getElementById("backtrackingVisualizer")
+.classList.remove("hidden");
+
+renderBacktracking();
 }
 
 if(name === "Stack Operations")
@@ -326,6 +449,13 @@ if(name === "Next Greater Element")
 
     renderNge();
 }
+if(name==="Pattern Matching")
+{
+document.getElementById("patternVisualizer")
+.classList.remove("hidden");
+
+renderPattern();
+}
 if(name === "Next Greater Element")
 {
     document
@@ -342,7 +472,17 @@ if(name === "Stock Span Problem")
 
     renderStock();
 }
+if(name==="KMP Algorithm")
+{
+document.getElementById("kmpVisualizer")
+.classList.remove("hidden");
 
+renderKMP();
+}
+if (name === "Preorder Traversal (Binary Tree)") {
+  document.getElementById("preorderVisualizer").classList.remove("hidden");
+  renderPreorder();
+}
 if(name === "Largest Rectangle Histogram")
 {
     document

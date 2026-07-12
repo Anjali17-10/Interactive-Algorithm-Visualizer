@@ -4169,3 +4169,1717 @@ currentDirectedStep=0;
 renderDirectedCycle();
 
 };
+
+//=======pattern algorithm====
+const patternSteps=[
+
+{
+index:0,
+matched:0,
+text:"ABABCABC",
+pattern:"ABC",
+explanation:"Compare pattern starting at index 0."
+},
+
+{
+index:2,
+matched:3,
+text:"ABABCABC",
+pattern:"ABC",
+explanation:"Pattern found at index 2."
+},
+
+{
+index:5,
+matched:3,
+text:"ABABCABC",
+pattern:"ABC",
+explanation:"Pattern found at index 5."
+}
+
+];
+
+let currentPatternStep=0;
+
+function renderPattern(){
+
+const step=patternSteps[currentPatternStep];
+
+document.getElementById("patternStepCounter").textContent=
+`Step ${currentPatternStep+1}/${patternSteps.length}`;
+
+const text=document.getElementById("textContainer");
+
+text.innerHTML="";
+
+for(let i=0;i<step.text.length;i++){
+
+let color="bg-gray-200";
+
+if(i>=step.index && i<step.index+step.matched)
+color="bg-green-400 text-white";
+
+text.innerHTML+=`
+<span class="${color} px-2 py-1 rounded mx-1 inline-block">
+${step.text[i]}
+</span>
+`;
+
+}
+
+const pattern=document.getElementById("patternContainer");
+
+pattern.innerHTML="";
+
+for(let i=0;i<step.pattern.length;i++){
+
+let color="bg-blue-500 text-white";
+
+if(i<step.matched)
+color="bg-green-500 text-white";
+
+pattern.innerHTML+=`
+<span class="${color} px-2 py-1 rounded mx-1 inline-block">
+${step.pattern[i]}
+</span>
+`;
+
+}
+
+document.getElementById("patternExplanation").textContent=
+step.explanation;
+
+}
+
+document.getElementById("patternPrevBtn").onclick=()=>{
+
+if(currentPatternStep>0){
+
+currentPatternStep--;
+
+renderPattern();
+
+}
+
+};
+
+document.getElementById("patternNextBtn").onclick=()=>{
+
+if(currentPatternStep<patternSteps.length-1){
+
+currentPatternStep++;
+
+renderPattern();
+
+}
+
+};
+
+document.getElementById("patternResetBtn").onclick=()=>{
+
+currentPatternStep=0;
+
+renderPattern();
+
+};
+
+//=======kmp visualizer====
+const kmpSteps=[
+
+{
+text:"ABABDABACDABABCABAB",
+pattern:"ABABCABAB",
+matched:0,
+index:0,
+lps:[0,0,1,2,0,1,2,3,4],
+explanation:"Start matching from index 0."
+},
+
+{
+text:"ABABDABACDABABCABAB",
+pattern:"ABABCABAB",
+matched:4,
+index:10,
+lps:[0,0,1,2,0,1,2,3,4],
+explanation:"Characters matched. Continue."
+},
+
+{
+text:"ABABDABACDABABCABAB",
+pattern:"ABABCABAB",
+matched:9,
+index:10,
+lps:[0,0,1,2,0,1,2,3,4],
+explanation:"Pattern found."
+}
+
+];
+
+let currentKMPStep=0;
+
+function renderKMP(){
+
+const step=kmpSteps[currentKMPStep];
+
+document.getElementById("kmpStepCounter").textContent=
+`Step ${currentKMPStep+1}/${kmpSteps.length}`;
+
+const text=document.getElementById("kmpTextContainer");
+
+text.innerHTML="";
+
+for(let i=0;i<step.text.length;i++){
+
+let color="bg-gray-200";
+
+if(i>=step.index && i<step.index+step.matched)
+color="bg-green-500 text-white";
+
+text.innerHTML+=`
+<span class="${color} px-2 py-1 rounded mx-1 inline-block">
+${step.text[i]}
+</span>
+`;
+
+}
+
+const pattern=document.getElementById("kmpPatternContainer");
+
+pattern.innerHTML="";
+
+for(let i=0;i<step.pattern.length;i++){
+
+let color="bg-blue-500 text-white";
+
+if(i<step.matched)
+color="bg-green-500 text-white";
+
+pattern.innerHTML+=`
+<span class="${color} px-2 py-1 rounded mx-1 inline-block">
+${step.pattern[i]}
+</span>
+`;
+
+}
+
+const lps=document.getElementById("lpsContainer");
+
+lps.innerHTML="";
+
+step.lps.forEach(value=>{
+
+lps.innerHTML+=`
+<div class="w-12 h-12 rounded-lg bg-purple-500 text-white flex items-center justify-center font-bold">
+${value}
+</div>
+`;
+
+});
+
+document.getElementById("kmpExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("kmpPrevBtn").onclick=()=>{
+
+if(currentKMPStep>0){
+
+currentKMPStep--;
+
+renderKMP();
+
+}
+
+};
+
+document.getElementById("kmpNextBtn").onclick=()=>{
+
+if(currentKMPStep<kmpSteps.length-1){
+
+currentKMPStep++;
+
+renderKMP();
+
+}
+
+};
+
+document.getElementById("kmpResetBtn").onclick=()=>{
+
+currentKMPStep=0;
+
+renderKMP();
+
+};
+
+//==== Rabin Carp=====
+const rabinSteps=[
+
+{
+text:"ABABCABC",
+pattern:"ABC",
+index:0,
+matched:0,
+textHash:123,
+patternHash:456,
+explanation:"Hashes are different."
+},
+
+{
+text:"ABABCABC",
+pattern:"ABC",
+index:2,
+matched:3,
+textHash:456,
+patternHash:456,
+explanation:"Hashes match. Verify characters."
+},
+
+{
+text:"ABABCABC",
+pattern:"ABC",
+index:5,
+matched:3,
+textHash:456,
+patternHash:456,
+explanation:"Pattern found."
+}
+
+];
+
+let currentRabinStep=0;
+function renderRabin(){
+
+const step=rabinSteps[currentRabinStep];
+
+document.getElementById("rabinStepCounter").textContent=
+`Step ${currentRabinStep+1}/${rabinSteps.length}`;
+
+const text=document.getElementById("rabinTextContainer");
+text.innerHTML="";
+
+for(let i=0;i<step.text.length;i++){
+
+let color="bg-gray-200";
+
+if(i>=step.index&&i<step.index+step.matched)
+color="bg-green-500 text-white";
+
+text.innerHTML+=`
+<div class="${color} w-10 h-10 rounded flex items-center justify-center font-bold">
+${step.text[i]}
+</div>
+`;
+
+}
+
+const pattern=document.getElementById("rabinPatternContainer");
+pattern.innerHTML="";
+
+for(let ch of step.pattern){
+
+pattern.innerHTML+=`
+<div class="bg-blue-500 text-white w-10 h-10 rounded flex items-center justify-center font-bold">
+${ch}
+</div>
+`;
+
+}
+
+document.getElementById("hashContainer").innerHTML=`
+
+<div class="bg-yellow-200 px-4 py-2 rounded font-bold">
+Pattern Hash : ${step.patternHash}
+</div>
+
+<div class="bg-green-200 px-4 py-2 rounded font-bold">
+Text Hash : ${step.textHash}
+</div>
+
+`;
+
+document.getElementById("rabinExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("rabinPrevBtn").onclick=()=>{
+
+if(currentRabinStep>0){
+
+currentRabinStep--;
+
+renderRabin();
+
+}
+
+};
+
+document.getElementById("rabinNextBtn").onclick=()=>{
+
+if(currentRabinStep<rabinSteps.length-1){
+
+currentRabinStep++;
+
+renderRabin();
+
+}
+
+};
+
+document.getElementById("rabinResetBtn").onclick=()=>{
+
+currentRabinStep=0;
+
+renderRabin();
+
+};
+  ///====Z algorithm
+  const zSteps=[
+
+{
+string:"aabxaabxcaabxaabxay",
+current:1,
+z:[0,1,0,0,4,1,0,0,0,8],
+explanation:"Compute Z value at index 1."
+},
+
+{
+string:"aabxaabxcaabxaabxay",
+current:4,
+z:[0,1,0,0,4,1,0,0,0,8],
+explanation:"Longest prefix match starts at index 4."
+},
+
+{
+string:"aabxaabxcaabxaabxay",
+current:9,
+z:[0,1,0,0,4,1,0,0,0,8],
+explanation:"Largest Z value found."
+}
+
+];
+
+let currentZStep=0;
+function renderZ(){
+
+const step=zSteps[currentZStep];
+
+document.getElementById("zStepCounter").textContent=
+`Step ${currentZStep+1}/${zSteps.length}`;
+
+const string=document.getElementById("zStringContainer");
+string.innerHTML="";
+
+for(let i=0;i<step.string.length;i++){
+
+let color="bg-gray-200";
+
+if(i===step.current)
+color="bg-blue-500 text-white";
+
+string.innerHTML+=`
+<div class="${color} w-10 h-10 rounded flex items-center justify-center font-bold">
+${step.string[i]}
+</div>
+`;
+
+}
+
+const z=document.getElementById("zArrayContainer");
+
+z.innerHTML="";
+
+step.z.forEach((value,index)=>{
+
+let color="bg-purple-500";
+
+if(index===step.current)
+color="bg-green-500";
+
+z.innerHTML+=`
+<div class="${color} text-white w-10 h-10 rounded flex items-center justify-center font-bold">
+${value}
+</div>
+`;
+
+});
+
+document.getElementById("zExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("zPrevBtn").onclick=()=>{
+
+if(currentZStep>0){
+
+currentZStep--;
+
+renderZ();
+
+}
+
+};
+
+document.getElementById("zNextBtn").onclick=()=>{
+
+if(currentZStep<zSteps.length-1){
+
+currentZStep++;
+
+renderZ();
+
+}
+
+};
+
+document.getElementById("zResetBtn").onclick=()=>{
+
+currentZStep=0;
+
+renderZ();
+
+};
+
+//'======manacher algorithm
+const manacherSteps=[
+
+{
+string:"#a#b#a#b#a#",
+current:2,
+radius:[0,1,0,3,0,5,0,3,0,1,0],
+explanation:"Expand around center."
+},
+
+{
+string:"#a#b#a#b#a#",
+current:5,
+radius:[0,1,0,3,0,5,0,3,0,1,0],
+explanation:"Largest palindrome centered here."
+},
+
+{
+string:"#a#b#a#b#a#",
+current:7,
+radius:[0,1,0,3,0,5,0,3,0,1,0],
+explanation:"Reuse previously computed radius."
+}
+
+];
+
+let currentManacherStep=0;
+function renderManacher(){
+
+const step=manacherSteps[currentManacherStep];
+
+document.getElementById("manacherStepCounter").textContent=
+`Step ${currentManacherStep+1}/${manacherSteps.length}`;
+
+const string=document.getElementById("manacherStringContainer");
+
+string.innerHTML="";
+
+for(let i=0;i<step.string.length;i++){
+
+let color="bg-gray-200";
+
+if(i===step.current)
+color="bg-blue-600 text-white";
+
+string.innerHTML+=`
+<div class="${color} w-10 h-10 rounded flex items-center justify-center font-bold">
+${step.string[i]}
+</div>
+`;
+
+}
+
+const radius=document.getElementById("radiusContainer");
+
+radius.innerHTML="";
+
+step.radius.forEach((value,index)=>{
+
+let color="bg-purple-500";
+
+if(index===step.current)
+color="bg-green-500";
+
+radius.innerHTML+=`
+<div class="${color} text-white w-10 h-10 rounded flex items-center justify-center font-bold">
+${value}
+</div>
+`;
+
+});
+
+document.getElementById("manacherExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("manacherPrevBtn").onclick=()=>{
+
+if(currentManacherStep>0){
+
+currentManacherStep--;
+
+renderManacher();
+
+}
+
+};
+
+document.getElementById("manacherNextBtn").onclick=()=>{
+
+if(currentManacherStep<manacherSteps.length-1){
+
+currentManacherStep++;
+
+renderManacher();
+
+}
+
+};
+
+document.getElementById("manacherResetBtn").onclick=()=>{
+
+currentManacherStep=0;
+
+renderManacher();
+
+};
+//===recursion basic 
+const recursionSteps=[
+
+{
+stack:["fact(4)"],
+explanation:"Initial function call."
+},
+
+{
+stack:["fact(4)","fact(3)"],
+explanation:"Recursive call for n=3."
+},
+
+{
+stack:["fact(4)","fact(3)","fact(2)"],
+explanation:"Recursive call for n=2."
+},
+
+{
+stack:["fact(4)","fact(3)","fact(2)","fact(1)"],
+explanation:"Base case reached."
+},
+
+{
+stack:["fact(4)","fact(3)","fact(2)"],
+explanation:"Returning from fact(1)."
+},
+
+{
+stack:["fact(4)","fact(3)"],
+explanation:"Returning from fact(2)."
+},
+
+{
+stack:["fact(4)"],
+explanation:"Returning from fact(3)."
+},
+
+{
+stack:[],
+explanation:"Recursion completed."
+}
+
+];
+
+let currentRecursionStep=0;
+function renderRecursion(){
+
+const step=recursionSteps[currentRecursionStep];
+
+document.getElementById("recursionStepCounter").textContent=
+`Step ${currentRecursionStep+1}/${recursionSteps.length}`;
+
+const stack=document.getElementById("callStackContainer");
+
+stack.innerHTML="";
+
+step.stack.slice().reverse().forEach(call=>{
+
+stack.innerHTML+=`
+<div class="w-56 h-12 bg-blue-500 text-white rounded flex items-center justify-center font-bold shadow">
+${call}
+</div>
+`;
+
+});
+
+document.getElementById("recursionExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("recursionPrevBtn").onclick=()=>{
+
+if(currentRecursionStep>0){
+
+currentRecursionStep--;
+
+renderRecursion();
+
+}
+
+};
+
+document.getElementById("recursionNextBtn").onclick=()=>{
+
+if(currentRecursionStep<recursionSteps.length-1){
+
+currentRecursionStep++;
+
+renderRecursion();
+
+}
+
+};
+
+document.getElementById("recursionResetBtn").onclick=()=>{
+
+currentRecursionStep=0;
+
+renderRecursion();
+
+};
+///====backtracking 
+const backtrackingSteps=[
+
+{
+path:[],
+decision:"Start",
+explanation:"Begin exploring."
+},
+
+{
+path:[1],
+decision:"Choose 1",
+explanation:"Pick 1."
+},
+
+{
+path:[1,2],
+decision:"Choose 2",
+explanation:"Continue exploring."
+},
+
+{
+path:[1,2,3],
+decision:"Choose 3",
+explanation:"Valid solution found."
+},
+
+{
+path:[1,2],
+decision:"Backtrack",
+explanation:"Remove 3 and try another option."
+},
+
+{
+path:[1],
+decision:"Backtrack",
+explanation:"Remove 2."
+},
+
+{
+path:[],
+decision:"Finished",
+explanation:"All possibilities explored."
+}
+
+];
+
+let currentBacktrackingStep=0;
+
+function renderBacktracking(){
+
+const step=backtrackingSteps[currentBacktrackingStep];
+
+document.getElementById("backtrackingStepCounter").textContent=
+`Step ${currentBacktrackingStep+1}/${backtrackingSteps.length}`;
+
+const path=document.getElementById("pathContainer");
+
+path.innerHTML="";
+
+step.path.forEach(node=>{
+
+path.innerHTML+=`
+<div class="w-12 h-12 rounded-lg bg-green-500 text-white flex items-center justify-center font-bold">
+${node}
+</div>
+`;
+
+});
+
+document.getElementById("decisionContainer").textContent=
+step.decision;
+
+document.getElementById("backtrackingExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("backtrackingPrevBtn").onclick=()=>{
+
+if(currentBacktrackingStep>0){
+
+currentBacktrackingStep--;
+
+renderBacktracking();
+
+}
+
+};
+
+document.getElementById("backtrackingNextBtn").onclick=()=>{
+
+if(currentBacktrackingStep<backtrackingSteps.length-1){
+
+currentBacktrackingStep++;
+
+renderBacktracking();
+
+}
+
+};
+
+document.getElementById("backtrackingResetBtn").onclick=()=>{
+
+currentBacktrackingStep=0;
+
+renderBacktracking();
+
+};
+//=====subsset ===
+const subsetSteps=[
+
+{
+subset:[],
+explanation:"Start with an empty subset."
+},
+
+{
+subset:[1],
+explanation:"Include 1."
+},
+
+{
+subset:[1,2],
+explanation:"Include 2."
+},
+
+{
+subset:[1,2,3],
+explanation:"Include 3. One subset generated."
+},
+
+{
+subset:[1,2],
+explanation:"Backtrack by removing 3."
+},
+
+{
+subset:[1],
+explanation:"Backtrack by removing 2."
+},
+
+{
+subset:[1,3],
+explanation:"Include 3."
+},
+
+{
+subset:[],
+explanation:"Explore remaining subsets."
+}
+
+];
+
+let currentSubsetStep=0;
+function renderSubset(){
+
+const step=subsetSteps[currentSubsetStep];
+
+document.getElementById("subsetStepCounter").textContent=
+`Step ${currentSubsetStep+1}/${subsetSteps.length}`;
+
+const container=document.getElementById("subsetContainer");
+
+container.innerHTML="";
+
+if(step.subset.length===0){
+
+container.innerHTML=`
+<div class="w-16 h-16 rounded-lg bg-gray-300 flex items-center justify-center font-bold">
+∅
+</div>
+`;
+
+}
+else{
+
+step.subset.forEach(num=>{
+
+container.innerHTML+=`
+<div class="w-16 h-16 rounded-lg bg-green-500 text-white flex items-center justify-center font-bold text-xl">
+${num}
+</div>
+`;
+
+});
+
+}
+
+document.getElementById("subsetExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("subsetPrevBtn").onclick=()=>{
+
+if(currentSubsetStep>0){
+
+currentSubsetStep--;
+
+renderSubset();
+
+}
+
+};
+
+document.getElementById("subsetNextBtn").onclick=()=>{
+
+if(currentSubsetStep<subsetSteps.length-1){
+
+currentSubsetStep++;
+
+renderSubset();
+
+}
+
+};
+
+document.getElementById("subsetResetBtn").onclick=()=>{
+
+currentSubsetStep=0;
+
+renderSubset();
+
+};
+//=====N queens===
+const nQueensSteps=[
+
+{
+board:[
+["Q","","",""],
+["","","",""],
+["","","",""],
+["","","",""]
+],
+explanation:"Place first queen."
+},
+
+{
+board:[
+["Q","","",""],
+["","","Q",""],
+["","","",""],
+["","","",""]
+],
+explanation:"Place second queen."
+},
+
+{
+board:[
+["Q","","",""],
+["","","Q",""],
+["","","","Q"],
+["","","",""]
+],
+explanation:"Place third queen."
+},
+
+{
+board:[
+["Q","","",""],
+["","","Q",""],
+["","","","Q"],
+["","Q","",""]
+],
+explanation:"Valid solution found."
+}
+
+];
+
+let currentNQueensStep=0;
+function renderNQueens(){
+
+const step=nQueensSteps[currentNQueensStep];
+
+document.getElementById("nQueensStepCounter").textContent=
+`Step ${currentNQueensStep+1}/${nQueensSteps.length}`;
+
+const board=document.getElementById("nQueensBoard");
+
+board.innerHTML="";
+
+for(let i=0;i<4;i++){
+
+for(let j=0;j<4;j++){
+
+const dark=(i+j)%2;
+
+board.innerHTML+=`
+<div class="w-20 h-20 flex items-center justify-center text-4xl
+${dark?"bg-green-500":"bg-yellow-100"}">
+${step.board[i][j]}
+</div>
+`;
+
+}
+
+}
+
+document.getElementById("nQueensExplanation").textContent=
+step.explanation;
+
+}
+
+document.getElementById("nQueensPrevBtn").onclick=()=>{
+
+if(currentNQueensStep>0){
+
+currentNQueensStep--;
+
+renderNQueens();
+
+}
+
+};
+
+document.getElementById("nQueensNextBtn").onclick=()=>{
+
+if(currentNQueensStep<nQueensSteps.length-1){
+
+currentNQueensStep++;
+
+renderNQueens();
+
+}
+
+};
+
+document.getElementById("nQueensResetBtn").onclick=()=>{
+
+currentNQueensStep=0;
+
+renderNQueens();
+
+};
+
+//=====Soduku===
+const sudokuSteps=[
+
+{
+board:[
+[1,"","",""],
+["","","",""],
+["","","",""],
+["","","",""]
+],
+explanation:"Fill the first empty cell."
+},
+
+{
+board:[
+[1,2,"",""],
+["","","",""],
+["","","",""],
+["","","",""]
+],
+explanation:"Place 2."
+},
+
+{
+board:[
+[1,2,3,""],
+["","","",""],
+["","","",""],
+["","","",""]
+],
+explanation:"Place 3."
+},
+
+{
+board:[
+[1,2,3,4],
+["","","",""],
+["","","",""],
+["","","",""]
+],
+explanation:"First row solved."
+}
+
+];
+
+let currentSudokuStep=0;
+function renderSudoku(){
+
+const step=sudokuSteps[currentSudokuStep];
+
+document.getElementById("sudokuStepCounter").textContent=
+`Step ${currentSudokuStep+1}/${sudokuSteps.length}`;
+
+const board=document.getElementById("sudokuBoard");
+
+board.innerHTML="";
+
+for(let i=0;i<4;i++){
+
+for(let j=0;j<4;j++){
+
+board.innerHTML+=`
+<div class="w-16 h-16 border flex items-center justify-center text-2xl font-bold bg-white">
+${step.board[i][j]}
+</div>
+`;
+
+}
+
+}
+
+document.getElementById("sudokuExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("sudokuPrevBtn").onclick=()=>{
+
+if(currentSudokuStep>0){
+
+currentSudokuStep--;
+
+renderSudoku();
+
+}
+
+};
+
+document.getElementById("sudokuNextBtn").onclick=()=>{
+
+if(currentSudokuStep<sudokuSteps.length-1){
+
+currentSudokuStep++;
+
+renderSudoku();
+
+}
+
+};
+
+document.getElementById("sudokuResetBtn").onclick=()=>{
+
+currentSudokuStep=0;
+
+renderSudoku();
+
+};
+//======LL Traversal ====
+const traversalSteps=[
+
+{
+current:0,
+explanation:"Start from the head node."
+},
+
+{
+current:1,
+explanation:"Move to the next node."
+},
+
+{
+current:2,
+explanation:"Continue traversing."
+},
+
+{
+current:3,
+explanation:"Visit the last node."
+}
+
+];
+
+let currentTraversalStep=0;
+
+const linkedList=[10,20,30,40];
+function renderTraversal(){
+
+const step=traversalSteps[currentTraversalStep];
+
+document.getElementById("traversalStepCounter").textContent=
+`Step ${currentTraversalStep+1}/${traversalSteps.length}`;
+
+const container=document.getElementById("linkedListContainer");
+
+container.innerHTML="";
+
+linkedList.forEach((value,index)=>{
+
+container.innerHTML+=`
+
+<div class="flex items-center">
+
+<div
+class="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold
+${index===step.current?"bg-blue-600":"bg-gray-400"}">
+
+${value}
+
+</div>
+
+${index<linkedList.length-1?'<div class="text-3xl mx-2">→</div>':""}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("traversalExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("traversalPrevBtn").onclick=()=>{
+
+if(currentTraversalStep>0){
+
+currentTraversalStep--;
+
+renderTraversal();
+
+}
+
+};
+
+document.getElementById("traversalNextBtn").onclick=()=>{
+
+if(currentTraversalStep<traversalSteps.length-1){
+
+currentTraversalStep++;
+
+renderTraversal();
+
+}
+
+};
+
+document.getElementById("traversalResetBtn").onclick=()=>{
+
+currentTraversalStep=0;
+
+renderTraversal();
+
+};
+//======Insertion===
+const insertionSteps=[
+
+{
+list:[10,20,30],
+newIndex:-1,
+explanation:"Original linked list."
+},
+
+{
+list:[10,20,30],
+newIndex:2,
+explanation:"Create a new node (25)."
+},
+
+{
+list:[10,20,25,30],
+newIndex:2,
+explanation:"Insert the new node after 20."
+}
+
+];
+
+let currentInsertionStep=0;
+function renderInsertion(){
+
+const step=insertionSteps[currentInsertionStep];
+
+document.getElementById("insertionStepCounter").textContent=
+`Step ${currentInsertionStep+1}/${insertionSteps.length}`;
+
+const container=document.getElementById("insertionContainer");
+
+container.innerHTML="";
+
+step.list.forEach((value,index)=>{
+
+const isNew=index===step.newIndex;
+
+container.innerHTML+=`
+
+<div class="flex items-center">
+
+<div
+class="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold
+${isNew?"bg-green-600":"bg-blue-500"}">
+
+${value}
+
+</div>
+
+${index<step.list.length-1?'<div class="text-3xl mx-2">→</div>':""}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("insertionExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("insertionPrevBtn").onclick=()=>{
+
+if(currentInsertionStep>0){
+
+currentInsertionStep--;
+
+renderInsertion();
+
+}
+
+};
+
+document.getElementById("insertionNextBtn").onclick=()=>{
+
+if(currentInsertionStep<insertionSteps.length-1){
+
+currentInsertionStep++;
+
+renderInsertion();
+
+}
+
+};
+
+document.getElementById("insertionResetBtn").onclick=()=>{
+
+currentInsertionStep=0;
+
+renderInsertion();
+
+};
+///====Deletion====
+const deletionSteps=[
+
+{
+list:[10,20,30,40],
+deleteIndex:-1,
+explanation:"Original linked list."
+},
+
+{
+list:[10,20,30,40],
+deleteIndex:2,
+explanation:"Select node 30 for deletion."
+},
+
+{
+list:[10,20,40],
+deleteIndex:-1,
+explanation:"Node 30 removed. Previous node now points to 40."
+}
+
+];
+
+let currentDeletionStep=0;
+
+function renderDeletion(){
+
+const step=deletionSteps[currentDeletionStep];
+
+document.getElementById("deletionStepCounter").textContent=
+`Step ${currentDeletionStep+1}/${deletionSteps.length}`;
+
+const container=document.getElementById("deletionContainer");
+
+container.innerHTML="";
+
+step.list.forEach((value,index)=>{
+
+const deleting=index===step.deleteIndex;
+
+container.innerHTML+=`
+
+<div class="flex items-center">
+
+<div
+class="w-16 h-16 rounded-full flex items-center justify-center text-white font-bold
+${deleting?"bg-red-600":"bg-blue-500"}">
+
+${value}
+
+</div>
+
+${index<step.list.length-1?'<div class="text-3xl mx-2">→</div>':""}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("deletionExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("deletionPrevBtn").onclick=()=>{
+
+if(currentDeletionStep>0){
+
+currentDeletionStep--;
+
+renderDeletion();
+
+}
+
+};
+
+document.getElementById("deletionNextBtn").onclick=()=>{
+
+if(currentDeletionStep<deletionSteps.length-1){
+
+currentDeletionStep++;
+
+renderDeletion();
+
+}
+
+};
+
+document.getElementById("deletionResetBtn").onclick=()=>{
+
+currentDeletionStep=0;
+
+renderDeletion();
+
+};
+//====reverse LL
+const reverseSteps=[
+
+{
+list:[10,20,30,40],
+reverse:false,
+explanation:"Original linked list."
+},
+
+{
+list:[10],
+reverse:true,
+explanation:"Reverse first node."
+},
+
+{
+list:[20,10],
+reverse:true,
+explanation:"20 now points to 10."
+},
+
+{
+list:[30,20,10],
+reverse:true,
+explanation:"30 now points to 20."
+},
+
+{
+list:[40,30,20,10],
+reverse:true,
+explanation:"Linked list completely reversed."
+}
+
+];
+
+let currentReverseStep=0;
+
+function renderReverse(){
+
+const step=reverseSteps[currentReverseStep];
+
+document.getElementById("reverseStepCounter").textContent=
+`Step ${currentReverseStep+1}/${reverseSteps.length}`;
+
+const container=document.getElementById("reverseContainer");
+
+container.innerHTML="";
+
+step.list.forEach((value,index)=>{
+
+container.innerHTML+=`
+
+<div class="flex items-center">
+
+<div class="w-16 h-16 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold">
+
+${value}
+
+</div>
+
+${
+index<step.list.length-1
+?'<div class="text-3xl mx-2">←</div>'
+:""
+}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("reverseExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("reversePrevBtn").onclick=()=>{
+
+if(currentReverseStep>0){
+
+currentReverseStep--;
+
+renderReverse();
+
+}
+
+};
+
+document.getElementById("reverseNextBtn").onclick=()=>{
+
+if(currentReverseStep<reverseSteps.length-1){
+
+currentReverseStep++;
+
+renderReverse();
+
+}
+
+};
+
+document.getElementById("reverseResetBtn").onclick=()=>{
+
+currentReverseStep=0;
+
+renderReverse();
+
+};
+//====cycle detection===
+const cycleSteps=[
+
+{
+slow:0,
+fast:0,
+explanation:"Both pointers start at the head."
+},
+
+{
+slow:1,
+fast:2,
+explanation:"Slow moves one step, Fast moves two steps."
+},
+
+{
+slow:2,
+fast:4,
+explanation:"Pointers continue moving."
+},
+
+{
+slow:3,
+fast:3,
+explanation:"Slow and Fast meet. Cycle detected!"
+}
+
+];
+
+let currentCycleStep=0;
+
+const cycleList=[10,20,30,40,50];
+
+function renderCycle(){
+
+const step=cycleSteps[currentCycleStep];
+
+document.getElementById("cycleStepCounter").textContent=
+`Step ${currentCycleStep+1}/${cycleSteps.length}`;
+
+const container=document.getElementById("cycleContainer");
+
+container.innerHTML="";
+
+cycleList.forEach((value,index)=>{
+
+let color="bg-blue-500";
+
+if(index===step.slow)
+color="bg-green-500";
+
+if(index===step.fast)
+color="bg-red-500";
+
+if(index===step.slow && index===step.fast)
+color="bg-purple-600";
+
+container.innerHTML+=`
+
+<div class="flex items-center">
+
+<div class="w-16 h-16 rounded-full ${color}
+text-white flex items-center justify-center font-bold">
+
+${value}
+
+</div>
+
+${
+index<cycleList.length-1
+?'<div class="text-3xl mx-2">→</div>'
+:'<div class="text-3xl mx-2 text-red-500">↺</div>'
+}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("cycleExplanation").textContent=
+step.explanation;
+
+}
+document.getElementById("cyclePrevBtn").onclick=()=>{
+
+if(currentCycleStep>0){
+
+currentCycleStep--;
+
+renderCycle();
+
+}
+
+};
+
+document.getElementById("cycleNextBtn").onclick=()=>{
+
+if(currentCycleStep<cycleSteps.length-1){
+
+currentCycleStep++;
+
+renderCycle();
+
+}
+
+};
+
+document.getElementById("cycleResetBtn").onclick=()=>{
+
+currentCycleStep=0;
+
+renderCycle();
+
+};
+//=====
+//===================== PREORDER TRAVERSAL =====================
+
+// Example binary tree nodes
+const preorderNodes = [
+  { id: "A", x: 300, y: 50 },
+  { id: "B", x: 150, y: 150 },
+  { id: "C", x: 450, y: 150 },
+  { id: "D", x: 100, y: 250 },
+  { id: "E", x: 200, y: 250 }
+];
+
+const preorderEdges = [
+  ["A", "B"],
+  ["A", "C"],
+  ["B", "D"],
+  ["B", "E"]
+];
+
+// Preorder steps: Root → Left → Right
+const preorderSteps = [
+  { current: "A", visited: ["A"], explanation: "Start at root A." },
+  { current: "B", visited: ["A", "B"], explanation: "Go to left child B." },
+  { current: "D", visited: ["A", "B", "D"], explanation: "Visit left child of B → D." },
+  { current: "E", visited: ["A", "B", "D", "E"], explanation: "Backtrack and visit right child of B → E." },
+  { current: "C", visited: ["A", "B", "D", "E", "C"], explanation: "Finally, visit right child of A → C." }
+];
+
+let currentPreorderStep = 0;
+
+function renderPreorder() {
+  const svg = document.getElementById("preorderSVG");
+  svg.innerHTML = "";
+
+  const step = preorderSteps[currentPreorderStep];
+
+  // Draw edges
+  preorderEdges.forEach(edge => {
+    const u = preorderNodes.find(n => n.id === edge[0]);
+    const v = preorderNodes.find(n => n.id === edge[1]);
+
+    svg.innerHTML += `
+      <line x1="${u.x}" y1="${u.y}" x2="${v.x}" y2="${v.y}" stroke="#94A3B8" stroke-width="3"/>
+    `;
+  });
+
+  // Draw nodes
+  preorderNodes.forEach(node => {
+    let color = "#DBEAFE"; // default
+    if (step.visited.includes(node.id)) color = "#60A5FA"; // visited
+    if (node.id === step.current) color = "#2563EB"; // current
+
+    svg.innerHTML += `
+      <circle cx="${node.x}" cy="${node.y}" r="28" fill="${color}" stroke="#1E3A8A" stroke-width="3"/>
+      <text x="${node.x}" y="${node.y + 7}" text-anchor="middle" font-size="20" fill="white" font-weight="bold">${node.id}</text>
+    `;
+  });
+
+  document.getElementById("preorderStepCounter").textContent =
+    `Step ${currentPreorderStep + 1}/${preorderSteps.length}`;
+
+  document.getElementById("preorderExplanation").textContent = step.explanation;
+
+  document.getElementById("preorderStatus").innerHTML =
+    currentPreorderStep === preorderSteps.length - 1
+      ? "<span class='text-green-600'>✅ Traversal Complete</span>"
+      : "<span class='text-gray-600'>🔍 Traversing...</span>";
+}
+
+document.getElementById("preorderPrevBtn").onclick = () => {
+  if (currentPreorderStep > 0) {
+    currentPreorderStep--;
+    renderPreorder();
+  }
+};
+
+document.getElementById("preorderNextBtn").onclick = () => {
+  if (currentPreorderStep < preorderSteps.length - 1) {
+    currentPreorderStep++;
+    renderPreorder();
+  }
+};
+
+document.getElementById("preorderResetBtn").onclick = () => {
+  currentPreorderStep = 0;
+  renderPreorder();
+};
