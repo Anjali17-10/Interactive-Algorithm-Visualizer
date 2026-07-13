@@ -235,23 +235,32 @@ const heapsData = {
         "Heap Sort",
         "Priority Queue"
     ],
-questions: [
+questions:[
+
 {
-    name: "K Largest Elements",
-    link: "https://www.geeksforgeeks.org/k-largest-element-in-an-array/"
+name:"K Largest Elements",
+difficulty:"Easy",
+link:"https://www.geeksforgeeks.org/problems/k-largest-elements4206/1"
 },
+
 {
-    name: "Kth Largest Element",
-    link: "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+name:"Kth Largest Element",
+difficulty:"Medium",
+link:"https://leetcode.com/problems/kth-largest-element-in-an-array/"
 },
+
 {
-    name: "Top K Frequent Elements",
-    link: "https://leetcode.com/problems/top-k-frequent-elements/"
+name:"Top K Frequent Elements",
+difficulty:"Medium",
+link:"https://leetcode.com/problems/top-k-frequent-elements/"
 },
+
 {
-    name: "Merge K Sorted Lists",
-    link: "https://leetcode.com/problems/merge-k-sorted-lists/"
+name:"Merge K Sorted Lists",
+difficulty:"Hard",
+link:"https://leetcode.com/problems/merge-k-sorted-lists/"
 }
+
 ]
 };
 
@@ -264,22 +273,31 @@ const treesData = {
         "LCA"
     ],
 questions: [
+
 {
-    name: "Maximum Depth of Binary Tree",
-    link: "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+name: "Maximum Depth of Binary Tree",
+difficulty: "Easy",
+link: "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
 },
+
 {
-    name: "Diameter of Binary Tree",
-    link: "https://leetcode.com/problems/diameter-of-binary-tree/"
+name: "Diameter of Binary Tree",
+difficulty: "Easy",
+link: "https://leetcode.com/problems/diameter-of-binary-tree/"
 },
+
 {
-    name: "Validate Binary Search Tree",
-    link: "https://leetcode.com/problems/validate-binary-search-tree/"
+name: "Validate Binary Search Tree",
+difficulty: "Medium",
+link: "https://leetcode.com/problems/validate-binary-search-tree/"
 },
+
 {
-    name: "Balanced Binary Tree",
-    link: "https://leetcode.com/problems/balanced-binary-tree/"
+name: "Balanced Binary Tree",
+difficulty: "Easy",
+link: "https://leetcode.com/problems/balanced-binary-tree/"
 }
+
 ]
 };
 
@@ -365,25 +383,34 @@ const greedyData = {
         "Fractional Knapsack",
         "Huffman Coding",
         "Job Sequencing",
-        "Minimum Platforms"
+        "Merge Intervals"
     ],
 questions: [
+
 {
-    name: "Jump Game",
-    link: "https://leetcode.com/problems/jump-game/"
+name:"Jump Game",
+difficulty:"Medium",
+link:"https://leetcode.com/problems/jump-game/"
 },
+
 {
-    name: "Gas Station",
-    link: "https://leetcode.com/problems/gas-station/"
+name:"Gas Station",
+difficulty:"Medium",
+link:"https://leetcode.com/problems/gas-station/"
 },
+
 {
-    name: "Assign Cookies",
-    link: "https://leetcode.com/problems/assign-cookies/"
+name:"Assign Cookies",
+difficulty:"Easy",
+link:"https://leetcode.com/problems/assign-cookies/"
 },
+
 {
-    name: "Lemonade Change",
-    link: "https://leetcode.com/problems/lemonade-change/"
+name:"Lemonade Change",
+difficulty:"Easy",
+link:"https://leetcode.com/problems/lemonade-change/"
 }
+
 ]
 };
 
@@ -396,24 +423,34 @@ const dpData = {
         "LIS"
     ],
 questions: [
+
 {
-    name: "Climbing Stairs",
-    link: "https://leetcode.com/problems/climbing-stairs/"
+name: "Climbing Stairs",
+difficulty: "Easy",
+link: "https://leetcode.com/problems/climbing-stairs/"
 },
+
 {
-    name: "House Robber",
-    link: "https://leetcode.com/problems/house-robber/"
+name: "House Robber",
+difficulty: "Medium",
+link: "https://leetcode.com/problems/house-robber/"
 },
+
 {
-    name: "Coin Change",
-    link: "https://leetcode.com/problems/coin-change/"
+name: "Coin Change",
+difficulty: "Medium",
+link: "https://leetcode.com/problems/coin-change/"
 },
+
 {
-    name: "Edit Distance",
-    link: "https://leetcode.com/problems/edit-distance/"
+name: "Edit Distance",
+difficulty: "Hard",
+link: "https://leetcode.com/problems/edit-distance/"
 }
+
 ]
 };
+
 const algorithmData = {
 
     "Two Pointers": {
@@ -1138,20 +1175,26 @@ link:"https://leetcode.com/problems/subsets-ii/"
         }
     ]
 },
-"Inorder": {
-    description:
-    "Visits left subtree, root, then right subtree.",
+"Inorder":{
 
-    time: "O(n)",
+description:
+"Inorder Traversal visits the Left subtree first, then the Root, and finally the Right subtree.",
 
-    space: "O(h)",
+time:"O(n)",
 
-    problems: [
-        {
-            name: "Binary Tree Inorder Traversal",
-            link: "https://leetcode.com/problems/binary-tree-inorder-traversal/"
-        }
-    ]
+space:"O(h)",
+
+problems:[
+{
+name:"Binary Tree Inorder Traversal",
+link:"https://leetcode.com/problems/binary-tree-inorder-traversal/"
+},
+{
+name:"Validate Binary Search Tree",
+link:"https://leetcode.com/problems/validate-binary-search-tree/"
+}
+]
+
 },
 "Preorder": {
     description:
@@ -1288,80 +1331,98 @@ link:"https://leetcode.com/problems/subsets-ii/"
         }
     ]
 },
-"Activity Selection": {
-    description:
-    "Selects the maximum number of non-overlapping activities.",
+"Activity Selection":{
 
-    time: "O(n log n)",
+description:
+"Selects the maximum number of non-overlapping activities by always choosing the activity that finishes earliest.",
 
-    space: "O(1)",
+time:"O(n log n)",
 
-    problems: [
-        {
-            name: "Non-overlapping Intervals",
-            link: "https://leetcode.com/problems/non-overlapping-intervals/"
-        }
-    ]
+space:"O(1)",
+
+problems:[
+{
+name:"Non-overlapping Intervals",
+link:"https://leetcode.com/problems/non-overlapping-intervals/"
 },
-"Fractional Knapsack": {
-    description:
-    "Maximizes profit by taking fractions of items based on value density.",
+{
+name:"Maximum Length of Pair Chain",
+link:"https://leetcode.com/problems/maximum-length-of-pair-chain/"
+}
+]
 
-    time: "O(n log n)",
-
-    space: "O(1)",
-
-    problems: [
-        {
-            name: "Fractional Knapsack",
-            link: "https://www.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1"
-        }
-    ]
 },
-"Huffman Coding": {
-    description:
-    "Compresses data using variable-length codes based on frequencies.",
+"Fractional Knapsack":{
 
-    time: "O(n log n)",
+description:
+"Greedily picks items with the highest value-to-weight ratio to maximize total value.",
 
-    space: "O(n)",
+time:"O(n log n)",
 
-    problems: [
-        {
-            name: "Huffman Encoding",
-            link: "https://www.geeksforgeeks.org/huffman-coding-greedy-algo-3/"
-        }
-    ]
+space:"O(1)",
+
+problems:[
+{
+name:"Fractional Knapsack",
+link:"https://www.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1"
+}
+]
+
 },
-"Job Sequencing": {
-    description:
-    "Schedules jobs to maximize profit while respecting deadlines.",
+"Huffman Coding":{
 
-    time: "O(n log n)",
+description:
+"Constructs an optimal prefix tree by repeatedly combining the two nodes with the smallest frequencies.",
 
-    space: "O(n)",
+time:"O(n log n)",
 
-    problems: [
-        {
-            name: "Job Sequencing Problem",
-            link: "https://www.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1"
-        }
-    ]
+space:"O(n)",
+
+problems:[
+{
+name:"Huffman Encoding",
+link:"https://www.geeksforgeeks.org/problems/huffman-encoding3345/1"
+}
+]
+
 },
-"Minimum Platforms": {
-    description:
-    "Determines the minimum number of railway platforms required.",
+"Job Sequencing":{
 
-    time: "O(n log n)",
+description:
+"Schedules jobs before their deadlines to maximize total profit.",
 
-    space: "O(1)",
+time:"O(n log n)",
 
-    problems: [
-        {
-            name: "Minimum Platforms",
-            link: "https://www.geeksforgeeks.org/problems/minimum-platforms-1587115620/1"
-        }
-    ]
+space:"O(n)",
+
+problems:[
+{
+name:"Job Sequencing Problem",
+link:"https://www.geeksforgeeks.org/problems/job-sequencing-problem-1587115620/1"
+}
+]
+
+},
+"Merge Intervals":{
+
+description:
+"Merges all overlapping intervals after sorting them by starting time.",
+
+time:"O(n log n)",
+
+space:"O(n)",
+
+problems:[
+{
+name:"Merge Intervals",
+link:"https://leetcode.com/problems/merge-intervals/"
+},
+{
+name:"Insert Interval",
+link:"https://leetcode.com/problems/insert-interval/"
+}
+]
+
 },
 "Memoization": {
     description:

@@ -2853,7 +2853,7 @@ Reset
 </div>
 
 </section>
-<section id="cycleVisualizer" class="py-16 px-6 hidden">
+<section id="llCycleVisualizer" class="py-16 px-6 hidden">
 
 <div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
 
@@ -2861,33 +2861,905 @@ Reset
 Linked List Cycle Detection
 </h2>
 
-<p id="cycleStepCounter"
+<p id="llCycleStepCounter"
 class="text-center text-blue-600 font-bold mb-6">
 </p>
 
 <div
-id="cycleContainer"
+id="llCycleContainer"
 class="flex justify-center items-center gap-3 flex-wrap mb-8">
 </div>
 
 <p
-id="cycleExplanation"
+id="llCycleExplanation"
 class="text-center text-lg text-gray-700">
 </p>
 
 <div class="flex justify-center gap-4 mt-8">
 
-<button id="cyclePrevBtn"
+<button id="llCyclePrevBtn"
 class="bg-gray-500 text-white px-5 py-2 rounded">
 Previous
 </button>
 
-<button id="cycleNextBtn"
+<button id="llCycleNextBtn"
 class="bg-blue-600 text-white px-5 py-2 rounded">
 Next
 </button>
 
-<button id="cycleResetBtn"
+<button id="llCycleResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="activityVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Activity Selection
+</h2>
+
+<p id="activityStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="activityContainer"
+class="flex justify-center gap-4 flex-wrap mb-8">
+</div>
+
+<p
+id="activityExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="activityPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="activityNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="activityResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="knapsackVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Fractional Knapsack
+</h2>
+
+<p id="knapsackStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="knapsackContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="knapsackExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="knapsackPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="knapsackNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="knapsackResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="huffmanVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Huffman Coding
+</h2>
+
+<p id="huffmanStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="huffmanContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="huffmanExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="huffmanPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="huffmanNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="huffmanResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="jobVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Job Sequencing
+</h2>
+
+<p id="jobStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="jobContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="jobExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="jobPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="jobNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="jobResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="mergeVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Merge Intervals
+</h2>
+
+<p id="mergeStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="mergeContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="mergeExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="mergePrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="mergeNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="mergeResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="minHeapVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Min Heap
+</h2>
+
+<p id="minHeapStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="minHeapContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="minHeapExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="minHeapPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="minHeapNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="minHeapResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="maxHeapVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Max Heap
+</h2>
+
+<p id="maxHeapStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="maxHeapContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="maxHeapExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="maxHeapPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="maxHeapNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="maxHeapResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="heapifyVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Heapify
+</h2>
+
+<p id="heapifyStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="heapifyContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="heapifyExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="heapifyPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="heapifyNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="heapifyResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="heapSortVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Heap Sort
+</h2>
+
+<p id="heapSortStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="heapSortContainer"
+class="flex justify-center gap-5 flex-wrap mb-8">
+</div>
+
+<p
+id="heapSortExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="heapSortPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="heapSortNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="heapSortResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="priorityQueueVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Priority Queue
+</h2>
+
+<p id="priorityQueueStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="priorityQueueContainer"
+class="flex justify-center gap-5 flex-wrap mb-8">
+</div>
+
+<p
+id="priorityQueueExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="priorityQueuePrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="priorityQueueNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="priorityQueueResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="preorderVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Preorder Traversal
+</h2>
+
+<p id="preorderStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="preorderContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="preorderExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="preorderPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="preorderNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="preorderResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="inorderVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Inorder Traversal
+</h2>
+
+<p id="inorderStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="inorderContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="inorderExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="inorderPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="inorderNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="inorderResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="postorderVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Postorder Traversal
+</h2>
+
+<p id="postorderStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="postorderContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="postorderExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="postorderPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="postorderNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="postorderResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="levelOrderVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Level Order Traversal
+</h2>
+
+<p id="levelOrderStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="levelOrderContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="levelOrderExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="levelOrderPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="levelOrderNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="levelOrderResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="lcaVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Lowest Common Ancestor
+</h2>
+
+<p id="lcaStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="lcaContainer"
+class="flex justify-center gap-6 flex-wrap mb-8">
+</div>
+
+<p
+id="lcaExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="lcaPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="lcaNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="lcaResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="memoizationVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Memoization (Top-Down DP)
+</h2>
+
+<p id="memoStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="memoContainer"
+class="flex justify-center gap-5 flex-wrap mb-8">
+</div>
+
+<p
+id="memoExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="memoPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="memoNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="memoResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="tabulationVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Tabulation (Bottom-Up DP)
+</h2>
+
+<p id="tabulationStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="tabulationContainer"
+class="flex justify-center gap-4 flex-wrap mb-8">
+</div>
+
+<p
+id="tabulationExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="tabulationPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="tabulationNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="tabulationResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="DPknapsackVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+0/1 Knapsack
+</h2>
+
+<p id="DPknapsackStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="DPknapsackContainer"
+class="flex justify-center gap-3 flex-wrap mb-8">
+</div>
+
+<p
+id="DPknapsackExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="DPknapsackPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="DPknapsackNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="DPknapsackResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+<section id="lcsVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Longest Common Subsequence
+</h2>
+
+<p id="lcsStep"
+class="text-center text-blue-600 font-bold mb-6">
+</p>
+
+<div
+id="lcsContainer"
+class="flex justify-center gap-3 flex-wrap mb-8">
+</div>
+
+<p
+id="lcsExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="lcsPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="lcsNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="lcsResetBtn"
+class="bg-red-600 text-white px-5 py-2 rounded">
+Reset
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="lisVisualizer" class="hidden py-16 px-6">
+
+<div class="max-w-6xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+<h2 class="text-4xl font-bold text-center mb-6">
+Longest Increasing Subsequence
+</h2>
+
+<p id="lisStep"
+class="text-center text-blue-600 font-bold mb-6"></p>
+
+<div
+id="lisContainer"
+class="flex justify-center gap-4 flex-wrap mb-8">
+</div>
+
+<p
+id="lisExplanation"
+class="text-center text-lg text-gray-700 mb-8">
+</p>
+
+<div class="flex justify-center gap-4">
+
+<button id="lisPrevBtn"
+class="bg-gray-500 text-white px-5 py-2 rounded">
+Previous
+</button>
+
+<button id="lisNextBtn"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+Next
+</button>
+
+<button id="lisResetBtn"
 class="bg-red-600 text-white px-5 py-2 rounded">
 Reset
 </button>

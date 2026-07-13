@@ -5682,78 +5682,186 @@ renderReverse();
 
 };
 //====cycle detection===
-const cycleSteps=[
+const llCycleData = [
 
 {
-slow:0,
-fast:0,
-explanation:"Both pointers start at the head."
+slowPos:0,
+fastPos:0,
+text:"Both slow and fast pointers start from the head."
 },
 
 {
-slow:1,
-fast:2,
-explanation:"Slow moves one step, Fast moves two steps."
+slowPos:1,
+fastPos:2,
+text:"Slow moves one node while Fast moves two nodes."
 },
 
 {
-slow:2,
-fast:4,
-explanation:"Pointers continue moving."
+slowPos:2,
+fastPos:4,
+text:"Pointers continue moving through the list."
 },
 
 {
-slow:3,
-fast:3,
-explanation:"Slow and Fast meet. Cycle detected!"
+slowPos:3,
+fastPos:3,
+text:"Both pointers meet. Cycle detected!"
 }
 
 ];
 
-let currentCycleStep=0;
+let llCycleIndex = 0;
 
-const cycleList=[10,20,30,40,50];
+const llCycleNodes = [10,20,30,40,50];
 
-function renderCycle(){
+function renderLinkedListCycle() {
 
-const step=cycleSteps[currentCycleStep];
+    const step = llCycleData[llCycleIndex];
 
-document.getElementById("cycleStepCounter").textContent=
-`Step ${currentCycleStep+1}/${cycleSteps.length}`;
+    const container = document.getElementById("llCycleContainer");
 
-const container=document.getElementById("cycleContainer");
+    if (!container) {
+        console.log("cycleContainer not found");
+        return;
+    }
+
+    document.getElementById("llCycleStepCounter").textContent =
+        `Step ${llCycleIndex + 1}/${llCycleData.length}`;
+
+    container.innerHTML = "";
+
+    for (let i = 0; i < llCycleNodes.length; i++) {
+
+        let color = "bg-blue-500";
+
+        if (i === step.slowPos) color = "bg-green-500";
+
+        if (i === step.fastPos) color = "bg-red-500";
+
+        if (i === step.slowPos && i === step.fastPos)
+            color = "bg-purple-600";
+
+        container.innerHTML += `
+        <div class="flex items-center">
+
+            <div class="w-16 h-16 rounded-full ${color}
+            text-white flex items-center justify-center font-bold">
+
+                ${llCycleNodes[i]}
+
+            </div>
+
+            ${
+                i < llCycleNodes.length - 1
+                    ? `<div class="mx-2 text-3xl">→</div>`
+                    : `<div class="mx-2 text-3xl text-red-500">↺</div>`
+            }
+
+        </div>
+        `;
+    }
+
+    document.getElementById("llCycleExplanation").textContent =
+        step.text;
+}
+document.getElementById("llCyclePrevBtn").onclick = ()=>{
+
+if(llCycleIndex>0){
+
+llCycleIndex--;
+
+renderLinkedListCycle();
+
+}
+
+};
+
+document.getElementById("llCycleNextBtn").onclick = ()=>{
+
+if(llCycleIndex<llCycleData.length-1){
+
+llCycleIndex++;
+
+renderLinkedListCycle();
+
+}
+
+};
+
+document.getElementById("llCycleResetBtn").onclick = ()=>{
+
+llCycleIndex=0;
+
+renderLinkedListCycle();
+
+};
+
+//=====activity===
+const activitySteps=[
+
+{
+selected:[0],
+text:"Select the activity that finishes first."
+},
+
+{
+selected:[0,2],
+text:"Choose the next compatible activity."
+},
+
+{
+selected:[0,2,4],
+text:"Choose the next activity that starts after the previous one ends."
+},
+
+{
+selected:[0,2,4,5],
+text:"Maximum number of non-overlapping activities selected."
+}
+
+];
+
+let activityIndex=0;
+
+const activityList=[
+
+{start:1,end:2},
+
+{start:2,end:5},
+
+{start:4,end:6},
+
+{start:6,end:7},
+
+{start:5,end:8},
+
+{start:8,end:9}
+
+];
+function renderActivitySelection(){
+
+const step=activitySteps[activityIndex];
+
+document.getElementById("activityStep").textContent=
+`Step ${activityIndex+1}/${activitySteps.length}`;
+
+const container=document.getElementById("activityContainer");
 
 container.innerHTML="";
 
-cycleList.forEach((value,index)=>{
+activityList.forEach((activity,index)=>{
 
-let color="bg-blue-500";
-
-if(index===step.slow)
-color="bg-green-500";
-
-if(index===step.fast)
-color="bg-red-500";
-
-if(index===step.slow && index===step.fast)
-color="bg-purple-600";
+const selected=step.selected.includes(index);
 
 container.innerHTML+=`
 
-<div class="flex items-center">
+<div class="w-28 h-24 rounded-lg
+${selected?"bg-green-500":"bg-blue-500"}
+text-white flex flex-col justify-center items-center font-bold">
 
-<div class="w-16 h-16 rounded-full ${color}
-text-white flex items-center justify-center font-bold">
+<div>A${index+1}</div>
 
-${value}
-
-</div>
-
-${
-index<cycleList.length-1
-?'<div class="text-3xl mx-2">→</div>'
-:'<div class="text-3xl mx-2 text-red-500">↺</div>'
-}
+<div>${activity.start}-${activity.end}</div>
 
 </div>
 
@@ -5761,125 +5869,2002 @@ index<cycleList.length-1
 
 });
 
-document.getElementById("cycleExplanation").textContent=
-step.explanation;
+document.getElementById("activityExplanation").textContent=
+step.text;
 
 }
-document.getElementById("cyclePrevBtn").onclick=()=>{
+document.getElementById("activityPrevBtn").onclick=()=>{
 
-if(currentCycleStep>0){
+if(activityIndex>0){
 
-currentCycleStep--;
+activityIndex--;
 
-renderCycle();
-
-}
-
-};
-
-document.getElementById("cycleNextBtn").onclick=()=>{
-
-if(currentCycleStep<cycleSteps.length-1){
-
-currentCycleStep++;
-
-renderCycle();
+renderActivitySelection();
 
 }
 
 };
 
-document.getElementById("cycleResetBtn").onclick=()=>{
+document.getElementById("activityNextBtn").onclick=()=>{
 
-currentCycleStep=0;
+if(activityIndex<activitySteps.length-1){
 
-renderCycle();
+activityIndex++;
+
+renderActivitySelection();
+
+}
 
 };
-//=====
-//===================== PREORDER TRAVERSAL =====================
 
-// Example binary tree nodes
-const preorderNodes = [
-  { id: "A", x: 300, y: 50 },
-  { id: "B", x: 150, y: 150 },
-  { id: "C", x: 450, y: 150 },
-  { id: "D", x: 100, y: 250 },
-  { id: "E", x: 200, y: 250 }
+document.getElementById("activityResetBtn").onclick=()=>{
+
+activityIndex=0;
+
+renderActivitySelection();
+
+};
+////knapsack===
+const knapsackItems=[
+
+{weight:10,value:60},
+
+{weight:20,value:100},
+
+{weight:30,value:120}
+
 ];
 
-const preorderEdges = [
-  ["A", "B"],
-  ["A", "C"],
-  ["B", "D"],
-  ["B", "E"]
-];
+const knapsackSteps=[
 
-// Preorder steps: Root → Left → Right
-const preorderSteps = [
-  { current: "A", visited: ["A"], explanation: "Start at root A." },
-  { current: "B", visited: ["A", "B"], explanation: "Go to left child B." },
-  { current: "D", visited: ["A", "B", "D"], explanation: "Visit left child of B → D." },
-  { current: "E", visited: ["A", "B", "D", "E"], explanation: "Backtrack and visit right child of B → E." },
-  { current: "C", visited: ["A", "B", "D", "E", "C"], explanation: "Finally, visit right child of A → C." }
-];
+{
+selected:[0],
+text:"Pick Item 1 completely (highest value/weight ratio)."
+},
 
-let currentPreorderStep = 0;
+{
+selected:[0,1],
+text:"Pick Item 2 completely."
+},
 
-function renderPreorder() {
-  const svg = document.getElementById("preorderSVG");
-  svg.innerHTML = "";
-
-  const step = preorderSteps[currentPreorderStep];
-
-  // Draw edges
-  preorderEdges.forEach(edge => {
-    const u = preorderNodes.find(n => n.id === edge[0]);
-    const v = preorderNodes.find(n => n.id === edge[1]);
-
-    svg.innerHTML += `
-      <line x1="${u.x}" y1="${u.y}" x2="${v.x}" y2="${v.y}" stroke="#94A3B8" stroke-width="3"/>
-    `;
-  });
-
-  // Draw nodes
-  preorderNodes.forEach(node => {
-    let color = "#DBEAFE"; // default
-    if (step.visited.includes(node.id)) color = "#60A5FA"; // visited
-    if (node.id === step.current) color = "#2563EB"; // current
-
-    svg.innerHTML += `
-      <circle cx="${node.x}" cy="${node.y}" r="28" fill="${color}" stroke="#1E3A8A" stroke-width="3"/>
-      <text x="${node.x}" y="${node.y + 7}" text-anchor="middle" font-size="20" fill="white" font-weight="bold">${node.id}</text>
-    `;
-  });
-
-  document.getElementById("preorderStepCounter").textContent =
-    `Step ${currentPreorderStep + 1}/${preorderSteps.length}`;
-
-  document.getElementById("preorderExplanation").textContent = step.explanation;
-
-  document.getElementById("preorderStatus").innerHTML =
-    currentPreorderStep === preorderSteps.length - 1
-      ? "<span class='text-green-600'>✅ Traversal Complete</span>"
-      : "<span class='text-gray-600'>🔍 Traversing...</span>";
+{
+selected:[0,1,2],
+fraction:2/3,
+text:"Only 20/30 weight of Item 3 fits, so take a fraction."
 }
 
-document.getElementById("preorderPrevBtn").onclick = () => {
-  if (currentPreorderStep > 0) {
-    currentPreorderStep--;
-    renderPreorder();
-  }
+];
+
+let knapsackIndex=0;
+function renderKnapsack(){
+
+const step=knapsackSteps[knapsackIndex];
+
+document.getElementById("knapsackStep").textContent=
+`Step ${knapsackIndex+1}/${knapsackSteps.length}`;
+
+const container=document.getElementById("knapsackContainer");
+
+container.innerHTML="";
+
+knapsackItems.forEach((item,index)=>{
+
+let label="";
+
+if(step.selected.includes(index))
+{
+
+if(index===2 && step.fraction)
+label=`${Math.round(step.fraction*100)}%`;
+
+else
+label="100%";
+
+}
+
+container.innerHTML+=`
+
+<div class="w-40 rounded-lg p-4 text-center
+${step.selected.includes(index)
+?"bg-green-500 text-white"
+:"bg-blue-500 text-white"}">
+
+<h3 class="font-bold">Item ${index+1}</h3>
+
+<p>W=${item.weight}</p>
+
+<p>V=${item.value}</p>
+
+<p>${label}</p>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("knapsackExplanation").textContent=
+step.text;
+
+}
+document.getElementById("knapsackPrevBtn").onclick=()=>{
+
+if(knapsackIndex>0){
+
+knapsackIndex--;
+
+renderKnapsack();
+
+}
+
 };
 
-document.getElementById("preorderNextBtn").onclick = () => {
-  if (currentPreorderStep < preorderSteps.length - 1) {
-    currentPreorderStep++;
-    renderPreorder();
-  }
+document.getElementById("knapsackNextBtn").onclick=()=>{
+
+if(knapsackIndex<knapsackSteps.length-1){
+
+knapsackIndex++;
+
+renderKnapsack();
+
+}
+
 };
 
-document.getElementById("preorderResetBtn").onclick = () => {
-  currentPreorderStep = 0;
-  renderPreorder();
+document.getElementById("knapsackResetBtn").onclick=()=>{
+
+knapsackIndex=0;
+
+renderKnapsack();
+
 };
+//===huffman 
+const huffmanSteps=[
+
+{
+nodes:["A(5)","B(9)","C(12)","D(13)"],
+text:"Initial frequencies."
+},
+
+{
+nodes:["AB(14)","C(12)","D(13)"],
+text:"Combine A and B."
+},
+
+{
+nodes:["CD(25)","AB(14)"],
+text:"Combine C and D."
+},
+
+{
+nodes:["ROOT(39)"],
+text:"Combine remaining nodes to form the Huffman Tree."
+}
+
+];
+
+let huffmanIndex=0;
+function renderHuffman(){
+
+const step=huffmanSteps[huffmanIndex];
+
+document.getElementById("huffmanStep").textContent=
+`Step ${huffmanIndex+1}/${huffmanSteps.length}`;
+
+const container=document.getElementById("huffmanContainer");
+
+container.innerHTML="";
+
+step.nodes.forEach(node=>{
+
+container.innerHTML+=`
+
+<div class="w-32 h-20 bg-green-500 rounded-lg
+text-white flex items-center justify-center
+font-bold text-lg">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("huffmanExplanation").textContent=
+step.text;
+
+}
+
+document.getElementById("huffmanPrevBtn").onclick=()=>{
+
+if(huffmanIndex>0){
+
+huffmanIndex--;
+
+renderHuffman();
+
+}
+
+};
+
+document.getElementById("huffmanNextBtn").onclick=()=>{
+
+if(huffmanIndex<huffmanSteps.length-1){
+
+huffmanIndex++;
+
+renderHuffman();
+
+}
+
+};
+
+document.getElementById("huffmanResetBtn").onclick=()=>{
+
+huffmanIndex=0;
+
+renderHuffman();
+
+};
+///==job sequencing===
+const jobSteps=[
+
+{
+selected:["J2"],
+text:"Pick the highest profit job first."
+},
+
+{
+selected:["J2","J1"],
+text:"Schedule the next highest profit job before its deadline."
+},
+
+{
+selected:["J2","J1","J4"],
+text:"Fill the remaining available slot."
+}
+
+];
+
+let jobIndex=0;
+
+const jobs=[
+
+{id:"J1",deadline:2,profit:100},
+
+{id:"J2",deadline:1,profit:120},
+
+{id:"J3",deadline:2,profit:60},
+
+{id:"J4",deadline:3,profit:40}
+
+];
+function renderJob(){
+
+const step=jobSteps[jobIndex];
+
+document.getElementById("jobStep").textContent=
+`Step ${jobIndex+1}/${jobSteps.length}`;
+
+const container=document.getElementById("jobContainer");
+
+container.innerHTML="";
+
+jobs.forEach(job=>{
+
+const selected=step.selected.includes(job.id);
+
+container.innerHTML+=`
+
+<div class="w-40 p-4 rounded-lg
+${selected?"bg-green-500":"bg-blue-500"}
+text-white text-center">
+
+<h3 class="font-bold">${job.id}</h3>
+
+<p>Deadline : ${job.deadline}</p>
+
+<p>Profit : ${job.profit}</p>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("jobExplanation").textContent=
+step.text;
+
+}
+document.getElementById("jobPrevBtn").onclick=()=>{
+
+if(jobIndex>0){
+
+jobIndex--;
+
+renderJob();
+
+}
+
+};
+
+document.getElementById("jobNextBtn").onclick=()=>{
+
+if(jobIndex<jobSteps.length-1){
+
+jobIndex++;
+
+renderJob();
+
+}
+
+};
+
+document.getElementById("jobResetBtn").onclick=()=>{
+
+jobIndex=0;
+
+renderJob();
+
+};
+//====merge interval==
+const mergeSteps=[
+
+{
+intervals:["[1,3]","[2,6]","[8,10]","[15,18]"],
+merged:[],
+text:"Original intervals."
+},
+
+{
+intervals:["[1,3]","[2,6]","[8,10]","[15,18]"],
+merged:["[1,6]"],
+text:"Merge [1,3] and [2,6]."
+},
+
+{
+intervals:["[8,10]","[15,18]"],
+merged:["[1,6]","[8,10]"],
+text:"No overlap with [8,10]."
+},
+
+{
+intervals:["[15,18]"],
+merged:["[1,6]","[8,10]","[15,18]"],
+text:"Final merged intervals."
+}
+
+];
+
+let mergeIndex=0;
+
+function renderMerge(){
+
+const step=mergeSteps[mergeIndex];
+
+document.getElementById("mergeStep").textContent=
+`Step ${mergeIndex+1}/${mergeSteps.length}`;
+
+const container=document.getElementById("mergeContainer");
+
+container.innerHTML="";
+
+step.merged.forEach(interval=>{
+
+container.innerHTML+=`
+<div class="bg-green-500 text-white px-6 py-4 rounded-lg font-bold">
+${interval}
+</div>
+`;
+
+});
+
+step.intervals.forEach(interval=>{
+
+container.innerHTML+=`
+<div class="bg-blue-500 text-white px-6 py-4 rounded-lg font-bold">
+${interval}
+</div>
+`;
+
+});
+
+document.getElementById("mergeExplanation").textContent=
+step.text;
+
+}
+document.getElementById("mergePrevBtn").onclick=()=>{
+
+if(mergeIndex>0){
+
+mergeIndex--;
+
+renderMerge();
+
+}
+
+};
+
+document.getElementById("mergeNextBtn").onclick=()=>{
+
+if(mergeIndex<mergeSteps.length-1){
+
+mergeIndex++;
+
+renderMerge();
+
+}
+
+};
+
+document.getElementById("mergeResetBtn").onclick=()=>{
+
+mergeIndex=0;
+
+renderMerge();
+
+};
+//=====min heap
+const minHeapSteps=[
+
+{
+heap:[10],
+text:"Insert 10."
+},
+
+{
+heap:[10,20],
+text:"Insert 20."
+},
+
+{
+heap:[10,20,30],
+text:"Insert 30."
+},
+
+{
+heap:[5,10,30,20],
+text:"Insert 5. It bubbles up to maintain the Min Heap property."
+}
+
+];
+
+let minHeapIndex=0;
+function renderMinHeap(){
+
+const step=minHeapSteps[minHeapIndex];
+
+document.getElementById("minHeapStep").textContent=
+`Step ${minHeapIndex+1}/${minHeapSteps.length}`;
+
+const container=document.getElementById("minHeapContainer");
+
+container.innerHTML="";
+
+step.heap.forEach(value=>{
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full bg-green-500
+text-white flex items-center justify-center
+font-bold text-xl">
+
+${value}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("minHeapExplanation").textContent=
+step.text;
+
+}
+document.getElementById("minHeapPrevBtn").onclick=()=>{
+
+if(minHeapIndex>0){
+
+minHeapIndex--;
+
+renderMinHeap();
+
+}
+
+};
+
+document.getElementById("minHeapNextBtn").onclick=()=>{
+
+if(minHeapIndex<minHeapSteps.length-1){
+
+minHeapIndex++;
+
+renderMinHeap();
+
+}
+
+};
+
+document.getElementById("minHeapResetBtn").onclick=()=>{
+
+minHeapIndex=0;
+
+renderMinHeap();
+
+};
+//===max heap
+const maxHeapSteps=[
+
+{
+heap:[40],
+text:"Insert 40."
+},
+
+{
+heap:[40,20],
+text:"Insert 20."
+},
+
+{
+heap:[40,20,30],
+text:"Insert 30."
+},
+
+{
+heap:[50,40,30,20],
+text:"Insert 50. It bubbles up to become the root."
+}
+
+];
+
+let maxHeapIndex=0;
+function renderMaxHeap(){
+
+const step=maxHeapSteps[maxHeapIndex];
+
+document.getElementById("maxHeapStep").textContent=
+`Step ${maxHeapIndex+1}/${maxHeapSteps.length}`;
+
+const container=document.getElementById("maxHeapContainer");
+
+container.innerHTML="";
+
+step.heap.forEach(value=>{
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full bg-red-500
+text-white flex items-center justify-center
+font-bold text-xl">
+
+${value}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("maxHeapExplanation").textContent=
+step.text;
+
+}
+document.getElementById("maxHeapPrevBtn").onclick=()=>{
+
+if(maxHeapIndex>0){
+
+maxHeapIndex--;
+
+renderMaxHeap();
+
+}
+
+};
+
+document.getElementById("maxHeapNextBtn").onclick=()=>{
+
+if(maxHeapIndex<maxHeapSteps.length-1){
+
+maxHeapIndex++;
+
+renderMaxHeap();
+
+}
+
+};
+
+document.getElementById("maxHeapResetBtn").onclick=()=>{
+
+maxHeapIndex=0;
+
+renderMaxHeap();
+
+};
+//====heapify====
+const heapifySteps=[
+
+{
+heap:[40,30,20,10],
+highlight:[],
+text:"Initial heap."
+},
+
+{
+heap:[10,30,20,40],
+highlight:[0,1],
+text:"Heapify starts at the root."
+},
+
+{
+heap:[30,10,20,40],
+highlight:[0,1],
+text:"Swap parent with the largest child."
+},
+
+{
+heap:[30,40,20,10],
+highlight:[1,3],
+text:"Continue heapifying the affected subtree."
+},
+
+{
+heap:[40,30,20,10],
+highlight:[0],
+text:"Heap property restored."
+}
+
+];
+
+let heapifyIndex=0;
+function renderHeapify(){
+
+const step=heapifySteps[heapifyIndex];
+
+document.getElementById("heapifyStep").textContent=
+`Step ${heapifyIndex+1}/${heapifySteps.length}`;
+
+const container=document.getElementById("heapifyContainer");
+
+container.innerHTML="";
+
+step.heap.forEach((value,index)=>{
+
+const active=step.highlight.includes(index);
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full
+${active?"bg-yellow-500":"bg-blue-500"}
+text-white flex items-center justify-center
+font-bold text-xl">
+
+${value}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("heapifyExplanation").textContent=
+step.text;
+
+}
+document.getElementById("heapifyPrevBtn").onclick=()=>{
+
+if(heapifyIndex>0){
+
+heapifyIndex--;
+
+renderHeapify();
+
+}
+
+};
+
+document.getElementById("heapifyNextBtn").onclick=()=>{
+
+if(heapifyIndex<heapifySteps.length-1){
+
+heapifyIndex++;
+
+renderHeapify();
+
+}
+
+};
+
+document.getElementById("heapifyResetBtn").onclick=()=>{
+
+heapifyIndex=0;
+
+renderHeapify();
+
+};
+//====heap sort===
+const heapSortSteps=[
+
+{
+array:[40,30,20,10],
+sorted:[],
+text:"Initial Max Heap."
+},
+
+{
+array:[30,10,20],
+sorted:[40],
+text:"Move the maximum element to the sorted portion."
+},
+
+{
+array:[20,10],
+sorted:[30,40],
+text:"Heapify the remaining heap."
+},
+
+{
+array:[10],
+sorted:[20,30,40],
+text:"Extract the next maximum."
+},
+
+{
+array:[],
+sorted:[10,20,30,40],
+text:"Array completely sorted."
+}
+
+];
+
+let heapSortIndex=0;
+
+function renderHeapSort(){
+
+const step=heapSortSteps[heapSortIndex];
+
+document.getElementById("heapSortStep").textContent=
+`Step ${heapSortIndex+1}/${heapSortSteps.length}`;
+
+const container=document.getElementById("heapSortContainer");
+
+container.innerHTML="";
+
+step.array.forEach(value=>{
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full bg-blue-500
+text-white flex items-center justify-center font-bold">
+
+${value}
+
+</div>
+
+`;
+
+});
+
+step.sorted.forEach(value=>{
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full bg-green-500
+text-white flex items-center justify-center font-bold">
+
+${value}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("heapSortExplanation").textContent=
+step.text;
+
+}
+
+document.getElementById("heapSortPrevBtn").onclick=()=>{
+
+if(heapSortIndex>0){
+
+heapSortIndex--;
+
+renderHeapSort();
+
+}
+
+};
+
+document.getElementById("heapSortNextBtn").onclick=()=>{
+
+if(heapSortIndex<heapSortSteps.length-1){
+
+heapSortIndex++;
+
+renderHeapSort();
+
+}
+
+};
+
+document.getElementById("heapSortResetBtn").onclick=()=>{
+
+heapSortIndex=0;
+
+renderHeapSort();
+
+};
+///===priority queue===
+const priorityQueueSteps=[
+
+{
+queue:[50],
+text:"Insert 50."
+},
+
+{
+queue:[50,40],
+text:"Insert 40."
+},
+
+{
+queue:[50,40,30],
+text:"Insert 30."
+},
+
+{
+queue:[40,30],
+removed:50,
+text:"Remove the highest priority element (50)."
+},
+
+{
+queue:[30],
+removed:40,
+text:"Remove the next highest priority element (40)."
+}
+
+];
+
+let priorityQueueIndex=0;
+function renderPriorityQueue(){
+
+const step=priorityQueueSteps[priorityQueueIndex];
+
+document.getElementById("priorityQueueStep").textContent=
+`Step ${priorityQueueIndex+1}/${priorityQueueSteps.length}`;
+
+const container=document.getElementById("priorityQueueContainer");
+
+container.innerHTML="";
+
+step.queue.forEach(value=>{
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full bg-blue-500
+text-white flex items-center justify-center
+font-bold">
+
+${value}
+
+</div>
+
+`;
+
+});
+
+if(step.removed!==undefined){
+
+container.innerHTML+=`
+
+<div class="w-20 h-20 rounded-full bg-red-500
+text-white flex items-center justify-center
+font-bold">
+
+Out<br>${step.removed}
+
+</div>
+
+`;
+
+}
+
+document.getElementById("priorityQueueExplanation").textContent=
+step.text;
+
+}
+document.getElementById("priorityQueuePrevBtn").onclick=()=>{
+
+if(priorityQueueIndex>0){
+
+priorityQueueIndex--;
+
+renderPriorityQueue();
+
+}
+
+};
+
+document.getElementById("priorityQueueNextBtn").onclick=()=>{
+
+if(priorityQueueIndex<priorityQueueSteps.length-1){
+
+priorityQueueIndex++;
+
+renderPriorityQueue();
+
+}
+
+};
+
+document.getElementById("priorityQueueResetBtn").onclick=()=>{
+
+priorityQueueIndex=0;
+
+renderPriorityQueue();
+
+};
+////Tree  preorder
+const preorderSteps=[
+
+{
+visited:[1],
+text:"Visit Root (1)."
+},
+
+{
+visited:[1,2],
+text:"Go to Left Child (2)."
+},
+
+{
+visited:[1,2,4],
+text:"Visit Left Child of 2 (4)."
+},
+
+{
+visited:[1,2,4,5],
+text:"Visit Right Child of 2 (5)."
+},
+
+{
+visited:[1,2,4,5,3],
+text:"Go to Right Child (3)."
+},
+
+{
+visited:[1,2,4,5,3,6],
+text:"Visit Left Child of 3 (6)."
+},
+
+{
+visited:[1,2,4,5,3,6,7],
+text:"Visit Right Child of 3 (7)."
+}
+
+];
+
+let preorderIndex=0;
+
+const preorderNodes=[1,2,3,4,5,6,7];
+function renderPreorder(){
+
+const step=preorderSteps[preorderIndex];
+
+document.getElementById("preorderStep").textContent=
+`Step ${preorderIndex+1}/${preorderSteps.length}`;
+
+const container=document.getElementById("preorderContainer");
+
+container.innerHTML="";
+
+preorderNodes.forEach(node=>{
+
+const color=step.visited.includes(node)?
+"bg-green-500":"bg-blue-500";
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full ${color}
+text-white flex items-center justify-center
+font-bold text-xl">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("preorderExplanation").textContent=
+step.text;
+
+}
+document.getElementById("preorderPrevBtn").onclick=()=>{
+
+if(preorderIndex>0){
+
+preorderIndex--;
+
+renderPreorder();
+
+}
+
+};
+
+document.getElementById("preorderNextBtn").onclick=()=>{
+
+if(preorderIndex<preorderSteps.length-1){
+
+preorderIndex++;
+
+renderPreorder();
+
+}
+
+};
+
+document.getElementById("preorderResetBtn").onclick=()=>{
+
+preorderIndex=0;
+
+renderPreorder();
+
+};
+//===inorder
+const inorderSteps=[
+
+{
+visited:[4],
+text:"Visit leftmost node (4)."
+},
+
+{
+visited:[4,2],
+text:"Visit parent (2)."
+},
+
+{
+visited:[4,2,5],
+text:"Visit right child (5)."
+},
+
+{
+visited:[4,2,5,1],
+text:"Visit root (1)."
+},
+
+{
+visited:[4,2,5,1,6],
+text:"Visit left child of right subtree (6)."
+},
+
+{
+visited:[4,2,5,1,6,3],
+text:"Visit parent (3)."
+},
+
+{
+visited:[4,2,5,1,6,3,7],
+text:"Visit right child (7)."
+}
+
+];
+
+let inorderIndex=0;
+
+const inorderNodes=[1,2,3,4,5,6,7];
+
+function renderInorder(){
+
+const step=inorderSteps[inorderIndex];
+
+document.getElementById("inorderStep").textContent=
+`Step ${inorderIndex+1}/${inorderSteps.length}`;
+
+const container=document.getElementById("inorderContainer");
+
+container.innerHTML="";
+
+inorderNodes.forEach(node=>{
+
+const color=step.visited.includes(node)?
+"bg-green-500":"bg-blue-500";
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full ${color}
+text-white flex items-center justify-center
+font-bold text-xl">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("inorderExplanation").textContent=
+step.text;
+
+}
+
+document.getElementById("inorderPrevBtn").onclick=()=>{
+
+if(inorderIndex>0){
+
+inorderIndex--;
+
+renderInorder();
+
+}
+
+};
+
+document.getElementById("inorderNextBtn").onclick=()=>{
+
+if(inorderIndex<inorderSteps.length-1){
+
+inorderIndex++;
+
+renderInorder();
+
+}
+
+};
+
+document.getElementById("inorderResetBtn").onclick=()=>{
+
+inorderIndex=0;
+
+renderInorder();
+
+};
+
+//===post order ==
+const postorderSteps=[
+
+{
+visited:[4],
+text:"Visit leftmost node (4)."
+},
+
+{
+visited:[4,5],
+text:"Visit right child (5)."
+},
+
+{
+visited:[4,5,2],
+text:"Visit parent (2)."
+},
+
+{
+visited:[4,5,2,6],
+text:"Visit left child (6)."
+},
+
+{
+visited:[4,5,2,6,7],
+text:"Visit right child (7)."
+},
+
+{
+visited:[4,5,2,6,7,3],
+text:"Visit parent (3)."
+},
+
+{
+visited:[4,5,2,6,7,3,1],
+text:"Finally visit the root (1)."
+}
+
+];
+
+let postorderIndex=0;
+
+const postorderNodes=[1,2,3,4,5,6,7];
+function renderPostorder(){
+
+const step=postorderSteps[postorderIndex];
+
+document.getElementById("postorderStep").textContent=
+`Step ${postorderIndex+1}/${postorderSteps.length}`;
+
+const container=document.getElementById("postorderContainer");
+
+container.innerHTML="";
+
+postorderNodes.forEach(node=>{
+
+const color=step.visited.includes(node)?
+"bg-green-500":"bg-blue-500";
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full ${color}
+text-white flex items-center justify-center
+font-bold text-xl">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("postorderExplanation").textContent=
+step.text;
+
+}
+document.getElementById("postorderPrevBtn").onclick=()=>{
+
+if(postorderIndex>0){
+
+postorderIndex--;
+
+renderPostorder();
+
+}
+
+};
+
+document.getElementById("postorderNextBtn").onclick=()=>{
+
+if(postorderIndex<postorderSteps.length-1){
+
+postorderIndex++;
+
+renderPostorder();
+
+}
+
+};
+
+document.getElementById("postorderResetBtn").onclick=()=>{
+
+postorderIndex=0;
+
+renderPostorder();
+
+};
+//===level order==
+const levelOrderSteps=[
+
+{
+visited:[1],
+text:"Visit root node."
+},
+
+{
+visited:[1,2,3],
+text:"Visit all nodes at level 2."
+},
+
+{
+visited:[1,2,3,4,5,6,7],
+text:"Visit all nodes at level 3."
+}
+
+];
+
+let levelOrderIndex=0;
+
+const levelOrderNodes=[1,2,3,4,5,6,7];
+
+function renderLevelOrder(){
+
+const step=levelOrderSteps[levelOrderIndex];
+
+document.getElementById("levelOrderStep").textContent=
+`Step ${levelOrderIndex+1}/${levelOrderSteps.length}`;
+
+const container=document.getElementById("levelOrderContainer");
+
+container.innerHTML="";
+
+levelOrderNodes.forEach(node=>{
+
+const color=step.visited.includes(node)?
+"bg-green-500":"bg-blue-500";
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full ${color}
+text-white flex items-center justify-center
+font-bold text-xl">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("levelOrderExplanation").textContent=
+step.text;
+
+}
+document.getElementById("levelOrderPrevBtn").onclick=()=>{
+
+if(levelOrderIndex>0){
+
+levelOrderIndex--;
+
+renderLevelOrder();
+
+}
+
+};
+
+document.getElementById("levelOrderNextBtn").onclick=()=>{
+
+if(levelOrderIndex<levelOrderSteps.length-1){
+
+levelOrderIndex++;
+
+renderLevelOrder();
+
+}
+
+};
+
+document.getElementById("levelOrderResetBtn").onclick=()=>{
+
+levelOrderIndex=0;
+
+renderLevelOrder();
+
+};
+//===LCA===
+const lcaNodes=[1,2,3,4,5,6,7];
+
+const lcaSteps=[
+
+{
+visited:[4],
+lca:null,
+text:"Start searching from node 4."
+},
+
+{
+visited:[4,2],
+lca:null,
+text:"Move upward toward the root."
+},
+
+{
+visited:[4,2,5],
+lca:2,
+text:"Both nodes 4 and 5 meet at node 2."
+},
+
+{
+visited:[4,2,5,1],
+lca:2,
+text:"Traversal reaches root, but LCA is already found."
+}
+
+];
+
+let lcaIndex=0;
+function renderLCA(){
+
+const step=lcaSteps[lcaIndex];
+
+document.getElementById("lcaStep").textContent=
+`Step ${lcaIndex+1}/${lcaSteps.length}`;
+
+const container=document.getElementById("lcaContainer");
+
+container.innerHTML="";
+
+lcaNodes.forEach(node=>{
+
+let color="bg-blue-500";
+
+if(step.visited.includes(node))
+color="bg-green-500";
+
+if(step.lca===node)
+color="bg-red-500";
+
+container.innerHTML+=`
+
+<div class="w-16 h-16 rounded-full ${color}
+text-white flex items-center justify-center
+font-bold text-xl">
+
+${node}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("lcaExplanation").textContent=
+step.text;
+
+}
+document.getElementById("lcaPrevBtn").onclick=()=>{
+
+if(lcaIndex>0){
+
+lcaIndex--;
+
+renderLCA();
+
+}
+
+};
+
+document.getElementById("lcaNextBtn").onclick=()=>{
+
+if(lcaIndex<lcaSteps.length-1){
+
+lcaIndex++;
+
+renderLCA();
+
+}
+
+};
+
+document.getElementById("lcaResetBtn").onclick=()=>{
+
+lcaIndex=0;
+
+renderLCA();
+
+};
+//======memoization====
+
+const memoSteps=[
+{
+memo:{},
+text:"Start computing Fib(5). Memo table is empty."
+},
+
+{
+memo:{1:1},
+text:"Store Fib(1)=1."
+},
+
+{
+memo:{1:1,2:1},
+text:"Store Fib(2)=1."
+},
+
+{
+memo:{1:1,2:1,3:2},
+text:"Store Fib(3)=2."
+},
+
+{
+memo:{1:1,2:1,3:2,4:3},
+text:"Store Fib(4)=3."
+},
+
+{
+memo:{1:1,2:1,3:2,4:3,5:5},
+text:"Store Fib(5)=5. Future calls use cached values."
+}
+
+];
+
+let memoIndex=0;
+function renderMemoization(){
+
+const step=memoSteps[memoIndex];
+
+document.getElementById("memoStep").textContent=
+`Step ${memoIndex+1}/${memoSteps.length}`;
+
+const container=document.getElementById("memoContainer");
+
+container.innerHTML="";
+
+for(const key in step.memo){
+
+container.innerHTML+=`
+
+<div class="bg-blue-500 text-white
+rounded-lg p-4 w-24 text-center">
+
+<div class="font-bold">Fib(${key})</div>
+
+<div>${step.memo[key]}</div>
+
+</div>
+
+`;
+
+}
+
+document.getElementById("memoExplanation").textContent=
+step.text;
+
+}
+document.getElementById("memoPrevBtn").onclick=()=>{
+
+if(memoIndex>0){
+
+memoIndex--;
+
+renderMemoization();
+
+}
+
+};
+
+document.getElementById("memoNextBtn").onclick=()=>{
+
+if(memoIndex<memoSteps.length-1){
+
+memoIndex++;
+
+renderMemoization();
+
+}
+
+};
+
+document.getElementById("memoResetBtn").onclick=()=>{
+
+memoIndex=0;
+
+renderMemoization();
+
+};
+//====
+const tabulationSteps=[
+
+{
+dp:[0],
+current:0,
+text:"Initialize dp[0]=0."
+},
+
+{
+dp:[0,1],
+current:1,
+text:"Initialize dp[1]=1."
+},
+
+{
+dp:[0,1,1],
+current:2,
+text:"dp[2]=dp[1]+dp[0]=1."
+},
+
+{
+dp:[0,1,1,2],
+current:3,
+text:"dp[3]=dp[2]+dp[1]=2."
+},
+
+{
+dp:[0,1,1,2,3],
+current:4,
+text:"dp[4]=dp[3]+dp[2]=3."
+},
+
+{
+dp:[0,1,1,2,3,5],
+current:5,
+text:"dp[5]=dp[4]+dp[3]=5."
+}
+
+];
+
+let tabulationIndex=0;
+function renderTabulation(){
+
+const step=tabulationSteps[tabulationIndex];
+
+document.getElementById("tabulationStep").textContent=
+`Step ${tabulationIndex+1}/${tabulationSteps.length}`;
+
+const container=document.getElementById("tabulationContainer");
+
+container.innerHTML="";
+
+step.dp.forEach((value,index)=>{
+
+const color=index===step.current
+?"bg-green-500"
+:"bg-blue-500";
+
+container.innerHTML+=`
+
+<div class="${color}
+text-white
+rounded-lg
+w-20
+h-20
+flex
+flex-col
+justify-center
+items-center">
+
+<div class="text-sm">dp[${index}]</div>
+
+<div class="font-bold">${value}</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("tabulationExplanation").textContent=
+step.text;
+
+}
+document.getElementById("tabulationPrevBtn").onclick=()=>{
+
+if(tabulationIndex>0){
+
+tabulationIndex--;
+
+renderTabulation();
+
+}
+
+};
+
+document.getElementById("tabulationNextBtn").onclick=()=>{
+
+if(tabulationIndex<tabulationSteps.length-1){
+
+tabulationIndex++;
+
+renderTabulation();
+
+}
+
+};
+
+document.getElementById("tabulationResetBtn").onclick=()=>{
+
+tabulationIndex=0;
+
+renderTabulation();
+
+};
+//==0/1 knapsack===
+const DPknapsackSteps = [
+
+{
+    dp:[0,0,0,0,0],
+    current:0,
+    text:"Initialize DP table."
+},
+
+{
+    dp:[0,3,3,3,3],
+    current:1,
+    text:"Take item 1 (weight=1, value=3)."
+},
+
+{
+    dp:[0,3,4,7,7],
+    current:2,
+    text:"Process item 2 (weight=2, value=4)."
+},
+
+{
+    dp:[0,3,4,7,8],
+    current:3,
+    text:"Process item 3 (weight=3, value=5)."
+},
+
+{
+    dp:[0,3,4,7,8],
+    current:4,
+    text:"Maximum value for capacity 4 is 8."
+}
+
+];
+
+let DPknapsackIndex = 0;
+
+function renderDPKnapsack(){
+
+    const step = DPknapsackSteps[DPknapsackIndex];
+
+    document.getElementById("DPknapsackStep").textContent =
+    `Step ${DPknapsackIndex+1}/${DPknapsackSteps.length}`;
+
+    const container = document.getElementById("DPknapsackContainer");
+
+    container.innerHTML = "";
+
+    step.dp.forEach((value,index)=>{
+
+        const color = index===step.current
+        ? "bg-green-500"
+        : "bg-blue-500";
+
+        container.innerHTML += `
+        <div class="${color}
+        text-white
+        rounded-lg
+        w-20
+        h-20
+        flex
+        flex-col
+        justify-center
+        items-center">
+
+            <div class="text-sm">W=${index}</div>
+
+            <div class="font-bold">${value}</div>
+
+        </div>
+        `;
+
+    });
+
+    document.getElementById("DPknapsackExplanation").textContent =
+    step.text;
+}
+
+// Previous
+document.getElementById("DPknapsackPrevBtn").onclick = ()=>{
+
+    if(DPknapsackIndex>0){
+
+        DPknapsackIndex--;
+
+        renderDPKnapsack();
+
+    }
+
+};
+
+// Next
+document.getElementById("DPknapsackNextBtn").onclick = ()=>{
+
+    if(DPknapsackIndex<DPknapsackSteps.length-1){
+
+        DPknapsackIndex++;
+
+        renderDPKnapsack();
+
+    }
+
+};
+
+// Reset
+document.getElementById("DPknapsackResetBtn").onclick = ()=>{
+
+    DPknapsackIndex = 0;
+
+    renderDPKnapsack();
+
+};
+
+///=====LCS===
+const lcsSteps=[
+
+{
+row:[0,0,0,0],
+current:0,
+text:"Initialize first row of DP table."
+},
+
+{
+row:[0,1,1,1],
+current:1,
+text:"Characters match → store 1."
+},
+
+{
+row:[0,1,1,2],
+current:2,
+text:"Another match increases LCS length."
+},
+
+{
+row:[0,1,2,2],
+current:3,
+text:"Take maximum from top or left."
+},
+
+{
+row:[0,1,2,3],
+current:3,
+text:"Final LCS length = 3."
+}
+
+];
+
+let lcsIndex=0;
+function renderLCS(){
+
+const step=lcsSteps[lcsIndex];
+
+document.getElementById("lcsStep").textContent=
+`Step ${lcsIndex+1}/${lcsSteps.length}`;
+
+const container=document.getElementById("lcsContainer");
+
+container.innerHTML="";
+
+step.row.forEach((value,index)=>{
+
+const color=index===step.current
+?"bg-green-500"
+:"bg-blue-500";
+
+container.innerHTML+=`
+
+<div class="${color}
+text-white
+rounded-lg
+w-20
+h-20
+flex
+flex-col
+justify-center
+items-center">
+
+<div class="text-sm">Col ${index}</div>
+
+<div class="font-bold">${value}</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("lcsExplanation").textContent=
+step.text;
+
+}
+document.getElementById("lcsPrevBtn").onclick=()=>{
+
+if(lcsIndex>0){
+
+lcsIndex--;
+
+renderLCS();
+
+}
+
+};
+
+document.getElementById("lcsNextBtn").onclick=()=>{
+
+if(lcsIndex<lcsSteps.length-1){
+
+lcsIndex++;
+
+renderLCS();
+
+}
+
+};
+
+document.getElementById("lcsResetBtn").onclick=()=>{
+
+lcsIndex=0;
+
+renderLCS();
+
+};
+//====LIS
+const lisSteps=[
+
+{
+array:[10,9,2,5,3,7,101,18],
+highlight:[10],
+text:"Start with first element."
+},
+
+{
+array:[10,9,2,5,3,7,101,18],
+highlight:[2,5],
+text:"Current increasing subsequence: 2 → 5"
+},
+
+{
+array:[10,9,2,5,3,7,101,18],
+highlight:[2,5,7],
+text:"Extend subsequence: 2 → 5 → 7"
+},
+
+{
+array:[10,9,2,5,3,7,101,18],
+highlight:[2,5,7,101],
+text:"Longest Increasing Subsequence found."
+}
+
+];
+
+let lisIndex=0;
+
+function renderLIS(){
+
+const step=lisSteps[lisIndex];
+
+document.getElementById("lisStep").textContent=
+`Step ${lisIndex+1}/${lisSteps.length}`;
+
+const container=document.getElementById("lisContainer");
+
+container.innerHTML="";
+
+step.array.forEach(value=>{
+
+const color=step.highlight.includes(value)
+?"bg-green-500"
+:"bg-blue-500";
+
+container.innerHTML+=`
+
+<div class="${color}
+text-white
+w-16
+h-16
+rounded-lg
+flex
+items-center
+justify-center
+font-bold">
+
+${value}
+
+</div>
+
+`;
+
+});
+
+document.getElementById("lisExplanation").textContent=
+step.text;
+
+}
+document.getElementById("lisPrevBtn").onclick=()=>{
+
+if(lisIndex>0){
+
+lisIndex--;
+
+renderLIS();
+
+}
+
+};
+
+document.getElementById("lisNextBtn").onclick=()=>{
+
+if(lisIndex<lisSteps.length-1){
+
+lisIndex++;
+
+renderLIS();
+
+}
+
+};
+
+document.getElementById("lisResetBtn").onclick=()=>{
+
+lisIndex=0;
+
+renderLIS();
+
+};
+
+//

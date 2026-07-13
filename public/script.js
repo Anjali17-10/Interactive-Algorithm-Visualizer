@@ -87,6 +87,56 @@ document.getElementById("visualizer")
 .classList.add("hidden");
 document.getElementById("insertionVisualizer")
 .classList.add("hidden");
+///greedy
+document.getElementById("activityVisualizer")
+.classList.add("hidden");
+document.getElementById("knapsackVisualizer")
+.classList.add("hidden");
+document.getElementById("huffmanVisualizer")
+.classList.add("hidden");
+document.getElementById("jobVisualizer")
+.classList.add("hidden");
+document.getElementById("mergeVisualizer")
+.classList.add("hidden");
+//===heaps==
+document.getElementById("minHeapVisualizer")
+.classList.add("hidden");
+document.getElementById("maxHeapVisualizer")
+.classList.add("hidden");
+document.getElementById("heapifyVisualizer")
+.classList.add("hidden");
+document.getElementById("heapSortVisualizer")
+.classList.add("hidden");
+
+document.getElementById("priorityQueueVisualizer")
+.classList.add("hidden");
+//=====TREES===
+document.getElementById("preorderVisualizer")
+.classList.add("hidden");
+document.getElementById("inorderVisualizer")
+.classList.add("hidden");
+document.getElementById("postorderVisualizer")
+.classList.add("hidden");
+document.getElementById("levelOrderVisualizer")
+.classList.add("hidden");
+document.getElementById("lcaVisualizer")
+.classList.add("hidden");
+//=====DP===
+document.getElementById("memoizationVisualizer")
+.classList.add("hidden");
+document.getElementById("tabulationVisualizer")
+.classList.add("hidden");
+document.getElementById("DPknapsackVisualizer")
+.classList.add("hidden");
+document.getElementById("lcsVisualizer")
+.classList.add("hidden");
+document.getElementById("DPknapsackVisualizer")
+.classList.add("hidden");
+document.getElementById("lisVisualizer")
+.classList.add("hidden");
+//====
+document.getElementById("llCycleVisualizer")
+.classList.add("hidden");// linked list cycle
 document.getElementById("subsetVisualizer")
 .classList.add("hidden");
 document.getElementById("traversalVisualizer")
@@ -132,7 +182,6 @@ document.getElementById("rabinVisualizer")
 .classList.add("hidden");
 document.getElementById("dsuVisualizer")
 .classList.add("hidden");
-document.getElementById("preorderVisualizer").classList.add("hidden");
 document
 .getElementById("minStackVisualizer")
 .classList.add("hidden");
@@ -142,8 +191,6 @@ document
 .classList.add("hidden");
 
 document.getElementById("dijkstraVisualizer")
-.classList.add("hidden");
-document.getElementById("cycleVisualizer")
 .classList.add("hidden");
 document
 .getElementById("queueVisualizer")
@@ -264,11 +311,153 @@ renderReverse();
 }
 if(name==="Cycle Detection")
 {
-    document.getElementById("cycleVisualizer")
+    document.getElementById("llCycleVisualizer")
     .classList.remove("hidden");
 
-    renderCycle();
+    renderLinkedListCycle();
 }
+if(name==="Activity Selection")
+{
+    document.getElementById("activityVisualizer")
+    .classList.remove("hidden");
+
+    renderActivitySelection();
+}
+if(name==="Fractional Knapsack")
+{
+    document.getElementById("knapsackVisualizer")
+    .classList.remove("hidden");
+
+    renderKnapsack();
+}
+if(name==="Huffman Coding")
+{
+document.getElementById("huffmanVisualizer")
+.classList.remove("hidden");
+
+renderHuffman();
+}
+if(name==="Job Sequencing")
+{
+    document.getElementById("jobVisualizer")
+    .classList.remove("hidden");
+
+    renderJob();
+}
+if(name==="Merge Intervals")
+{
+    document.getElementById("mergeVisualizer")
+    .classList.remove("hidden");
+
+    renderMerge();
+}
+if(name==="Min Heap")
+{
+    document.getElementById("minHeapVisualizer")
+    .classList.remove("hidden");
+
+    renderMinHeap();
+}
+if(name==="Max Heap")
+{
+document.getElementById("maxHeapVisualizer")
+.classList.remove("hidden");
+
+renderMaxHeap();
+}
+if(name==="Heapify")
+{
+    document.getElementById("heapifyVisualizer")
+    .classList.remove("hidden");
+
+    renderHeapify();
+}
+if(name==="Heap Sort")
+{
+document.getElementById("heapSortVisualizer")
+.classList.remove("hidden");
+
+renderHeapSort();
+}
+if(name==="Priority Queue")
+{
+    document.getElementById("priorityQueueVisualizer")
+    .classList.remove("hidden");
+
+    renderPriorityQueue();
+}
+if(name==="Preorder")
+{
+document.getElementById("preorderVisualizer")
+.classList.remove("hidden");
+
+renderPreorder();
+}
+if(name==="Inorder")
+{
+document.getElementById("inorderVisualizer")
+.classList.remove("hidden");
+
+renderInorder();
+}
+if(name==="Postorder")
+{
+document.getElementById("postorderVisualizer")
+.classList.remove("hidden");
+
+renderPostorder();
+}
+if(name==="Level Order")
+{
+document.getElementById("levelOrderVisualizer")
+.classList.remove("hidden");
+
+renderLevelOrder();
+}
+if(name==="LCA")
+{
+document.getElementById("lcaVisualizer")
+.classList.remove("hidden");
+
+renderLCA();
+}
+if(name==="Memoization")
+{
+document.getElementById("memoizationVisualizer")
+.classList.remove("hidden");
+
+renderMemoization();
+}
+if(name==="Tabulation")
+{
+document.getElementById("tabulationVisualizer")
+.classList.remove("hidden");
+
+renderTabulation();
+}
+if(name==="0/1 Knapsack")
+{
+    document.getElementById("DPknapsackVisualizer")
+    .classList.remove("hidden");
+
+    renderDPKnapsack();
+}
+
+if(name==="LCS")
+{
+document.getElementById("lcsVisualizer")
+.classList.remove("hidden");
+
+renderLCS();
+}
+if(name==="LIS")
+{
+document.getElementById("lisVisualizer")
+.classList.remove("hidden");
+
+renderLIS();
+}
+
 if(name==="Insertion")
 {
 document.getElementById("insertionVisualizer")
