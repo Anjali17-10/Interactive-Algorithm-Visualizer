@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const sendEmail = require("./utils/sendEmail");
+const progressRoutes = require("./routes/progressRoutes");
 const app = express();
 
 app.get("/test-email", async (req, res) => {
@@ -31,7 +32,11 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/user", userRoutes);
+
 app.use("/api/auth", authRoutes);
+
+app.use("/api/progress", progressRoutes);
+
 app.get("/", (req, res) => {
     res.json({
         success: true,

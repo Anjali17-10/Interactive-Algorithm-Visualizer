@@ -26,7 +26,17 @@ Profile
 <p id="email" class="mb-3"></p>
 
 <p id="role" class="mb-6"></p>
+<h2 class="text-2xl font-bold mt-6 mb-3">
 
+Completed Algorithms
+
+</h2>
+
+<ul
+id="completedList"
+class="text-left list-disc pl-6 text-gray-700">
+
+</ul>
 <a
 href="dashboard.html"
 class="bg-blue-600 text-white px-5 py-2 rounded">
@@ -38,7 +48,6 @@ Back
 </div>
 
 <script>
-
 const user=JSON.parse(localStorage.getItem("user"));
 
 if(!user){
@@ -56,6 +65,26 @@ document.getElementById("email").textContent=
 document.getElementById("role").textContent=
 `Role : ${user.role}`;
 
+async function loadProgress() {
+
+    const response = await fetch(
+        `http://localhost:5000/api/progress/${user.email}`
+    );
+
+    const data = await response.json();
+
+    const list = document.getElementById("completedList");
+
+    list.innerHTML = "";
+
+    data.completed.forEach(item => {
+
+        list.innerHTML += `<li>${item}</li>`;
+
+    });
+
+}
+loadProgress();
 </script>
 
 </body>

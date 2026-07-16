@@ -42,6 +42,10 @@ const userSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    completedAlgorithms: {
+    type: [String],
+    default: [],
+},
   },
   {
     timestamps: true,
