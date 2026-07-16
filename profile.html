@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Profile</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-blue-100 min-h-screen flex justify-center items-center">
+
+<div class="bg-white p-8 rounded-xl shadow-lg w-96 text-center">
+
+<h1 class="text-3xl font-bold mb-6">
+
+Profile
+
+</h1>
+
+<p id="name" class="mb-3"></p>
+
+<p id="email" class="mb-3"></p>
+
+<p id="role" class="mb-6"></p>
+
+<a
+href="dashboard.html"
+class="bg-blue-600 text-white px-5 py-2 rounded">
+
+Back
+
+</a>
+
+</div>
+
+<script>
+
+const user=JSON.parse(localStorage.getItem("user"));
+
+if(!user){
+
+window.location.href="login.html";
+
+}
+
+document.getElementById("name").textContent=
+`Name : ${user.name}`;
+
+document.getElementById("email").textContent=
+`Email : ${user.email}`;
+
+document.getElementById("role").textContent=
+`Role : ${user.role}`;
+
+</script>
+
+</body>
+
+</html>
