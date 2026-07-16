@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DSA Dashboard</title>
+  <script>
+
+const token = localStorage.getItem("token");
+
+if(!token){
+
+window.location.href = "login.html";
+
+}
+
+</script>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 

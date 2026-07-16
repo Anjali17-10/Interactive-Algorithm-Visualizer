@@ -137,6 +137,7 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
+    console.log("LOGIN API HIT");
     try {
         const { email, password } = req.body;
 
@@ -164,7 +165,9 @@ const login = async (req, res) => {
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
-
+         console.log("Entered Email:", email);
+console.log("Entered Password:", password);
+console.log("Stored Password:", user.password);
         if (!isMatch) {
             return res.status(401).json({
                 success: false,
