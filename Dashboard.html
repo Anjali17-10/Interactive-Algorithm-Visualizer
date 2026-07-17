@@ -18,7 +18,7 @@ window.location.href = "login.html";
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-blue-50 transition-colors duration-300">
+<body id="top" class="bg-blue-50 transition-colors duration-300">
 <!-- NAVBAR -->
 <nav class="flex justify-between items-center px-6 py-4 bg-white dark:bg-gray-800 shadow transition-colors duration-300">
 
@@ -408,6 +408,35 @@ Profile
     </div>
 
 </section>
+<section id="continueLearning" class="py-10 px-6 hidden">
+
+    <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
+
+        <h2 class="text-2xl font-bold text-blue-600 mb-4">
+            🚀 Continue Learning
+        </h2>
+
+        <p class="text-gray-600 mb-2">
+            Your next algorithm:
+        </p>
+
+        <h3
+        id="nextAlgorithm"
+        class="text-3xl font-bold mb-6">
+        </h3>
+
+        <button
+        id="continueBtn"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg">
+
+            Continue →
+
+        </button>
+
+    </div>
+
+</section>
+<!--learning progress section-->
 <section class="py-16 px-6 bg-blue-50">
 
     <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-8">
@@ -3859,7 +3888,11 @@ Reset
 </div>
 
 </section>
-
+<div
+id="toast"
+class="fixed top-5 right-5 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg hidden z-50">
+Success
+</div>
 <!-- DYNAMIC CONTENT -->
 <section id="output" class="mt-10 px-6"></section>
 <script src="/data.js"></script>
@@ -3887,5 +3920,134 @@ window.location.href="login.html";
 };
 
 </script>
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-gray-300 mt-20">
+
+    <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10">
+
+        <!-- About -->
+        <div>
+
+            <h2 class="text-2xl font-bold text-white mb-4">
+                DSA Visualizer
+            </h2>
+
+            <p class="text-gray-400 leading-7">
+                Learn Data Structures and Algorithms through interactive
+                visualizations, curated problems, and progress tracking.
+            </p>
+
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+
+            <h3 class="text-xl font-semibold text-white mb-4">
+                Quick Links
+            </h3>
+
+            <ul class="space-y-2">
+
+                <li>
+                    <a href="#" class="hover:text-blue-400 transition">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#top" class="hover:text-blue-400 transition">
+                        Topics
+                    </a>
+                </li>
+
+                <li>
+                    <a href="profile.html" class="hover:text-blue-400 transition">
+                        Profile
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Contact -->
+        <div>
+
+            <h3 class="text-xl font-semibold text-white mb-4">
+                Connect
+            </h3>
+
+            <ul class="space-y-3">
+
+                <li>
+                    📧
+                    <a
+                    href="mailto:anjalidiswar570@gmail.com"
+                    class="hover:text-blue-400">
+                    anjalidiswar570@gmail.com
+                    </a>
+                </li>
+
+                <li>
+                    💼
+                    <a
+                    href="https://www.linkedin.com/in/anjali-diswar1710/"
+                    target="_blank"
+                    class="hover:text-blue-400">
+                    LinkedIn
+                    </a>
+                </li>
+
+                <li>
+                    💻
+                    <a
+                    href="https://github.com/Anjali17-10"
+                    target="_blank"
+                    class="hover:text-blue-400">
+                    GitHub
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <!-- Contribute -->
+        <div>
+
+            <h3 class="text-xl font-semibold text-white mb-4">
+                Contribute
+            </h3>
+
+            <p class="text-gray-400 mb-5">
+
+                Found a bug or want to add a new algorithm or visualizer?
+                Contributions are always welcome!
+
+            </p>
+
+            <a
+            href="https://github.com/Anjali17-10/Interactive-Algorithm-Visualizer"
+            target="_blank"
+            class="inline-block bg-blue-600 hover:bg-blue-700 transition text-white px-5 py-3 rounded-lg">
+
+                ⭐ Contribute on GitHub
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="border-t border-gray-700 py-5 text-center text-gray-500">
+
+        © 2026 DSA Visualizer • Built with ❤️ by
+        <span class="text-white font-semibold">
+            Anjali Diswar
+        </span>
+
+    </div>
+
+</footer>
 </body>
 </html>

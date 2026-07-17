@@ -79,12 +79,15 @@ document
 
 data.algorithms.forEach(algo => {
 
-    algoList.innerHTML += `
-    <div
-     onclick='showAlgorithm("${algo}")'
-        class="bg-blue-50 p-4 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1 cursor-pointer">
+algoList.innerHTML += `
+<div
+onclick='showAlgorithm("${algo}")'
+class="bg-blue-50 p-4 rounded-lg shadow hover:shadow-lg transition hover:-translate-y-1 cursor-pointer">
+
+    <div class="flex justify-between items-center">
 
         <div class="flex items-center gap-3">
+
             <span class="text-2xl">⚡</span>
 
             <h4 class="font-semibold text-gray-800">
@@ -93,9 +96,43 @@ data.algorithms.forEach(algo => {
 
         </div>
 
-    </div>`;
-});
+        <span
+        id="badge-${algo.replace(/\s+/g,'-')}"
+        class="hidden bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">
 
+            ✅ Completed
+
+        </span>
+
+    </div>
+
+</div>`;
+});
+const user = JSON.parse(localStorage.getItem("user"));
+
+if(user){
+
+    fetch(`http://localhost:5000/api/progress/${user.email}`)
+    .then(res => res.json())
+    .then(progress => {
+
+        progress.completed.forEach(item => {
+
+            const badge = document.getElementById(
+                "badge-" + item.replace(/\s+/g,'-')
+            );
+
+            if(badge){
+
+                badge.classList.remove("hidden");
+
+            }
+
+        });
+
+    });
+
+}
 data.questions.forEach(question => {
 
     questionList.innerHTML += `
@@ -1058,7 +1095,7 @@ async function markCompleted(algorithm){
     const user = JSON.parse(localStorage.getItem("user"));
 
     if(!user){
-        window.location.href="login.html";
+        window.location.href = "login.html";
         return;
     }
 
@@ -1067,12 +1104,12 @@ async function markCompleted(algorithm){
         const response = await fetch(
             "http://localhost:5000/api/progress/complete",
             {
-                method:"POST",
-                headers:{
-                    "Content-Type":"application/json"
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
                 },
-                body:JSON.stringify({
-                    email:user.email,
+                body: JSON.stringify({
+                    email: user.email,
                     algorithm
                 })
             }
@@ -1082,22 +1119,35 @@ async function markCompleted(algorithm){
 
         if(data.success){
 
-            alert("✅ "+algorithm+" marked as completed.");
+            showToast("✅ " + algorithm + " marked as completed.");
 
             updateProgress(data.completed.length);
-            updateCompleteButton(name);
+
+            updateCompleteButton(algorithm);
+            const badge = document.getElementById(
+    "badge-" + algorithm.replace(/\s+/g,'-')
+);
+
+if(badge){
+
+    badge.classList.remove("hidden");
+
+}
 
         }else{
 
-            alert(data.message);
+            showToast(data.message);
 
         }
+
     }catch(error){
 
         console.log(error);
-        alert("Server Error");
+
+        showToast("❌ Server Error");
 
     }
+
 }
 function updateProgress(completed){
 
@@ -1145,3 +1195,69 @@ async function loadUserProgress() {
 window.onload = function () {
     loadUserProgress();
 };
+function showToast(message){
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.remove("hidden");
+
+    setTimeout(() => {
+
+        toast.classList.add("hidden");
+
+    }, 2500);
+
+}
+async function loadContinueLearning(){
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if(!user) return;
+
+    const response = await fetch(
+        `http://localhost:5000/api/progress/${user.email}`
+    );
+
+    const progress = await response.json();
+
+    const completed = progress.completed;
+
+    let next = null;
+
+    for(const topic in roadmap){
+
+        for(const algo of roadmap[topic].algorithms){
+
+            if(!completed.includes(algo)){
+
+                next = algo;
+                break;
+
+            }
+
+        }
+
+        if(next) break;
+
+    }
+
+    if(next){
+
+        document
+        .getElementById("continueLearning")
+        .classList.remove("hidden");
+
+        document
+        .getElementById("nextAlgorithm")
+        .textContent = next;
+
+        document
+        .getElementById("continueBtn")
+        .onclick = ()=>showAlgorithm(next);
+
+    }
+
+}
+loadContinueLearning();

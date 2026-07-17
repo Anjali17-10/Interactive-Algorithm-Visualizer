@@ -714,25 +714,6 @@ const algorithmData = {
         }
     ]
 },
-"Binary Search on Answer": {
-    description:
-    "Applies binary search over the answer space instead of array indices.",
-
-    time: "O(log n × check)",
-
-    space: "O(1)",
-
-    problems: [
-        {
-            name: "Koko Eating Bananas",
-            link: "https://leetcode.com/problems/koko-eating-bananas/"
-        },
-        {
-            name: "Capacity To Ship Packages",
-            link: "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/"
-        }
-    ]
-},
 "Insertion": {
     description:
     "Adds a new node at a specified position in the linked list.",
