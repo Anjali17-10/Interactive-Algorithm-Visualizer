@@ -1,3 +1,59 @@
+const algorithmDetails = {
+
+"Binary Search":{
+
+description:
+"Binary Search is an efficient searching algorithm that repeatedly divides the search interval into half.",
+
+code:
+`int binarySearch(vector<int>& arr,int target){
+
+int low=0,high=arr.size()-1;
+
+while(low<=high){
+
+int mid=(low+high)/2;
+
+if(arr[mid]==target) return mid;
+
+if(arr[mid]<target)
+
+low=mid+1;
+
+else
+
+high=mid-1;
+
+}
+
+return -1;
+
+}`,
+
+complexity:"O(log n)"
+
+},
+
+"Linear Search":{
+
+description:
+"Linear Search scans every element until the target is found.",
+
+code:
+`for(int i=0;i<n;i++){
+
+if(arr[i]==target)
+
+return i;
+
+}`,
+
+complexity:"O(n)"
+
+}
+
+};
+
 function showTopic(title, data) {
 
     document
@@ -245,7 +301,12 @@ document.getElementById("linearVisualizer").classList.add("hidden");
     .getElementById("algorithmDetails")
     .classList.remove("hidden");
 
-   
+   document
+.getElementById("completeBtn")
+.onclick=()=>markCompleted(name);
+
+updateCompleteButton(name);
+
     document
     .getElementById("algorithmName")
     .textContent = name;
@@ -295,6 +356,7 @@ data.problems.forEach(problem => {
     .scrollIntoView({
         behavior: "smooth"
     });
+
 if(name === "Two Pointers")
 {
     document.getElementById("visualizer")
@@ -755,6 +817,48 @@ renderDirectedCycle();
 }
 
 }
+async function updateCompleteButton(algo){
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if(!user) return;
+
+    try{
+
+        const response = await fetch(
+            `http://localhost:5000/api/progress/${user.email}`
+        );
+
+        const data = await response.json();
+
+        const btn = document.getElementById("completeBtn");
+
+        if(data.completed.includes(algo)){
+
+            btn.innerHTML = "✅ Completed";
+            btn.disabled = true;
+
+            btn.classList.remove("bg-green-600");
+            btn.classList.add("bg-gray-500");
+
+        }
+        else{
+
+            btn.innerHTML = "✔ Mark as Completed";
+            btn.disabled = false;
+
+            btn.classList.remove("bg-gray-500");
+            btn.classList.add("bg-green-600");
+
+        }
+
+    }catch(err){
+
+        console.log(err);
+
+    }
+
+}
 document
 .getElementById("algorithmDetails")
 .scrollIntoView({
@@ -871,26 +975,173 @@ searchInput.addEventListener("input", () => {
     });
 
 });
+
 const themeButton = document.getElementById("themeButton");
 
-let darkMode = false;
+// Read saved theme
+let darkMode = localStorage.getItem("theme") === "dark";
+
+// Apply theme immediately when page loads
+applyTheme();
 
 themeButton.addEventListener("click", () => {
 
     darkMode = !darkMode;
 
+    localStorage.setItem(
+        "theme",
+        darkMode ? "dark" : "light"
+    );
+
+    applyTheme();
+
+});
+
+function applyTheme() {
+
     if (darkMode) {
+
+        // ===== Paste your EXISTING dark mode code here =====
 
         document.body.classList.remove("bg-blue-50");
         document.body.classList.add("bg-gray-900");
-
+    // Navbar
+        document.querySelector("nav").classList.remove("bg-white");
+        document.querySelector("nav").classList.add("bg-gray-800");
+           // Every white section/card
+        document.querySelectorAll(".bg-white").forEach(el=>{
+            el.classList.remove("bg-white");
+            el.classList.add("bg-gray-800");
+        });
+        // ... all the rest of your current dark mode code ...
+        document.querySelectorAll(".bg-blue-50").forEach(el=>{
+            el.classList.remove("bg-blue-50");
+            el.classList.add("bg-gray-700");
+        });
         themeButton.textContent = "☀️ Light Mode";
 
     } else {
 
-        document.body.classList.remove("bg-gray-900");
+          document.body.classList.remove("bg-gray-900","text-white");
         document.body.classList.add("bg-blue-50");
 
+        document.querySelector("nav").classList.remove("bg-gray-800");
+        document.querySelector("nav").classList.add("bg-white");
+
+        document.querySelectorAll(".bg-gray-800").forEach(el=>{
+            if(el!==document.querySelector("nav")){
+                el.classList.remove("bg-gray-800");
+                el.classList.add("bg-white");
+            }
+        });
+
+        document.querySelectorAll(".bg-gray-700").forEach(el=>{
+            el.classList.remove("bg-gray-700");
+            el.classList.add("bg-blue-50");
+        });
+        // ... all the rest of your current light mode code ...
+
         themeButton.textContent = "🌙 Dark Mode";
+
     }
-});
+}
+function logout(){
+
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("email");
+
+    window.location.href = "index.html";
+}
+async function markCompleted(algorithm){
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if(!user){
+        window.location.href="login.html";
+        return;
+    }
+
+    try{
+
+        const response = await fetch(
+            "http://localhost:5000/api/progress/complete",
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    email:user.email,
+                    algorithm
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if(data.success){
+
+            alert("✅ "+algorithm+" marked as completed.");
+
+            updateProgress(data.completed.length);
+            updateCompleteButton(name);
+
+        }else{
+
+            alert(data.message);
+
+        }
+    }catch(error){
+
+        console.log(error);
+        alert("Server Error");
+
+    }
+}
+function updateProgress(completed){
+
+    const totalAlgorithms = 90;
+
+    const percent = Math.round((completed/totalAlgorithms)*100);
+
+    document.getElementById("progressCount").textContent =
+        `${completed} / ${totalAlgorithms}`;
+
+    document.getElementById("progressBar").style.width =
+        percent+"%";
+
+    document.getElementById("progressPercent").textContent =
+        percent+"%";
+
+}
+async function loadUserProgress() {
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (!user) return;
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:5000/api/progress/${user.email}`
+        );
+
+        const data = await response.json();
+
+        if (data.success) {
+
+            updateProgress(data.completed.length);
+
+        }
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+}
+window.onload = function () {
+    loadUserProgress();
+};
