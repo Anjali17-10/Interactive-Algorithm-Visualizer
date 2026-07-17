@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/2103/2103633.png">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DSA Dashboard</title>
+  <title>DSA Visualizer | Learn DSA Interactively</title>
   <script>
 
 const token = localStorage.getItem("token");
@@ -15,11 +18,24 @@ window.location.href = "login.html";
 }
 
 </script>
+<style>
+html{
+scroll-behavior:smooth;
+}
+</style>
+
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body id="top" class="bg-blue-50 transition-colors duration-300">
-<!-- NAVBAR -->
+<div id="loader"
+class="fixed inset-0 bg-white flex justify-center items-center z-50">
+
+<div class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin">
+</div>
+
+</div>
+    <!-- NAVBAR -->
 <nav class="flex justify-between items-center px-6 py-4 bg-white dark:bg-gray-800 shadow transition-colors duration-300">
 
     <h1 class="text-xl font-bold text-blue-600 dark:text-blue-400">
@@ -3921,133 +3937,124 @@ window.location.href="login.html";
 
 </script>
 <!-- FOOTER -->
-<footer class="bg-gray-900 text-gray-300 mt-20">
+<footer class="bg-gray-900 text-white py-10 mt-16">
 
-    <div class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 gap-10">
+<div class="max-w-7xl mx-auto px-6">
 
-        <!-- About -->
-        <div>
+<div class="grid md:grid-cols-3 gap-10">
 
-            <h2 class="text-2xl font-bold text-white mb-4">
-                DSA Visualizer
-            </h2>
+<!-- About -->
 
-            <p class="text-gray-400 leading-7">
-                Learn Data Structures and Algorithms through interactive
-                visualizations, curated problems, and progress tracking.
-            </p>
+<div>
 
-        </div>
+<h2 class="text-2xl font-bold text-blue-400">
+DSA Visualizer
+</h2>
 
-        <!-- Quick Links -->
-        <div>
+<p class="text-gray-400 mt-4">
+Master Data Structures & Algorithms through visualizations,
+practice problems and interactive learning.
+</p>
 
-            <h3 class="text-xl font-semibold text-white mb-4">
-                Quick Links
-            </h3>
+</div>
 
-            <ul class="space-y-2">
+<!-- Quick Links -->
 
-                <li>
-                    <a href="#" class="hover:text-blue-400 transition">
-                        Home
-                    </a>
-                </li>
+<div>
 
-                <li>
-                    <a href="#top" class="hover:text-blue-400 transition">
-                        Topics
-                    </a>
-                </li>
+<h2 class="text-xl font-bold mb-4">
+Quick Links
+</h2>
 
-                <li>
-                    <a href="profile.html" class="hover:text-blue-400 transition">
-                        Profile
-                    </a>
-                </li>
+<ul class="space-y-2">
 
-            </ul>
+<li><a href="#" class="hover:text-blue-400">Home</a></li>
 
-        </div>
+<li><a href="#topics" class="hover:text-blue-400">Topics</a></li>
 
-        <!-- Contact -->
-        <div>
+<li><a href="profile.html" class="hover:text-blue-400">Profile</a></li>
 
-            <h3 class="text-xl font-semibold text-white mb-4">
-                Connect
-            </h3>
+</ul>
 
-            <ul class="space-y-3">
+</div>
 
-                <li>
-                    📧
-                    <a
-                    href="mailto:anjalidiswar570@gmail.com"
-                    class="hover:text-blue-400">
-                    anjalidiswar570@gmail.com
-                    </a>
-                </li>
+<!-- Contact -->
 
-                <li>
-                    💼
-                    <a
-                    href="https://www.linkedin.com/in/anjali-diswar1710/"
-                    target="_blank"
-                    class="hover:text-blue-400">
-                    LinkedIn
-                    </a>
-                </li>
+<div>
 
-                <li>
-                    💻
-                    <a
-                    href="https://github.com/Anjali17-10"
-                    target="_blank"
-                    class="hover:text-blue-400">
-                    GitHub
-                    </a>
-                </li>
+<h2 class="text-xl font-bold mb-4">
+Connect
+</h2>
 
-            </ul>
+<div class="flex gap-5 text-2xl">
 
-        </div>
+<a
+href="mailto:anjalidiswar570@gmail.com"
+class="hover:text-blue-400">
 
-        <!-- Contribute -->
-        <div>
+<i class="fas fa-envelope"></i>
 
-            <h3 class="text-xl font-semibold text-white mb-4">
-                Contribute
-            </h3>
+</a>
+<a
+href="https://github.com/Anjali17-10"
+target="_blank"
+class="hover:text-blue-400">
 
-            <p class="text-gray-400 mb-5">
+<i class="fab fa-github"></i>
 
-                Found a bug or want to add a new algorithm or visualizer?
-                Contributions are always welcome!
+</a>
+<a
+href="https://www.linkedin.com/in/anjali-diswar1710/"
+target="_blank"
+class="hover:text-blue-400">
 
-            </p>
+<i class="fab fa-linkedin"></i>
 
-            <a
-            href="https://github.com/Anjali17-10/Interactive-Algorithm-Visualizer"
-            target="_blank"
-            class="inline-block bg-blue-600 hover:bg-blue-700 transition text-white px-5 py-3 rounded-lg">
+</a>
 
-                ⭐ Contribute on GitHub
+</div>
 
-            </a>
+<p class="mt-6 text-gray-400">
 
-        </div>
+Want to contribute?
 
-    </div>
+<a
+href="https://github.com/Anjali17-10/Interactive-Algorithm-Visualizer"
+target="_blank"
+class="text-blue-400 hover:underline">
 
-    <div class="border-t border-gray-700 py-5 text-center text-gray-500">
+Fork this project on GitHub
 
-        © 2026 DSA Visualizer • Built with ❤️ by
-        <span class="text-white font-semibold">
-            Anjali Diswar
-        </span>
+</a>
 
-    </div>
+</p>
+
+</div>
+
+</div>
+
+<hr class="my-8 border-gray-700">
+
+<p class="text-center text-gray-500">
+
+© 2026 DSA Visualizer • Built by Anjali Diswar ❤️
+
+</p>
+
+</div>
 
 </footer>
+<!-- Back To Top Button -->
+
+<button
+id="backToTop"
+class="hidden fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white w-14 h-14 rounded-full shadow-xl text-2xl transition duration-300">
+
+⬆
+
+</button>
+<div id="toast"
+class="hidden fixed top-5 right-5 bg-green-600 text-white px-6 py-3 rounded-lg shadow-xl z-50">
+</div>
 </body>
 </html>

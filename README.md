@@ -1,16 +1,110 @@
-# React + Vite
+# 🚀 DSA Visualizer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive full-stack web application for learning Data Structures & Algorithms through visualizations, progress tracking, and curated practice problems.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 🔐 JWT Authentication (Login & Register)
+- 🌙 Dark Mode
+- 📚 11+ DSA Topics
+- 🧠 90+ Algorithms
+- 📈 Progress Tracking
+- 🎯 Mark Algorithms as Completed
+- 🔍 Topic Search
+- 💻 Algorithm Details
+- 🎨 Interactive Algorithm Visualizers
+- 📱 Responsive UI
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠 Tech Stack
 
-## Expanding the ESLint configuration
+### Frontend
+- React
+- Vite
+- Tailwind CSS
+- JavaScript
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
+
+---
+
+## 📂 Project Structure
+
+```
+Frontend/
+Backend/
+```
+
+---
+
+## ⚙️ Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME.git
+```
+
+### Frontend
+
+```bash
+cd Frontend
+npm install
+npm run dev
+```
+
+### Backend
+
+```bash
+cd Backend
+npm install
+npm start
+```
+
+---
+
+## 📸 Screenshots
+
+(Add screenshots after deployment)
+
+---
+
+## 🌐 Live Demo
+
+Frontend:
+(Add Vercel Link)
+
+Backend:
+(Add Render Link)
+
+---
+
+## 👩‍💻 Author
+
+**Anjali Diswar**
+
+- GitHub: https://github.com/YOUR_GITHUB_USERNAME
+- LinkedIn: https://www.linkedin.com/in/anjali-diswar1710/
+- Email: anjalidiswar570@gmail.com
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository
+2. Create a new branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+## ⭐ If you like this project
+
+Give it a ⭐ on GitHub.

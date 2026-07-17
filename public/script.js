@@ -1119,7 +1119,7 @@ async function markCompleted(algorithm){
 
         if(data.success){
 
-            showToast("✅ " + algorithm + " marked as completed.");
+           showToast("✅ "+algorithm+" completed");
 
             updateProgress(data.completed.length);
 
@@ -1261,3 +1261,76 @@ async function loadContinueLearning(){
 
 }
 loadContinueLearning();
+
+const backToTop = document.getElementById("backToTop");
+
+// Show button after scrolling
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 300){
+
+        backToTop.classList.remove("hidden");
+
+    }
+
+    else{
+
+        backToTop.classList.add("hidden");
+
+    }
+
+});
+
+// Scroll to top
+
+backToTop.addEventListener("click", () => {
+
+    window.scrollTo({
+
+        top:0,
+
+        behavior:"smooth"
+
+    });
+
+});
+window.addEventListener("load",()=>{
+
+document.querySelectorAll(".card").forEach((card,index)=>{
+
+card.style.opacity=0;
+card.style.transform="translateY(30px)";
+
+setTimeout(()=>{
+
+card.style.transition="0.5s";
+card.style.opacity=1;
+card.style.transform="translateY(0)";
+
+},index*100);
+
+});
+
+});
+function showToast(message){
+
+const toast=document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.remove("hidden");
+
+setTimeout(()=>{
+
+toast.classList.add("hidden");
+
+},2500);
+
+}
+
+window.addEventListener("load",()=>{
+
+document.getElementById("loader").style.display="none";
+
+});
