@@ -1666,7 +1666,17 @@ link:"https://leetcode.com/problems/palindromic-substrings/"
 ]
 
 },
-
-
-
+};
+const roadmap = {
+    Arrays: arraysData,
+    Strings: stringsData,
+    "Recursion & Backtracking": recursionData,
+    "Searching Algorithms": searchingData,
+    "Linked List": linkedListData,
+    "Stack & Queue": stackQueueData,
+    Heaps: heapsData,
+    Trees: treesData,
+    Graphs: graphsData,
+    "Greedy Algorithms": greedyData,
+    "Dynamic Programming": dpData
 };

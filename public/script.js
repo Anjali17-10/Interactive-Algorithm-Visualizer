@@ -53,7 +53,6 @@ complexity:"O(n)"
 }
 
 };
-
 function showTopic(title, data) {
 
     document
@@ -335,7 +334,7 @@ document.getElementById("linearVisualizer").classList.add("hidden");
     }
 
     document
-    .getElementById("algorithmDetails")
+    .getElementById("algorithmDetails2")
     .classList.remove("hidden");
 
    document
@@ -389,7 +388,7 @@ data.problems.forEach(problem => {
 });
 
     document
-    .getElementById("algorithmDetails")
+    .getElementById("algorithmDetails2")
     .scrollIntoView({
         behavior: "smooth"
     });
@@ -1192,24 +1191,11 @@ async function loadUserProgress() {
     }
 
 }
-window.onload = function () {
+window.addEventListener("load", () => {
     loadUserProgress();
-};
-function showToast(message){
-
-    const toast = document.getElementById("toast");
-
-    toast.textContent = message;
-
-    toast.classList.remove("hidden");
-
-    setTimeout(() => {
-
-        toast.classList.add("hidden");
-
-    }, 2500);
-
-}
+    loadContinueLearning();
+    document.getElementById("loader").style.display = "none";
+});
 async function loadContinueLearning(){
 
     const user = JSON.parse(localStorage.getItem("user"));
@@ -1260,41 +1246,33 @@ async function loadContinueLearning(){
     }
 
 }
-loadContinueLearning();
-
+if (typeof roadmap !== "undefined") {
+    loadContinueLearning();
+}
 const backToTop = document.getElementById("backToTop");
 
-// Show button after scrolling
+if (backToTop) {
 
-window.addEventListener("scroll", () => {
+    window.addEventListener("scroll", () => {
 
-    if(window.scrollY > 300){
-
-        backToTop.classList.remove("hidden");
-
-    }
-
-    else{
-
-        backToTop.classList.add("hidden");
-
-    }
-
-});
-
-// Scroll to top
-
-backToTop.addEventListener("click", () => {
-
-    window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
+        if (window.scrollY > 300) {
+            backToTop.classList.remove("hidden");
+        } else {
+            backToTop.classList.add("hidden");
+        }
 
     });
 
-});
+    backToTop.addEventListener("click", () => {
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    });
+
+}
 window.addEventListener("load",()=>{
 
 document.querySelectorAll(".card").forEach((card,index)=>{
@@ -1331,6 +1309,9 @@ toast.classList.add("hidden");
 
 window.addEventListener("load",()=>{
 
-document.getElementById("loader").style.display="none";
+const loader = document.getElementById("loader");
 
+if(loader){
+    loader.style.display="none";
+}
 });
