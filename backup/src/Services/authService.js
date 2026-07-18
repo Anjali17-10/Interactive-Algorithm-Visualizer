@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000//api",
+  baseURL: "https://interactive-algorithm-visualizer-6.onrender.com/api",
 });
+
 
 export const registerUser = (data) =>
   API.post("/auth/register", data);

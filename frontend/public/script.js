@@ -111,7 +111,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 if(user){
 
-    fetch(`http://localhost:5000/api/progress/${user.email}`)
+  fetch(`https://interactive-algorithm-visualizer-6.onrender.com/api/progress/${user.email}`)
     .then(res => res.json())
     .then(progress => {
 
@@ -861,9 +861,10 @@ async function updateCompleteButton(algo){
 
     try{
 
-        const response = await fetch(
-            `http://localhost:5000/api/progress/${user.email}`
-        );
+const response = await fetch(
+  `https://interactive-algorithm-visualizer-6.onrender.com/api/progress/${user.email}`
+);
+
 
         const data = await response.json();
 
@@ -1100,9 +1101,9 @@ async function markCompleted(algorithm){
 
     try{
 
-        const response = await fetch(
-            "http://localhost:5000/api/progress/complete",
-            {
+      const response = await fetch(
+  "https://interactive-algorithm-visualizer-6.onrender.com/api/progress/complete",
+  {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -1172,9 +1173,10 @@ async function loadUserProgress() {
 
     try {
 
-        const response = await fetch(
-            `http://localhost:5000/api/progress/${user.email}`
-        );
+      const response = await fetch(
+  `https://interactive-algorithm-visualizer-6.onrender.com/api/progress/${user.email}`
+);
+
 
         const data = await response.json();
 
@@ -1202,9 +1204,10 @@ async function loadContinueLearning(){
 
     if(!user) return;
 
-    const response = await fetch(
-        `http://localhost:5000/api/progress/${user.email}`
-    );
+  const response = await fetch(
+  `https://interactive-algorithm-visualizer-6.onrender.com/api/progress/${user.email}`
+);
+
 
     const progress = await response.json();
 
