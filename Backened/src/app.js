@@ -28,7 +28,7 @@ app.use(cors({
         "http://localhost:5173",
         "http://127.0.0.1:5500",
         "http://localhost:5500",
-        "https://interactive-algorithm-visualizer-ir.vercel.app/"
+        "https://interactive-algorithm-visualizer-lz.vercel.app/"
     ],
     credentials: true
 }));
