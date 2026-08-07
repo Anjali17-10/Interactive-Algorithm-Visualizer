@@ -23,16 +23,30 @@ app.get("/test-email", async (req, res) => {
 });
 
 
-app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "http://127.0.0.1:5500",
-        "http://localhost:5500",
-        "https://interactive-algorithm-visualizer-lz.vercel.app/"
-    ],
-    credentials: true
-}));
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://127.0.0.1:5500",
+  "http://localhost:5500",
+  "https://interactive-algorithm-visualizer-lz.vercel.app",
+  process.env.FRONTEND_URL
+].filter(Boolean);
 
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+
+    const isAllowedOrigin = allowedOrigins.includes(origin);
+    const isVercelPreview =
+      /^https:\/\/interactive-algorithm-visualizer(?:-[a-z0-9-]+)?\.vercel\.app$/.test(origin);
+
+    if (isAllowedOrigin || isVercelPreview) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
+  credentials: true
+}));
 app.use(express.json());
 app.use(cookieParser());
 
