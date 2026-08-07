@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://interactive-algorithm-visualizer-11.onrender.com/api",
+  baseURL: "https://interactive-algorithm-visualizer-12.onrender.com/api",
 });
 
 
