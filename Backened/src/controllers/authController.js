@@ -6,6 +6,9 @@ const sendEmail = require("../utils/sendEmail");
 
 const verifyOTP = async (req, res) => {
     try {
+        console.log("VERIFY OTP API HIT");
+        console.log("Request body:", req.body);
+
         const { email, otp } = req.body;
 
         if (!email || !otp) {
@@ -16,6 +19,8 @@ const verifyOTP = async (req, res) => {
         }
 
         const user = await User.findOne({ email });
+
+        console.log("User found:", user);
 
         if (!user) {
             return res.status(404).json({
@@ -30,6 +35,10 @@ const verifyOTP = async (req, res) => {
                 message: "Email is already verified",
             });
         }
+
+       // console.log("Entered OTP:", otp);
+       // console.log("Stored OTP:", user.otp);
+      //  console.log("OTP Expiry:", user.otpExpiry);
 
         if (user.otp !== otp) {
             return res.status(400).json({
@@ -51,17 +60,18 @@ const verifyOTP = async (req, res) => {
 
         await user.save();
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "Email verified successfully",
         });
 
     } catch (error) {
-        console.error(error);
+        console.error("VERIFY OTP ERROR:", error);
 
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             message: "Server Error",
+            error: error.message
         });
     }
 };
@@ -137,7 +147,7 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    console.log("LOGIN API HIT");
+   // console.log("LOGIN API HIT");
     try {
         const { email, password } = req.body;
 
@@ -165,9 +175,9 @@ const login = async (req, res) => {
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
-         console.log("Entered Email:", email);
-console.log("Entered Password:", password);
-console.log("Stored Password:", user.password);
+       //  console.log("Entered Email:", email);
+//console.log("Entered Password:", password);
+//console.log("Stored Password:", user.password);
         if (!isMatch) {
             return res.status(401).json({
                 success: false,
