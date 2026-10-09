@@ -222,8 +222,6 @@ document.getElementById("DPknapsackVisualizer")
 .classList.add("hidden");
 document.getElementById("lcsVisualizer")
 .classList.add("hidden");
-document.getElementById("DPknapsackVisualizer")
-.classList.add("hidden");
 document.getElementById("lisVisualizer")
 .classList.add("hidden");
 //====
@@ -658,13 +656,7 @@ document.getElementById("rabinVisualizer")
 
 renderRabin();
 }
-if(name==="Rabin-Karp")
-{
-document.getElementById("rabinVisualizer")
-.classList.remove("hidden");
 
-renderRabin();
-}
 if(name === "Binary Search on Answer")
 {
     document
@@ -743,14 +735,7 @@ document.getElementById("patternVisualizer")
 
 renderPattern();
 }
-if(name === "Next Greater Element")
-{
-    document
-    .getElementById("ngeVisualizer")
-    .classList.remove("hidden");
 
-    renderNge();
-}
 if(name === "Stock Span Problem")
 {
     document
@@ -852,6 +837,10 @@ document
 renderDirectedCycle();
 }
 
+    document
+    .getElementById("algorithmDetails")
+    .scrollIntoView({ behavior: "smooth" });
+
 }
 async function updateCompleteButton(algo){
 
@@ -896,11 +885,7 @@ const response = await fetch(
     }
 
 }
-document
-.getElementById("algorithmDetails")
-.scrollIntoView({
-    behavior: "smooth"
-});
+
 document
 .getElementById("arraysCard")
 .addEventListener("click", () => {
